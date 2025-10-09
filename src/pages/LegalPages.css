@@ -1,0 +1,116 @@
+.legal-page {
+  min-height: 100vh;
+  background: var(--bg-secondary);
+  padding: 3rem 0;
+}
+
+.legal-container {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 4rem 3rem;
+  background: var(--bg-primary);
+  border-radius: 16px;
+  box-shadow: var(--shadow-lg);
+  border: 1px solid var(--border-light);
+}
+
+.legal-container h1 {
+  font-size: clamp(2rem, 4vw, 2.75rem);
+  font-weight: 500;
+  color: var(--text-primary);
+  margin-bottom: 1.5rem;
+  text-align: center;
+  letter-spacing: -0.025em;
+}
+
+.last-updated {
+  text-align: center;
+  color: var(--text-muted);
+  font-style: italic;
+  margin-bottom: 3.5rem;
+  border-bottom: 1px solid var(--border-light);
+  padding-bottom: 2rem;
+  font-size: 0.95rem;
+}
+
+.legal-container section {
+  margin-bottom: 3rem;
+}
+
+.legal-container h2 {
+  font-size: clamp(1.375rem, 3vw, 1.5rem);
+  font-weight: 500;
+  color: var(--text-primary);
+  margin-bottom: 1.5rem;
+  border-bottom: 1px solid var(--border-light);
+  padding-bottom: 0.75rem;
+  letter-spacing: -0.02em;
+}
+
+.legal-container h3 {
+  font-size: clamp(1.125rem, 2.5vw, 1.25rem);
+  font-weight: 500;
+  color: var(--text-primary);
+  margin-bottom: 1rem;
+  margin-top: 2rem;
+  letter-spacing: -0.015em;
+}
+
+.legal-container p {
+  line-height: 1.7;
+  color: var(--text-secondary);
+  margin-bottom: 1.25rem;
+  font-size: 1rem;
+  font-weight: 400;
+}
+
+.legal-container ul {
+  margin-left: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.legal-container li {
+  line-height: 1.7;
+  color: var(--text-secondary);
+  margin-bottom: 0.75rem;
+  font-size: 1rem;
+  font-weight: 400;
+}
+
+.contact-info {
+  background: var(--bg-tertiary);
+  padding: 2rem;
+  border-radius: 12px;
+  margin-top: 1.5rem;
+  border: 1px solid var(--border-light);
+}
+
+.contact-info p {
+  margin-bottom: 0.75rem;
+  color: var(--text-secondary);
+  font-size: 0.95rem;
+}
+
+.contact-info p:last-child {
+  margin-bottom: 0;
+}
+
+.contact-info strong {
+  color: var(--text-primary);
+  font-weight: 500;
+}
+
+@media (max-width: 768px) {
+  .legal-page {
+    padding: 2rem 0;
+  }
+  
+  .legal-container {
+    margin: 0 1rem;
+    padding: 3rem 2rem;
+  }
+  
+  .contact-info {
+    padding: 1.5rem;
+  }
+}
