@@ -1,31 +1,38 @@
 import React from 'react';
+import { Receipt, TrendingUp, Target, ShieldCheck, Smartphone, Zap } from 'lucide-react';
 import './Products.css';
 
 const Products: React.FC = () => {
   const features = [
     {
       title: "Transaction Tracking",
-      description: "Monitor your spending patterns with clear categorization and organization"
+      description: "Monitor your spending patterns with clear categorization and organization",
+      icon: Receipt
     },
     {
       title: "Smart Analytics",
-      description: "Gain insights into your financial habits through intuitive charts and reports"
+      description: "Gain insights into your financial habits through intuitive charts and reports",
+      icon: TrendingUp
     },
     {
       title: "Budget Planning",
-      description: "Set and track budgets to help manage your financial goals effectively"
+      description: "Set and track budgets to help manage your financial goals effectively",
+      icon: Target
     },
     {
       title: "Secure Design",
-      description: "Built with security best practices to protect your financial information"
+      description: "Built with security best practices to protect your financial information",
+      icon: ShieldCheck
     },
     {
       title: "User-Friendly Interface",
-      description: "Clean, intuitive design that makes financial management straightforward"
+      description: "Clean, intuitive design that makes financial management straightforward",
+      icon: Smartphone
     },
     {
       title: "Modern Technology",
-      description: "Developed using contemporary web technologies for a smooth user experience"
+      description: "Developed using contemporary web technologies for a smooth user experience",
+      icon: Zap
     }
   ];
 
@@ -79,17 +86,20 @@ const Products: React.FC = () => {
           <div className="features-grid">
             <h3 className="features-title">Key Features</h3>
             <div className="features-list">
-              {features.map((feature, index) => (
-                <div key={index} className="feature-item">
-                  <div className="feature-icon">
-                    <div className="icon-placeholder"></div>
+              {features.map((feature, index) => {
+                const IconComponent = feature.icon;
+                return (
+                  <div key={index} className="feature-item">
+                    <div className="feature-icon">
+                      <IconComponent size={28} strokeWidth={1.5} />
+                    </div>
+                    <div className="feature-content">
+                      <h4>{feature.title}</h4>
+                      <p>{feature.description}</p>
+                    </div>
                   </div>
-                  <div className="feature-content">
-                    <h4>{feature.title}</h4>
-                    <p>{feature.description}</p>
-                  </div>
-                </div>
-              ))}
+                );
+              })}
             </div>
           </div>
           

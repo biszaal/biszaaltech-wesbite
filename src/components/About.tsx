@@ -1,23 +1,28 @@
 import React from 'react';
+import { Lightbulb, Shield, Eye, Award } from 'lucide-react';
 import './About.css';
 
 const About: React.FC = () => {
   const values = [
     {
       title: "Innovation",
-      description: "We leverage cutting-edge technology to solve real-world problems with elegant solutions."
+      description: "We leverage cutting-edge technology to solve real-world problems with elegant solutions.",
+      icon: Lightbulb
     },
     {
       title: "Security",
-      description: "User data protection and privacy are at the core of everything we build and maintain."
+      description: "User data protection and privacy are at the core of everything we build and maintain.",
+      icon: Shield
     },
     {
       title: "Transparency",
-      description: "We believe in clear communication and honest practices with our users and partners."
+      description: "We believe in clear communication and honest practices with our users and partners.",
+      icon: Eye
     },
     {
       title: "Excellence",
-      description: "We strive for the highest quality in our products, services, and user experiences."
+      description: "We strive for the highest quality in our products, services, and user experiences.",
+      icon: Award
     }
   ];
 
@@ -79,15 +84,18 @@ const About: React.FC = () => {
           <div className="company-values">
             <h3>Our Values</h3>
             <div className="values-grid">
-              {values.map((value, index) => (
-                <div key={index} className="value-item">
-                  <div className="value-icon">
-                    <div className="value-icon-placeholder"></div>
+              {values.map((value, index) => {
+                const IconComponent = value.icon;
+                return (
+                  <div key={index} className="value-item">
+                    <div className="value-icon">
+                      <IconComponent size={32} strokeWidth={1.5} />
+                    </div>
+                    <h4>{value.title}</h4>
+                    <p>{value.description}</p>
                   </div>
-                  <h4>{value.title}</h4>
-                  <p>{value.description}</p>
-                </div>
-              ))}
+                );
+              })}
             </div>
           </div>
         </div>
