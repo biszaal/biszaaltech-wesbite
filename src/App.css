@@ -67,7 +67,16 @@
   --font-size-4xl: 2.25rem;
   --font-size-5xl: 3rem;
   --font-size-6xl: 3.75rem;
-  
+
+  /* Font Weights */
+  --font-weight-normal: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+
+  /* Letter Spacing */
+  --letter-spacing-tight: -0.02em;
+
   /* Border Radius */
   --radius-sm: 6px;
   --radius-md: 8px;
@@ -75,6 +84,18 @@
   --radius-xl: 16px;
   --radius-2xl: 20px;
   --radius-full: 9999px;
+  --border-radius-sm: 6px;
+  --border-radius-md: 8px;
+  --border-radius-lg: 12px;
+  --border-radius-xl: 16px;
+  --border-radius-2xl: 20px;
+  --border-radius-full: 9999px;
+
+  /* Container */
+  --container-max-width: 1280px;
+
+  /* Accent Colors */
+  --color-accent-secondary: #c0c0c0;
   
   /* Transitions */
   --transition-fast: 150ms ease-out;
