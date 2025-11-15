@@ -5,16 +5,16 @@ import './Comparison.css';
 const Comparison: React.FC = () => {
   const features = [
     {
-      feature: "UK-Focused Open Banking Integration",
+      feature: "Manual Transaction Entry",
       expenzez: true,
-      competitor1: false,
+      competitor1: true,
       competitor2: true
     },
     {
-      feature: "AI-Powered Categorization",
+      feature: "CSV Import",
       expenzez: true,
-      competitor1: true,
-      competitor2: false
+      competitor1: false,
+      competitor2: true
     },
     {
       feature: "Beautiful, Modern Interface",
@@ -29,10 +29,10 @@ const Comparison: React.FC = () => {
       competitor2: true
     },
     {
-      feature: "Budget Planning Tools",
+      feature: "Smart Categorization",
       expenzez: true,
       competitor1: true,
-      competitor2: true
+      competitor2: false
     },
     {
       feature: "Bank-Level Security",
@@ -41,9 +41,9 @@ const Comparison: React.FC = () => {
       competitor2: true
     },
     {
-      feature: "Cross-Platform (iOS & Android)",
+      feature: "iOS App Available",
       expenzez: true,
-      competitor1: false,
+      competitor1: true,
       competitor2: true
     },
     {
@@ -53,16 +53,16 @@ const Comparison: React.FC = () => {
       competitor2: false
     },
     {
-      feature: "Export Reports (CSV/PDF)",
+      feature: "CSV Export",
       expenzez: true,
       competitor1: true,
       competitor2: false
     },
     {
-      feature: "Free Tier Available",
+      feature: "Completely Free",
       expenzez: true,
       competitor1: false,
-      competitor2: true
+      competitor2: false
     }
   ];
 
