@@ -140,6 +140,50 @@
   transform: translateY(-1px);
 }
 
+/* Social proof stats */
+.hero-stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: var(--spacing-xl);
+  margin-top: var(--spacing-4xl);
+  padding-top: var(--spacing-3xl);
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  animation: fadeInUp 1s ease-out 0.9s both;
+}
+
+.hero-stat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--spacing-sm);
+  padding: var(--spacing-md);
+  transition: transform 150ms ease-out;
+}
+
+.hero-stat:hover {
+  transform: translateY(-4px);
+}
+
+.stat-icon {
+  color: var(--color-accent);
+  margin-bottom: var(--spacing-xs);
+}
+
+.stat-value {
+  font-size: var(--font-size-2xl);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-white);
+  letter-spacing: -0.02em;
+}
+
+.stat-label {
+  font-size: var(--font-size-sm);
+  color: rgba(255, 255, 255, 0.7);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-weight: var(--font-weight-medium);
+}
+
 /* Premium floating elements */
 .hero-floating-elements {
   position: absolute;
@@ -194,27 +238,42 @@
     min-height: 90vh;
     padding: var(--spacing-3xl) var(--spacing-lg);
   }
-  
+
   .hero-headline {
     margin-bottom: var(--spacing-xl);
     font-size: clamp(var(--font-size-3xl), 8vw, var(--font-size-4xl));
   }
-  
+
   .hero-headline::after {
     width: 40px;
     bottom: -0.25rem;
   }
-  
+
   .hero-subheadline {
     margin-bottom: var(--spacing-3xl);
     font-size: clamp(var(--font-size-base), 4vw, var(--font-size-lg));
   }
-  
+
   .hero-cta {
     padding: var(--spacing-md) var(--spacing-2xl);
     font-size: var(--font-size-base);
   }
-  
+
+  .hero-stats {
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--spacing-lg);
+    margin-top: var(--spacing-3xl);
+    padding-top: var(--spacing-2xl);
+  }
+
+  .stat-value {
+    font-size: var(--font-size-xl);
+  }
+
+  .stat-label {
+    font-size: var(--font-size-xs);
+  }
+
   .floating-dot {
     width: 6px;
     height: 6px;
