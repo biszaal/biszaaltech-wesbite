@@ -8,35 +8,35 @@ const FAQ: React.FC = () => {
   const faqs = [
     {
       question: "Is my financial data secure with Expenzez?",
-      answer: "Absolutely. We use bank-level encryption and comply with PSD2 regulations. Your data is encrypted both in transit and at rest, and we never store your banking credentials. We use secure Open Banking APIs to connect to your accounts, ensuring the highest level of security."
+      answer: "Absolutely. We use bank-level encryption to protect your data. Your information is encrypted both in transit and at rest. We're building with security as a top priority, and our upcoming Open Banking integration will be PSD2-compliant, ensuring the highest level of security standards."
     },
     {
-      question: "How does Expenzez connect to my bank account?",
-      answer: "Expenzez uses Open Banking APIs that are PSD2-compliant. This means we connect securely to your bank through regulated channels. You authenticate directly with your bank, and we receive read-only access to your transaction data. We never see or store your banking passwords."
+      question: "How do I add my transactions to Expenzez?",
+      answer: "Currently, Expenzez offers two ways to add transactions: manual entry for quick individual transactions, and CSV upload for bulk imports from your bank statements. We're also working on Open Banking integration which will allow automatic transaction imports directly from your bank."
     },
     {
       question: "What makes Expenzez different from other expense trackers?",
-      answer: "Expenzez combines intelligent categorization powered by machine learning, beautiful and intuitive design, and comprehensive analytics. We focus on the UK market specifically, ensuring compatibility with UK banks and understanding of local financial patterns. Our platform is built with modern technology for speed and reliability."
+      answer: "Expenzez focuses on simplicity and ease of use with a beautiful, intuitive interface. We're building specifically for the UK market with features tailored to local needs. Our platform uses modern technology for speed and reliability, and we're committed to adding features based on real user feedback."
     },
     {
-      question: "Do I need to manually enter all my transactions?",
-      answer: "No! When you connect your bank account via Open Banking, your transactions are automatically imported and categorized. You can also manually add cash transactions or expenses from accounts you prefer not to connect."
+      question: "Is Open Banking integration available?",
+      answer: "Open Banking integration is coming soon! We're currently in the MVP phase with manual entry and CSV upload capabilities. Once launched, Open Banking will allow automatic transaction imports directly from your UK bank accounts through secure, PSD2-compliant connections."
     },
     {
-      question: "Is there a free trial or free plan available?",
-      answer: "We offer a comprehensive free tier that includes core expense tracking features. Premium features like advanced analytics, custom categories, and export functionality are available in our paid plans. Visit our website for current pricing details."
+      question: "Is there a free plan available?",
+      answer: "Yes! Expenzez is currently free to use with core expense tracking features including manual entry, CSV uploads, and analytics. We're focused on building a great product first, and will introduce premium features in the future based on user needs."
     },
     {
       question: "Can I use Expenzez on both iOS and Android?",
-      answer: "Yes! Expenzez is built with React Native, providing native apps for both iOS and Android platforms. The experience is optimized for each platform while maintaining consistent features across devices."
+      answer: "Expenzez is currently available on iOS, with the Android version coming soon. Both apps are built with React Native, ensuring a consistent, native experience across platforms when the Android version launches."
     },
     {
-      question: "How does the AI categorization work?",
-      answer: "Our machine learning algorithms analyze transaction descriptions, merchant information, and amounts to automatically categorize your expenses. The system learns from your corrections and becomes more accurate over time, adapting to your specific spending patterns."
+      question: "How does transaction categorization work?",
+      answer: "Expenzez uses smart categorization to organize your expenses. You can assign categories when entering transactions manually or during CSV import. We're continuously improving our categorization features to make expense tracking even more effortless."
     },
     {
       question: "Can I export my financial data?",
-      answer: "Yes, you can export your transaction data and reports in various formats including CSV and PDF. This feature is available in our premium plans, making it easy to share with accountants or use in other financial tools."
+      answer: "Yes, you can export your transaction data in CSV format, making it easy to share with accountants, create backups, or use in other financial tools. We're also working on adding PDF export options for reports and summaries."
     }
   ];
 

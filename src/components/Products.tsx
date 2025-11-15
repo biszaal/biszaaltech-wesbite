@@ -5,18 +5,18 @@ import './Products.css';
 const Products: React.FC = () => {
   const features = [
     {
-      title: "Transaction Tracking",
-      description: "Monitor your spending patterns with clear categorization and organization",
+      title: "Manual Entry",
+      description: "Quick and easy manual transaction entry to track all your expenses",
       icon: Receipt
+    },
+    {
+      title: "CSV Upload",
+      description: "Import your bank statements via CSV for bulk transaction management",
+      icon: TrendingUp
     },
     {
       title: "Smart Analytics",
       description: "Gain insights into your financial habits through intuitive charts and reports",
-      icon: TrendingUp
-    },
-    {
-      title: "Budget Planning",
-      description: "Set and track budgets to help manage your financial goals effectively",
       icon: Target
     },
     {
@@ -76,9 +76,10 @@ const Products: React.FC = () => {
             
             <div className="product-description-detailed">
               <p className="lead-description">
-                Expenzez is our fintech application designed to help UK consumers better understand and manage their finances. 
-                We're building modern tools that aim to provide users with clearer insights into their spending patterns 
-                and financial health through intuitive design and thoughtful features.
+                Expenzez is our fintech application designed to help UK consumers better understand and manage their finances.
+                Currently featuring manual transaction entry and CSV upload capabilities, we're building a comprehensive platform
+                that provides users with clearer insights into their spending patterns and financial health through intuitive design
+                and thoughtful features.
               </p>
             </div>
           </div>
@@ -115,12 +116,12 @@ const Products: React.FC = () => {
                 <span className="tech-description">Scalable backend infrastructure</span>
               </div>
               <div className="tech-item">
-                <span className="tech-name">Open Banking API</span>
-                <span className="tech-description">PSD2-compliant bank connections</span>
+                <span className="tech-name">CSV Processing</span>
+                <span className="tech-description">Bulk transaction imports</span>
               </div>
               <div className="tech-item">
-                <span className="tech-name">Machine Learning</span>
-                <span className="tech-description">AI-powered categorization</span>
+                <span className="tech-name">Smart Categorization</span>
+                <span className="tech-description">Intelligent expense organization</span>
               </div>
               <div className="tech-item">
                 <span className="tech-name">AWS Cloud</span>
@@ -134,53 +135,51 @@ const Products: React.FC = () => {
           </div>
           
           <div className="product-cta-section">
-            <a 
-              href="https://expenzez.com" 
-              target="_blank" 
-              rel="noopener noreferrer" 
+            <a
+              href="https://expenzez.com"
+              target="_blank"
+              rel="noopener noreferrer"
               className="product-button primary"
             >
               Visit Expenzez Website
             </a>
-            <a 
-              href="https://apps.apple.com" 
-              target="_blank" 
-              rel="noopener noreferrer" 
+            <a
+              href="https://apps.apple.com/us/app/expenzez/id6751338089"
+              target="_blank"
+              rel="noopener noreferrer"
               className="product-button secondary"
             >
               Download iOS App
             </a>
-            <a 
-              href="https://play.google.com" 
-              target="_blank" 
-              rel="noopener noreferrer" 
-              className="product-button secondary"
+            <button
+              className="product-button secondary disabled"
+              disabled
             >
-              Download Android App
-            </a>
+              Android App - Coming Soon
+            </button>
           </div>
         </div>
         
         <div className="future-roadmap">
           <h3 className="roadmap-title">What's Next</h3>
           <p className="roadmap-description">
-            Expenzez represents our commitment to building helpful financial tools. We're focused on creating 
-            a solid foundation for personal finance management, with plans to expand features based on user 
-            feedback and needs. Our goal is to develop a comprehensive platform that genuinely helps users 
-            make better financial decisions.
+            Expenzez represents our commitment to building helpful financial tools. We've launched with manual entry
+            and CSV upload as our MVP, providing a solid foundation for personal finance management. Our roadmap
+            focuses on expanding capabilities based on user feedback to create a comprehensive platform that genuinely
+            helps users make better financial decisions.
           </p>
-          
+
           <div className="upcoming-features">
             <div className="upcoming-item">
-              <span className="upcoming-title">Enhanced Analytics</span>
+              <span className="upcoming-title">Open Banking Integration</span>
+              <span className="upcoming-status">Coming Soon</span>
+            </div>
+            <div className="upcoming-item">
+              <span className="upcoming-title">Android App Launch</span>
               <span className="upcoming-status">In Development</span>
             </div>
             <div className="upcoming-item">
-              <span className="upcoming-title">Improved User Experience</span>
-              <span className="upcoming-status">Ongoing</span>
-            </div>
-            <div className="upcoming-item">
-              <span className="upcoming-title">Additional Features</span>
+              <span className="upcoming-title">Enhanced Analytics</span>
               <span className="upcoming-status">Planning Phase</span>
             </div>
           </div>
