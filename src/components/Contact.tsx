@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Mail, User, MessageSquare, Send, CheckCircle, AlertCircle } from 'lucide-react';
+import emailjs from '@emailjs/browser';
 import './Contact.css';
 
 interface FormErrors {
@@ -7,6 +8,12 @@ interface FormErrors {
   email?: string;
   message?: string;
 }
+
+// EmailJS Configuration
+// Sign up at https://www.emailjs.com/ to get your credentials
+const EMAILJS_SERVICE_ID = process.env.REACT_APP_EMAILJS_SERVICE_ID || 'YOUR_SERVICE_ID';
+const EMAILJS_TEMPLATE_ID = process.env.REACT_APP_EMAILJS_TEMPLATE_ID || 'YOUR_TEMPLATE_ID';
+const EMAILJS_PUBLIC_KEY = process.env.REACT_APP_EMAILJS_PUBLIC_KEY || 'YOUR_PUBLIC_KEY';
 
 const Contact: React.FC = () => {
   const [formData, setFormData] = useState({
@@ -79,11 +86,23 @@ const Contact: React.FC = () => {
 
     setIsSubmitting(true);
 
-    // Simulate form submission (in production, this would be an API call)
     try {
-      await new Promise(resolve => setTimeout(resolve, 1500));
+      // Send email using EmailJS
+      const templateParams = {
+        from_name: formData.name,
+        from_email: formData.email,
+        message: formData.message,
+        to_email: 'hello@biszaaltech.com'
+      };
 
-      console.log('Form submitted:', formData);
+      await emailjs.send(
+        EMAILJS_SERVICE_ID,
+        EMAILJS_TEMPLATE_ID,
+        templateParams,
+        EMAILJS_PUBLIC_KEY
+      );
+
+      console.log('Email sent successfully');
 
       // Success
       setSubmitStatus('success');
@@ -95,6 +114,7 @@ const Contact: React.FC = () => {
         setSubmitStatus('idle');
       }, 5000);
     } catch (error) {
+      console.error('Email send failed:', error);
       setSubmitStatus('error');
     } finally {
       setIsSubmitting(false);
