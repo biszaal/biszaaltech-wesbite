@@ -3,3 +3,7 @@
 // expect(element).toHaveTextContent(/react/i)
 // learn more: https://github.com/testing-library/jest-dom
 import '@testing-library/jest-dom';
+
+// Polyfill TextEncoder for React Router v7 in Jest environment
+import { TextEncoder } from 'util';
+Object.assign(global, { TextEncoder });
