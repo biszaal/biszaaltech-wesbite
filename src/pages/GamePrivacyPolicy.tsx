@@ -79,16 +79,23 @@ const GamePrivacyPolicy: React.FC<GamePrivacyPolicyProps> = ({ gameName, dataPra
 
         <section>
           <h2>4. Children's Privacy</h2>
-          <p>
-            {gameName} does not knowingly collect any personal information from children or any
-            other user, regardless of age
-            {isOnline
-              ? ' beyond the self-chosen display name and avatar described above'
-              : ''}
-            . If we introduce any further data collection in the future, we will take appropriate
-            steps to comply with applicable children's privacy laws, including COPPA and UK data
-            protection requirements.
-          </p>
+          {isOnline ? (
+            <p>
+              {gameName} does not knowingly collect any personal information from children or any
+              other user, regardless of age, beyond the self-chosen display name and avatar
+              described above. We take appropriate steps to comply with applicable children's
+              privacy laws, including COPPA and UK data protection requirements, for the
+              information we do collect, and will do so for any further data collection we
+              introduce in the future.
+            </p>
+          ) : (
+            <p>
+              {gameName} does not knowingly collect any personal information from children or any
+              other user, regardless of age. If we introduce any data collection in the future, we
+              will take appropriate steps to comply with applicable children's privacy laws,
+              including COPPA and UK data protection requirements.
+            </p>
+          )}
         </section>
 
         <section>

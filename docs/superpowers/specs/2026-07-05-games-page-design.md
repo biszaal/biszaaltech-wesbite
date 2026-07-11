@@ -1,5 +1,15 @@
 # Games Page + Privacy Policies — Design
 
+> **Superseded on data practices:** this doc's original assumption that both
+> games have "identical data practices (no collection, local-only storage)"
+> turned out to be wrong for Ludo Game, which has a real Supabase backend
+> (accounts, profiles, friends, room invites). The implementation plan
+> (`docs/superpowers/plans/2026-07-05-games-page.md`) and the shipped
+> `GamePrivacyPolicy` component reflect the corrected, accurate content via a
+> `dataPractices: 'local-only' | 'online-multiplayer'` prop — treat the plan,
+> not this section, as the source of truth for data-collection content and
+> the "Last updated" date.
+
 ## Purpose
 
 Add a new "Our Games" section to the BISZAAL TECH LTD website showcasing two
