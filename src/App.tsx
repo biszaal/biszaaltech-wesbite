@@ -3,6 +3,8 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Home from './pages/Home';
 import PrivacyPolicy from './pages/PrivacyPolicy';
 import TermsOfService from './pages/TermsOfService';
+import Games from './pages/Games';
+import GamePrivacyPolicy from './pages/GamePrivacyPolicy';
 import Footer from './components/Footer';
 import './App.css';
 
@@ -14,6 +16,15 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/privacy" element={<PrivacyPolicy />} />
           <Route path="/terms" element={<TermsOfService />} />
+          <Route path="/games" element={<Games />} />
+          <Route
+            path="/games/helicopter/privacy"
+            element={<GamePrivacyPolicy gameName="Helicopter Game" dataPractices="local-only" />}
+          />
+          <Route
+            path="/games/ludo/privacy"
+            element={<GamePrivacyPolicy gameName="Ludo Game" dataPractices="online-multiplayer" />}
+          />
         </Routes>
         <Footer />
       </div>
