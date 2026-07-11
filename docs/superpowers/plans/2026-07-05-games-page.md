@@ -4,7 +4,7 @@
 
 **Goal:** Add a new `/games` page showcasing two unreleased mobile games ("Helicopter Game" and "Ludo Game") plus a public privacy policy page per game, reachable from the site footer.
 
-**Architecture:** Two new page components (`Games.tsx`, `GamePrivacyPolicy.tsx`) added under `src/pages/`, wired into `src/App.tsx`'s existing `react-router-dom` `<Routes>`, with a new "Games" link added to `src/components/Footer.tsx`. `GamePrivacyPolicy` is a single component parameterized by a `gameName` prop and reused for both games' routes, rather than duplicated per-game files.
+**Architecture:** Two new page components (`Games.tsx`, `GamePrivacyPolicy.tsx`) added under `src/pages/`, wired into `src/App.tsx`'s existing `react-router-dom` `<Routes>`, with a new "Games" link added to `src/components/Footer.tsx`. `GamePrivacyPolicy` is a single component parameterized by a `gameName` prop and a `dataPractices: 'local-only' | 'online-multiplayer'` prop, reused for both games' routes rather than duplicated per-game files — the `dataPractices` variant switches only the "Information We Collect" and "Third-Party Services" section content; everything else (structure, rights, contact) is shared.
 
 **Tech Stack:** React 19 + TypeScript (Create React App / `react-scripts` 5.0.1), `react-router-dom` v7, Jest + React Testing Library (already configured via `react-scripts test`).
 
@@ -14,9 +14,10 @@
 - No new image/screenshot assets — game mockups are CSS-only placeholders.
 - Privacy policy pages reuse the existing `src/pages/LegalPages.css` stylesheet — do not create a new stylesheet for them.
 - Company/contact details in any legal content must exactly match what's already used in `src/pages/PrivacyPolicy.tsx` and `src/components/Footer.tsx`: `BISZAAL TECH LTD`, `hello@biszaaltech.com`, `71-75 Shelton Street, Covent Garden, London, WC2H 9JQ`.
-- "Last updated" date for the new privacy policy pages: `July 5, 2026`.
+- "Last updated" date for the new privacy policy pages: `July 10, 2026` (implementation date; the design was drafted July 5 but publication is happening July 10).
 - Do not modify `src/pages/Home.tsx`, `src/components/Hero.tsx`, `src/components/About.tsx`, or `src/components/Products.tsx`.
 - Do not build a dynamic/data-driven `/games/:slug` route or a shared game-data array module — with only two games, two explicit `<Route>` entries in `App.tsx` is simpler (YAGNI).
+- **Data-practices accuracy (updated 2026-07-10):** Helicopter Game (`com.biszaal.helicopter`) has no backend — it only uses on-device `AsyncStorage`, so its policy uses the `local-only` variant (no accounts, no data leaves the device). Ludo Game (`com.biszaal.mobile`) already has a real Supabase backend wired up (anonymous auth, a `profiles` table with display name + avatar, a `friendships` table, and a `room_invites` table — see the `ludo` repo's `supabase/migrations/`), even though online play is still marked "planned" in its README. Its policy must use the `online-multiplayer` variant and disclose: an anonymous Supabase account, the user-chosen display name and avatar, friend connections, room invites, and that Supabase (a third-party backend provider) hosts this data. Ludo has no analytics or ad SDKs in its dependencies today, so "no third-party analytics/ads" still holds for both games — only the account/profile/multiplayer disclosure differs.
 
 ---
 
@@ -80,7 +81,7 @@ git commit -m "fix: upgrade react-router-dom to unbreak test suite module resolu
 
 **Interfaces:**
 - Consumes: nothing new (renders plain JSX; relies on `LegalPages.css` classes `legal-page`, `legal-container`, `last-updated`, `contact-info` already defined)
-- Produces: `GamePrivacyPolicy` — `React.FC<{ gameName: string }>`, default export from `src/pages/GamePrivacyPolicy.tsx`. Later tasks (Task 4) import this and pass `gameName="Helicopter Game"` / `gameName="Ludo Game"`.
+- Produces: `GamePrivacyPolicy` — `React.FC<{ gameName: string; dataPractices: 'local-only' | 'online-multiplayer' }>`, default export from `src/pages/GamePrivacyPolicy.tsx`. Later tasks (Task 4) import this and pass `gameName="Helicopter Game" dataPractices="local-only"` / `gameName="Ludo Game" dataPractices="online-multiplayer"`.
 
 - [ ] **Step 1: Write the failing test**
 
@@ -89,8 +90,8 @@ import React from 'react';
 import { render, screen } from '@testing-library/react';
 import GamePrivacyPolicy from './GamePrivacyPolicy';
 
-test('renders the policy heading and body for the given game name', () => {
-  render(<GamePrivacyPolicy gameName="Helicopter Game" />);
+test('renders the local-only policy heading and body for a game with no backend', () => {
+  render(<GamePrivacyPolicy gameName="Helicopter Game" dataPractices="local-only" />);
   expect(
     screen.getByRole('heading', { name: 'Helicopter Game Privacy Policy' })
   ).toBeInTheDocument();
@@ -100,11 +101,14 @@ test('renders the policy heading and body for the given game name', () => {
   expect(screen.getByText(/hello@biszaaltech\.com/)).toBeInTheDocument();
 });
 
-test('parameterizes correctly for a different game name', () => {
-  render(<GamePrivacyPolicy gameName="Ludo Game" />);
+test('renders the online-multiplayer policy content for a game with a backend', () => {
+  render(<GamePrivacyPolicy gameName="Ludo Game" dataPractices="online-multiplayer" />);
   expect(
     screen.getByRole('heading', { name: 'Ludo Game Privacy Policy' })
   ).toBeInTheDocument();
+  expect(screen.getByText(/anonymous account/i)).toBeInTheDocument();
+  expect(screen.getByText(/display name/i)).toBeInTheDocument();
+  expect(screen.getByText(/Supabase/)).toBeInTheDocument();
 });
 ```
 
@@ -121,14 +125,17 @@ import './LegalPages.css';
 
 interface GamePrivacyPolicyProps {
   gameName: string;
+  dataPractices: 'local-only' | 'online-multiplayer';
 }
 
-const GamePrivacyPolicy: React.FC<GamePrivacyPolicyProps> = ({ gameName }) => {
+const GamePrivacyPolicy: React.FC<GamePrivacyPolicyProps> = ({ gameName, dataPractices }) => {
+  const isOnline = dataPractices === 'online-multiplayer';
+
   return (
     <div className="legal-page">
       <div className="legal-container">
         <h1>{gameName} Privacy Policy</h1>
-        <p className="last-updated">Last updated: July 5, 2026</p>
+        <p className="last-updated">Last updated: July 10, 2026</p>
 
         <section>
           <h2>1. Introduction</h2>
@@ -141,42 +148,87 @@ const GamePrivacyPolicy: React.FC<GamePrivacyPolicyProps> = ({ gameName }) => {
 
         <section>
           <h2>2. Information We Collect</h2>
-          <p>
-            {gameName} does not currently collect any personal information. Your game progress,
-            settings, and high scores are stored locally on your device only and are never
-            transmitted to us or any third party. No account, sign-in, or personal details are
-            required to play.
-          </p>
+          {isOnline ? (
+            <>
+              <p>
+                To play {gameName} online with other players, we create an anonymous account for
+                you. This account is not linked to your name, email address, or phone number.
+              </p>
+              <p>
+                You may choose a display name (up to 20 characters) and an avatar, both of which
+                are visible to other players you interact with. If you add friends within the
+                game, we store the connection between your account and theirs, along with the
+                status of that request. If you invite someone to a game room, we store the room
+                code and both accounts involved until the invite is accepted, declined, or
+                expires.
+              </p>
+              <p>
+                Local, pass-and-play games on a single device do not require an account and are
+                never transmitted to us.
+              </p>
+            </>
+          ) : (
+            <p>
+              {gameName} does not currently collect any personal information. Your game progress,
+              settings, and high scores are stored locally on your device only and are never
+              transmitted to us or any third party. No account, sign-in, or personal details are
+              required to play.
+            </p>
+          )}
         </section>
 
         <section>
           <h2>3. Third-Party Services</h2>
           {/* Update this section before integrating AdMob or any analytics SDK into this game. */}
-          <p>
-            {gameName} does not currently integrate any third-party advertising, analytics, or
-            tracking services. Should we introduce services such as advertising (for example,
-            Google AdMob) or analytics in a future update, we will update this policy in advance
-            of that change, and the current version will always be published at this page.
-          </p>
+          {isOnline ? (
+            <p>
+              {gameName} uses Supabase, a third-party backend and database provider, to store the
+              account, profile, friend, and room-invite data described above, and to synchronize
+              real-time game state between players. We do not currently integrate any advertising
+              or analytics SDKs. Should we introduce such services in the future, we will update
+              this policy in advance of that change, and the current version will always be
+              published at this page.
+            </p>
+          ) : (
+            <p>
+              {gameName} does not currently integrate any third-party advertising, analytics, or
+              tracking services. Should we introduce services such as advertising (for example,
+              Google AdMob) or analytics in a future update, we will update this policy in advance
+              of that change, and the current version will always be published at this page.
+            </p>
+          )}
         </section>
 
         <section>
           <h2>4. Children's Privacy</h2>
           <p>
             {gameName} does not knowingly collect any personal information from children or any
-            other user, regardless of age. If we introduce any data collection in the future, we
-            will take appropriate steps to comply with applicable children's privacy laws,
-            including COPPA and UK data protection requirements.
+            other user, regardless of age
+            {isOnline
+              ? ' beyond the self-chosen display name and avatar described above'
+              : ''}
+            . If we introduce any further data collection in the future, we will take appropriate
+            steps to comply with applicable children's privacy laws, including COPPA and UK data
+            protection requirements.
           </p>
         </section>
 
         <section>
           <h2>5. Data Security</h2>
-          <p>
-            Because {gameName} stores data locally on your device rather than on our servers,
-            your game data remains under your control at all times. We still follow reasonable
-            security practices in how we develop and maintain the app.
-          </p>
+          {isOnline ? (
+            <p>
+              Account, profile, friend, and room-invite data is protected using Supabase's
+              row-level security, which restricts each player to their own data and the game
+              state they are actively part of. We follow reasonable security practices in how we
+              develop and maintain the app.
+            </p>
+          ) : (
+            <p>
+              Because {gameName} stores data locally on your device rather than on our servers,
+              your game data remains under your control at all times. We still follow reasonable
+              security practices in how we develop and maintain the app.
+            </p>
+          )}
         </section>
 
         <section>
@@ -185,7 +237,9 @@ const GamePrivacyPolicy: React.FC<GamePrivacyPolicyProps> = ({ gameName }) => {
           <ul>
             <li>Request access to any personal data we hold about you</li>
             <li>Request correction of inaccurate data</li>
-            <li>Request deletion of your data</li>
+            <li>
+              Request deletion of your data{isOnline ? ', including your account, profile, friend connections, and room invites' : ''}
+            </li>
             <li>Object to processing of your data</li>
             <li>Request data portability</li>
           </ul>
@@ -514,7 +568,7 @@ git commit -m "feat: add Games listing page with placeholder mockups"
 - Modify: `src/App.test.tsx` (add integration test)
 
 **Interfaces:**
-- Consumes: `Games` (Task 3, default export of `src/pages/Games.tsx`), `GamePrivacyPolicy` (Task 2, default export of `src/pages/GamePrivacyPolicy.tsx`, prop `gameName: string`)
+- Consumes: `Games` (Task 3, default export of `src/pages/Games.tsx`), `GamePrivacyPolicy` (Task 2, default export of `src/pages/GamePrivacyPolicy.tsx`, props `gameName: string`, `dataPractices: 'local-only' | 'online-multiplayer'`)
 - Produces: live routes `/games`, `/games/helicopter/privacy`, `/games/ludo/privacy`; a "Games" link in the footer with `href="/games"`.
 
 - [ ] **Step 1: Write the failing Footer test**
@@ -584,11 +638,11 @@ function App() {
           <Route path="/games" element={<Games />} />
           <Route
             path="/games/helicopter/privacy"
-            element={<GamePrivacyPolicy gameName="Helicopter Game" />}
+            element={<GamePrivacyPolicy gameName="Helicopter Game" dataPractices="local-only" />}
           />
           <Route
             path="/games/ludo/privacy"
-            element={<GamePrivacyPolicy gameName="Ludo Game" />}
+            element={<GamePrivacyPolicy gameName="Ludo Game" dataPractices="online-multiplayer" />}
           />
         </Routes>
         <Footer />
