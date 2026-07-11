@@ -4,6 +4,6 @@
 // learn more: https://github.com/testing-library/jest-dom
 import '@testing-library/jest-dom';
 
-// Polyfill TextEncoder for React Router v7 in Jest environment
-import { TextEncoder } from 'util';
-Object.assign(global, { TextEncoder });
+// Polyfill TextEncoder/TextDecoder for React Router v7 in Jest environment
+import { TextEncoder, TextDecoder } from 'util';
+Object.assign(global, { TextEncoder, TextDecoder });
