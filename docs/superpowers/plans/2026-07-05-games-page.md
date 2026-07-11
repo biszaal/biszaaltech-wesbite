@@ -107,8 +107,8 @@ test('renders the online-multiplayer policy content for a game with a backend', 
     screen.getByRole('heading', { name: 'Ludo Game Privacy Policy' })
   ).toBeInTheDocument();
   expect(screen.getByText(/anonymous account/i)).toBeInTheDocument();
-  expect(screen.getByText(/display name/i)).toBeInTheDocument();
-  expect(screen.getByText(/Supabase/)).toBeInTheDocument();
+  expect(screen.getByText(/choose a display name/i)).toBeInTheDocument();
+  expect(screen.getByText(/uses Supabase/)).toBeInTheDocument();
 });
 ```
 
