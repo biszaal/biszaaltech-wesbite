@@ -9,10 +9,11 @@ test('renders the home page hero headline', () => {
   ).toBeInTheDocument();
 });
 
-test('navigates from the footer to the games page and a game privacy policy', () => {
+test('navigates from the nav to the games page and a game privacy policy', () => {
   render(<App />);
 
-  fireEvent.click(screen.getByRole('link', { name: 'Games' }));
+  const primaryNav = screen.getByRole('navigation', { name: 'Primary' });
+  fireEvent.click(within(primaryNav).getByRole('link', { name: 'Games' }));
   expect(screen.getByRole('heading', { name: 'Our Games' })).toBeInTheDocument();
 
   const helicopterHeading = screen.getByRole('heading', { name: 'Helicopter Game' });
