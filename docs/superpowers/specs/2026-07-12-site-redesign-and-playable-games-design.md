@@ -84,7 +84,7 @@ Both worlds share:
 ## Routes
 
 | Path | Page | Notes |
-|---|---|---|
+| --- | --- | --- |
 | `/` | `Home` | redesigned, financial focus |
 | `/games` | `Games` | redesigned Biszaal Games landing |
 | `/games/helicopter` | `HelicopterPage` | playable game |
@@ -129,11 +129,29 @@ imports) are deleted.
 1. **Hero** — dark; eyebrow `BISZAAL GAMES`, headline "Press start.",
    mono subline: original games, playable in the browser, App Store soon.
 2. **Game rows** — two alternating full-width double-bezel cards, each with
-   CSS key art (helicopter: canyon silhouettes + rotor glyph; ludo: board
-   motif with the four token colors), name, one-liner, mono meta row
-   (genre · players · controls), primary "Play now" CTA + "Privacy policy"
-   text link, "Mobile version — coming to the App Store" label.
+   the game's **real app icon as key art** (see Assets), name, one-liner,
+   mono meta row (genre · players · controls), primary "Play now" CTA +
+   "Privacy policy" text link, "Mobile version — coming to the App Store"
+   label.
 3. **Cross-band** — "Looking for the finance side?" → `/`.
+
+## Assets (real game logos)
+
+Per user instruction, the games use their real app icons, sourced from the
+game repos (user-directed copy between local projects):
+
+- `~/Documents/Github/helicopter/assets/icon.png` →
+  `src/assets/helicopter-icon.png` — dark cave, white helicopter, amber
+  spark. Confirms the dark-world amber accent.
+- `~/Documents/Github/ludo/apps/mobile/assets/brand/icon.svg` →
+  `src/assets/ludo-icon.svg` — vector; cartoon pawns/die/crown.
+
+Used in: games landing key art, each game page's title block, and the home
+page games doorway (small logo chips). Descriptive alt text everywhere.
+The web Ludo game adopts the icon's exact token palette (red `#FF4757`,
+green `#2ED573`, yellow `#FFC93C`, blue `#3E8BFF`); the Helicopter canvas
+art echoes its icon (near-black cave, spiky stalactite silhouettes, white
+rounded helicopter, amber spark trail).
 
 ## Helicopter game
 
