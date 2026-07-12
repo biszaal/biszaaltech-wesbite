@@ -1,21 +1,19 @@
 import React from 'react';
 import Hero from '../components/Hero';
-import About from '../components/About';
 import Products from '../components/Products';
-import Comparison from '../components/Comparison';
-import Testimonials from '../components/Testimonials';
+import About from '../components/About';
 import FAQ from '../components/FAQ';
+import GamesDoorway from '../components/GamesDoorway';
 import Contact from '../components/Contact';
 
 const Home: React.FC = () => {
   return (
-    <main>
+    <main id="main">
       <Hero />
-      <About />
       <Products />
-      <Comparison />
-      <Testimonials />
+      <About />
       <FAQ />
+      <GamesDoorway />
       <Contact />
     </main>
   );
