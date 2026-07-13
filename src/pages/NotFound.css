@@ -1,0 +1,31 @@
+.not-found {
+  min-height: 100vh;
+  min-height: 100dvh;
+  display: flex;
+  align-items: center;
+  background: var(--paper);
+  padding: clamp(7rem, 14vh, 9rem) 0 clamp(3rem, 6vw, 5rem);
+}
+
+.not-found-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1.1rem;
+}
+
+.not-found-code {
+  color: var(--accent);
+  font-size: 0.9rem;
+}
+
+.not-found-line {
+  font-size: 1.05rem;
+}
+
+.not-found-actions {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  margin-top: 0.75rem;
+}

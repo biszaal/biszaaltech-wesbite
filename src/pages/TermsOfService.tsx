@@ -3,7 +3,7 @@ import './LegalPages.css';
 
 const TermsOfService: React.FC = () => {
   return (
-    <div className="legal-page">
+    <main id="main" className="legal-page">
       <div className="legal-container">
         <h1>Terms of Service</h1>
         <p className="last-updated">Last updated: January 1, 2025</p>
@@ -116,7 +116,7 @@ const TermsOfService: React.FC = () => {
           </div>
         </section>
       </div>
-    </div>
+    </main>
   );
 };
 

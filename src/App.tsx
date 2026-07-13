@@ -7,6 +7,7 @@ import Games from './pages/Games';
 import HelicopterPage from './pages/HelicopterPage';
 import LudoPage from './pages/LudoPage';
 import GamePrivacyPolicy from './pages/GamePrivacyPolicy';
+import NotFound from './pages/NotFound';
 import SiteNav from './components/SiteNav';
 import Footer from './components/Footer';
 import './App.css';
@@ -32,6 +33,7 @@ function App() {
             path="/games/ludo/privacy"
             element={<GamePrivacyPolicy gameName="Ludo Game" dataPractices="online-multiplayer" />}
           />
+          <Route path="*" element={<NotFound />} />
         </Routes>
         <Footer />
       </div>

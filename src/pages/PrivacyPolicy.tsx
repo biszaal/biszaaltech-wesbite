@@ -3,7 +3,7 @@ import './LegalPages.css';
 
 const PrivacyPolicy: React.FC = () => {
   return (
-    <div className="legal-page">
+    <main id="main" className="legal-page">
       <div className="legal-container">
         <h1>Privacy Policy</h1>
         <p className="last-updated">Last updated: January 1, 2025</p>
@@ -102,7 +102,7 @@ const PrivacyPolicy: React.FC = () => {
           </div>
         </section>
       </div>
-    </div>
+    </main>
   );
 };
 

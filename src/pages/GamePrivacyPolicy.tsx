@@ -10,7 +10,7 @@ const GamePrivacyPolicy: React.FC<GamePrivacyPolicyProps> = ({ gameName, dataPra
   const isOnline = dataPractices === 'online-multiplayer';
 
   return (
-    <div className="legal-page">
+    <main id="main" className="legal-page">
       <div className="legal-container">
         <h1>{gameName} Privacy Policy</h1>
         <p className="last-updated">Last updated: July 10, 2026</p>
@@ -149,7 +149,7 @@ const GamePrivacyPolicy: React.FC<GamePrivacyPolicyProps> = ({ gameName, dataPra
           </div>
         </section>
       </div>
-    </div>
+    </main>
   );
 };
 
