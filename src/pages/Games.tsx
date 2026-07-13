@@ -1,59 +1,107 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { useReveal } from '../hooks/useReveal';
+import helicopterIcon from '../assets/helicopter-icon.png';
+import ludoIcon from '../assets/ludo-icon.svg';
 import './Games.css';
 
-interface Game {
+interface GameEntry {
   slug: string;
   name: string;
   tagline: string;
   description: string;
-  mockupClass: string;
+  meta: string[];
+  icon: string;
+  iconAlt: string;
+  artClass: string;
 }
 
-const games: Game[] = [
+const games: GameEntry[] = [
   {
     slug: 'helicopter',
-    name: 'Helicopter Game',
-    tagline: 'A fast-paced arcade flying challenge',
+    name: 'Helicopter',
+    tagline: 'Thread the cave. Beat your best.',
     description:
-      'Steer your chopper through tight canyons and dodge obstacles in this pick-up-and-play ' +
-      'arcade game. Simple one-tap controls, endless runs, and a focus on pure reflexes.',
-    mockupClass: 'helicopter-mockup',
+      'Hold to climb, release to dive. The cave narrows, the blocks close in, and ' +
+      'the only score that matters is the one run further than last time.',
+    meta: ['Arcade', '1 player', 'One button'],
+    icon: helicopterIcon,
+    iconAlt: 'Helicopter game icon: a white helicopter flying through a dark cave',
+    artClass: 'game-art--heli',
   },
   {
     slug: 'ludo',
-    name: 'Ludo Game',
-    tagline: 'The classic board game, reimagined',
+    name: 'Ludo',
+    tagline: 'The classic board game with sharper teeth.',
     description:
-      'Roll the dice and race your tokens home in this modern take on the timeless family ' +
-      'favorite. Play solo against the computer or pass-and-play with friends.',
-    mockupClass: 'ludo-mockup',
+      'Roll, race, and send your rivals home. Play against the computer or ' +
+      'pass-and-play with up to four players — captures, safe squares, and all.',
+    meta: ['Board', '2–4 players', 'Dice'],
+    icon: ludoIcon,
+    iconAlt: 'Ludo game icon: colourful pawns and a die beneath a golden crown',
+    artClass: 'game-art--ludo',
   },
 ];
 
 const Games: React.FC = () => {
+  const headRef = useReveal<HTMLDivElement>();
+
   return (
-    <section className="games">
-      <div className="games-container">
-        <h1 className="games-title">Our Games</h1>
-        <div className="games-grid">
-          {games.map((game) => (
-            <div className="game-card" key={game.slug}>
-              <div className={`game-mockup ${game.mockupClass}`}></div>
-              <div className="game-info">
-                <h2 className="game-name">{game.name}</h2>
-                <p className="game-tagline">{game.tagline}</p>
-                <p className="game-description">{game.description}</p>
-                <span className="game-status">Coming Soon</span>
-                <Link to={`/games/${game.slug}/privacy`} className="game-privacy-link">
-                  Privacy Policy
-                </Link>
-              </div>
-            </div>
-          ))}
+    <main id="main" className="world-dark games-page">
+      <section className="games-hero">
+        <div className="container games-hero-inner reveal" ref={headRef}>
+          <span className="eyebrow">Biszaal Games</span>
+          <h1>Press start.</h1>
+          <p className="games-hero-sub mono-meta">
+            Original games from Biszaal Tech — playable right here in your browser,
+            and coming soon to the App Store.
+          </p>
+        </div>
+      </section>
+
+      <section className="games-list container" aria-label="Games">
+        {games.map((game, i) => (
+          <GameRow key={game.slug} game={game} flip={i % 2 === 1} />
+        ))}
+      </section>
+
+      <section className="games-crossband container">
+        <p>
+          Looking for the finance side?{' '}
+          <Link to="/" className="text-link">Visit Biszaal Tech</Link>
+        </p>
+      </section>
+    </main>
+  );
+};
+
+const GameRow: React.FC<{ game: GameEntry; flip: boolean }> = ({ game, flip }) => {
+  const ref = useReveal<HTMLElement>();
+
+  return (
+    <article className={`shell game-row reveal${flip ? ' game-row--flip' : ''}`} ref={ref}>
+      <div className="shell-core game-row-core">
+        <div className={`game-art ${game.artClass}`}>
+          <img src={game.icon} alt={game.iconAlt} className="game-icon" />
+        </div>
+        <div className="game-info">
+          <h2 className="game-name">{game.name}</h2>
+          <p className="game-tagline">{game.tagline}</p>
+          <p className="game-desc">{game.description}</p>
+          <p className="mono-meta game-meta">{game.meta.join(' · ')}</p>
+          <div className="game-actions">
+            <Link to={`/games/${game.slug}`} className="pill-btn pill-btn--accent">
+              Play now
+              <span className="btn-orb" aria-hidden="true">▶</span>
+            </Link>
+            <Link to={`/games/${game.slug}/privacy`} className="text-link">
+              Privacy policy
+            </Link>
+          </div>
+          <p className="mono-meta game-mobile-note">Mobile version — coming to the App Store</p>
         </div>
       </div>
-    </section>
+    </article>
   );
 };
 

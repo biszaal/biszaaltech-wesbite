@@ -3,20 +3,33 @@ import { render, screen } from '@testing-library/react';
 import { MemoryRouter } from 'react-router-dom';
 import Games from './Games';
 
-test('renders both games with Coming Soon status and privacy policy links', () => {
+test('lists both games with play and privacy links', () => {
   render(
     <MemoryRouter>
       <Games />
     </MemoryRouter>
   );
 
-  expect(screen.getByRole('heading', { name: 'Our Games' })).toBeInTheDocument();
-  expect(screen.getByRole('heading', { name: 'Helicopter Game' })).toBeInTheDocument();
-  expect(screen.getByRole('heading', { name: 'Ludo Game' })).toBeInTheDocument();
-  expect(screen.getAllByText('Coming Soon')).toHaveLength(2);
+  expect(screen.getByRole('heading', { name: 'Press start.' })).toBeInTheDocument();
+  expect(screen.getByRole('heading', { name: 'Helicopter' })).toBeInTheDocument();
+  expect(screen.getByRole('heading', { name: 'Ludo' })).toBeInTheDocument();
 
-  const privacyLinks = screen.getAllByRole('link', { name: 'Privacy Policy' });
-  const hrefs = privacyLinks.map((link) => link.getAttribute('href'));
-  expect(hrefs).toContain('/games/helicopter/privacy');
-  expect(hrefs).toContain('/games/ludo/privacy');
+  const playLinks = screen.getAllByRole('link', { name: /Play now/ });
+  expect(playLinks.map((l) => l.getAttribute('href'))).toEqual(
+    expect.arrayContaining(['/games/helicopter', '/games/ludo'])
+  );
+
+  const privacyLinks = screen.getAllByRole('link', { name: 'Privacy policy' });
+  expect(privacyLinks.map((l) => l.getAttribute('href'))).toEqual(
+    expect.arrayContaining(['/games/helicopter/privacy', '/games/ludo/privacy'])
+  );
+});
+
+test('shows the games are also coming to mobile', () => {
+  render(
+    <MemoryRouter>
+      <Games />
+    </MemoryRouter>
+  );
+  expect(screen.getAllByText(/coming to the App Store/i).length).toBeGreaterThanOrEqual(2);
 });
