@@ -1,0 +1,214 @@
+.ludo-game,
+.ludo-setup {
+  display: flex;
+  flex-direction: column;
+  gap: 1.1rem;
+  align-items: center;
+}
+
+/* Setup */
+.ludo-setup {
+  max-width: 460px;
+  margin: 0 auto;
+  border-radius: var(--r-outer);
+}
+
+.ludo-setup-core {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  padding: clamp(1.75rem, 4vw, 2.5rem);
+  width: 100%;
+}
+
+.ludo-setup-title {
+  font-size: 1.4rem;
+}
+
+.ludo-field {
+  border: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.ludo-choice-row {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.ludo-chip {
+  padding: 0.45rem 1rem;
+  border-radius: var(--r-pill);
+  border: 1px solid var(--line-strong);
+  background: transparent;
+  color: var(--ink-soft);
+  font-family: var(--font-display);
+  font-size: 0.92rem;
+  font-weight: 500;
+  transition: background 300ms var(--ease), color 300ms var(--ease), border-color 300ms var(--ease);
+}
+
+.ludo-chip:hover {
+  border-color: var(--accent-line);
+  color: var(--ink);
+}
+
+.ludo-chip.is-active {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: var(--accent-ink);
+}
+
+.ludo-seats {
+  display: flex;
+  flex-direction: column;
+  gap: 0.7rem;
+}
+
+.ludo-seat {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.ludo-seat-dot {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.ludo-seat-name {
+  width: 4.5rem;
+  font-weight: 500;
+  color: var(--ink);
+}
+
+.ludo-seat .ludo-choice-row {
+  margin-left: auto;
+}
+
+.ludo-start {
+  align-self: flex-start;
+}
+
+.ludo-setup-note {
+  text-transform: none;
+  letter-spacing: 0.06em;
+}
+
+/* Match */
+.ludo-status {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+}
+
+.ludo-turn-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+}
+
+.ludo-banner {
+  font-size: 1.05rem;
+  font-weight: 600;
+  letter-spacing: -0.015em;
+  color: var(--ink);
+}
+
+.ludo-shell {
+  width: min(560px, 92vw);
+  border-radius: var(--r-outer);
+}
+
+.ludo-arena {
+  position: relative;
+  background: #0c0c0f;
+  padding: clamp(0.6rem, 2vw, 1rem);
+}
+
+.ludo-board {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 12px;
+}
+
+.ludo-token--movable {
+  cursor: pointer;
+}
+
+.ludo-halo {
+  animation: ludo-pulse 1.1s var(--ease) infinite;
+  pointer-events: none;
+}
+
+@keyframes ludo-pulse {
+  0%, 100% { opacity: 0.25; }
+  50% { opacity: 0.9; }
+}
+
+.ludo-token {
+  transition: cx 400ms var(--ease), cy 400ms var(--ease);
+}
+
+.ludo-overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  background: rgba(6, 6, 8, 0.72);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  border-radius: var(--r-inner);
+}
+
+.ludo-overlay-title {
+  font-size: clamp(1.5rem, 4vw, 2.2rem);
+  font-weight: 600;
+  color: #f4f2ec;
+}
+
+.ludo-controls {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+}
+
+.ludo-die {
+  width: 52px;
+  height: 52px;
+  filter: drop-shadow(0 6px 12px rgba(0, 0, 0, 0.45));
+}
+
+.ludo-controls .pill-btn:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.ludo-quit {
+  font-size: 0.9rem;
+}
+
+.ludo-note {
+  text-transform: none;
+  letter-spacing: 0.06em;
+  min-height: 1.2em;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ludo-halo {
+    animation: none;
+    opacity: 0.8;
+  }
+
+  .ludo-token {
+    transition: none;
+  }
+}
