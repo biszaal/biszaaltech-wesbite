@@ -1,0 +1,63 @@
+/* Shared layout for the two playable game pages (dark world). */
+
+.game-page {
+  background: var(--paper);
+  min-height: 100vh;
+  min-height: 100dvh;
+  padding: clamp(7rem, 14vh, 9rem) 0 clamp(4rem, 8vw, 6rem);
+}
+
+.game-page-head {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 1rem;
+  margin-bottom: clamp(2rem, 4vw, 3rem);
+}
+
+.game-page-back {
+  align-self: center;
+}
+
+.game-page-head h1 {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  font-size: clamp(2.4rem, 6vw, 3.6rem);
+}
+
+.game-page-logo {
+  width: clamp(48px, 7vw, 64px);
+  border-radius: 24%;
+  box-shadow: 0 12px 28px -8px rgba(0, 0, 0, 0.7), 0 0 0 1px rgba(244, 242, 236, 0.1);
+}
+
+.game-page-sub {
+  color: var(--ink-soft);
+  max-width: 52ch;
+}
+
+.game-page-arena {
+  max-width: 980px;
+  margin: 0 auto;
+}
+
+.game-page-notes {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.6rem;
+  margin-top: clamp(2rem, 4vw, 3rem);
+  text-align: center;
+}
+
+.game-page-notes .text-link {
+  font-size: 0.9rem;
+}
+
+@media (max-width: 640px) {
+  .game-page {
+    padding-top: 6.5rem;
+  }
+}

@@ -41,7 +41,7 @@ export const WORLD = { w: 160, h: 90, heliX: 40, heliW: 9, heliH: 5 } as const;
 
 export const MIN_GAP = 34;
 
-const SEG_W = 8;
+export const SEG_W = 8;
 const START_GAP = 62;
 const NARROW_BY_X = 6000;
 const GRAVITY = 170;

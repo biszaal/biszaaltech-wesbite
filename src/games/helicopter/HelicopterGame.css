@@ -1,0 +1,79 @@
+.heli-game {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.heli-hud {
+  display: flex;
+  gap: 2.5rem;
+  justify-content: center;
+}
+
+.heli-hud-item {
+  display: flex;
+  align-items: baseline;
+  gap: 0.7rem;
+}
+
+.heli-hud-value {
+  font-family: var(--font-mono);
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: var(--accent);
+  font-variant-numeric: tabular-nums;
+  min-width: 3ch;
+}
+
+.heli-shell {
+  border-radius: var(--r-outer);
+}
+
+.heli-arena {
+  position: relative;
+  aspect-ratio: 16 / 9;
+  background: #060608;
+  touch-action: none;
+  user-select: none;
+  -webkit-user-select: none;
+  cursor: pointer;
+}
+
+.heli-canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.heli-overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  text-align: center;
+  background: rgba(6, 6, 8, 0.72);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  padding: 1.5rem;
+}
+
+.heli-overlay-title {
+  font-size: clamp(1.3rem, 3vw, 1.8rem);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  color: var(--ink);
+}
+
+.heli-overlay .pill-btn {
+  margin-top: 0.5rem;
+}
+
+@media (max-width: 640px) {
+  .heli-arena {
+    aspect-ratio: 4 / 3;
+  }
+}
