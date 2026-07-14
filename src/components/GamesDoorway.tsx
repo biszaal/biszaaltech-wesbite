@@ -18,10 +18,10 @@ const GamesDoorway: React.FC = () => {
               <h2>We also make games.</h2>
               <p>
                 Two originals — a cave-flying arcade run and a fresh take on Ludo.
-                Playable in your browser right now.
+                Coming soon to the App Store.
               </p>
               <Link to="/games" className="pill-btn pill-btn--accent doorway-cta">
-                Enter the arcade
+                See the games
                 <span className="btn-orb" aria-hidden="true">→</span>
               </Link>
             </div>

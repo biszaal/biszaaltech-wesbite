@@ -1,5 +1,17 @@
 # Site redesign + playable games — Design
 
+> **Scope correction (2026-07-14, user direction):** "i dont think we needed
+> to build the whole game on the browser. the website was just an intro to
+> the business." The playable browser games described below were built,
+> verified, then removed: `/games` is a **showcase** of the two mobile games
+> (real icons, descriptions, "Coming soon to the App Store" status, privacy
+> links) with no `/games/helicopter` or `/games/ludo` routes. Everything
+> else in this spec (two-world redesign, nav, home page, doorway, 404,
+> legal reskin) shipped as designed. The full playable implementation —
+> engines with 32 unit tests, canvas Helicopter, SVG Ludo with CPU — is
+> preserved in git history (commits `0a787b3`…`4e38a77` on
+> `redesign-and-games`) if it's ever wanted.
+
 > Session note: this design was produced in an autonomous session. The user's
 > directive was explicit ("make a proper /games page, implement Ludo and
 > Helicopter, redesign the whole website, home = financial app, /games =

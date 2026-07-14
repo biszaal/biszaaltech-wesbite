@@ -34,9 +34,9 @@ const games: GameEntry[] = [
     name: 'Ludo',
     tagline: 'The classic board game with sharper teeth.',
     description:
-      'Roll, race, and send your rivals home. Play against the computer or ' +
-      'pass-and-play with up to four players — captures, safe squares, and all.',
-    meta: ['Board', '2–4 players', 'Dice'],
+      'Roll, race, and send your rivals home. Face the computer, pass-and-play, or ' +
+      'take friends on in online multiplayer — captures, safe squares, and all.',
+    meta: ['Board', '2–4 players', 'Online multiplayer'],
     icon: ludoIcon,
     iconAlt: 'Ludo game icon: colourful pawns and a die beneath a golden crown',
     artClass: 'game-art--ludo',
@@ -53,8 +53,7 @@ const Games: React.FC = () => {
           <span className="eyebrow">Biszaal Games</span>
           <h1>Press start.</h1>
           <p className="games-hero-sub mono-meta">
-            Original games from Biszaal Tech — playable right here in your browser,
-            and coming soon to the App Store.
+            Original mobile games from Biszaal Tech — coming soon to the App Store.
           </p>
         </div>
       </section>
@@ -90,15 +89,11 @@ const GameRow: React.FC<{ game: GameEntry; flip: boolean }> = ({ game, flip }) =
           <p className="game-desc">{game.description}</p>
           <p className="mono-meta game-meta">{game.meta.join(' · ')}</p>
           <div className="game-actions">
-            <Link to={`/games/${game.slug}`} className="pill-btn pill-btn--accent">
-              Play now
-              <span className="btn-orb" aria-hidden="true">▶</span>
-            </Link>
+            <span className="game-status">Coming soon to the App Store</span>
             <Link to={`/games/${game.slug}/privacy`} className="text-link">
               Privacy policy
             </Link>
           </div>
-          <p className="mono-meta game-mobile-note">Mobile version — coming to the App Store</p>
         </div>
       </div>
     </article>

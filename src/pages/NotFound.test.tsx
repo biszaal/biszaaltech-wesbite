@@ -14,5 +14,5 @@ test('renders the 404 page with routes back to both worlds', () => {
 
   expect(screen.getByRole('heading', { level: 1, name: 'Page not found.' })).toBeInTheDocument();
   expect(screen.getByRole('link', { name: /Go home/ })).toHaveAttribute('href', '/');
-  expect(screen.getByRole('link', { name: /Enter the arcade/ })).toHaveAttribute('href', '/games');
+  expect(screen.getByRole('link', { name: /See our games/ })).toHaveAttribute('href', '/games');
 });

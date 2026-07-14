@@ -14,7 +14,7 @@ const NotFound: React.FC = () => {
             Go home
             <span className="btn-orb" aria-hidden="true">→</span>
           </Link>
-          <Link to="/games" className="text-link">Enter the arcade</Link>
+          <Link to="/games" className="text-link">See our games</Link>
         </div>
       </div>
     </main>
