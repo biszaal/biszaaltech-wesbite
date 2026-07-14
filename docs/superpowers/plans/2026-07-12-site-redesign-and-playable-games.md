@@ -8,6 +8,13 @@
 > large presentational TSX/CSS listings are specified structurally here and
 > written in full during implementation, following the design language in
 > `docs/superpowers/specs/2026-07-12-site-redesign-and-playable-games-design.md`.
+>
+> **Superseded (2026-07-14):** Tasks 5–9 (playable Helicopter and Ludo games)
+> were built and verified, then removed on user direction — the site is an
+> intro to the business, so `/games` is a showcase of the two mobile games,
+> not a play surface. Tasks 1–4 and 10–11 shipped as written. See the scope
+> note at the top of the design spec. The playable code lives in git history
+> (commits `0a787b3`…`4e38a77`).
 
 **Goal:** Redesign biszaaltech.com into a light premium fintech home (`/`) and a dark Biszaal Games arcade (`/games`) with playable browser Helicopter and Ludo games.
 
