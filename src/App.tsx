@@ -27,7 +27,7 @@ function App() {
           />
           <Route
             path="/games/ludo/privacy"
-            element={<GamePrivacyPolicy gameName="Ludo Game" dataPractices="online-multiplayer" />}
+            element={<GamePrivacyPolicy gameName="Ludo Game" dataPractices="online-multiplayer" hasAds hasInAppPurchases />}
           />
           <Route path="*" element={<NotFound />} />
         </Routes>
