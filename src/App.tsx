@@ -5,6 +5,7 @@ import PrivacyPolicy from './pages/PrivacyPolicy';
 import TermsOfService from './pages/TermsOfService';
 import Games from './pages/Games';
 import GamePrivacyPolicy from './pages/GamePrivacyPolicy';
+import ITrackHabitPrivacy from './pages/ITrackHabitPrivacy';
 import NotFound from './pages/NotFound';
 import SiteNav from './components/SiteNav';
 import Footer from './components/Footer';
@@ -29,6 +30,9 @@ function App() {
             path="/games/ludo/privacy"
             element={<GamePrivacyPolicy gameName="Ludo Game" dataPractices="online-multiplayer" hasAds hasInAppPurchases />}
           />
+          {/* App store listings link to /apps/…; the short path is kept as an alias. */}
+          <Route path="/apps/itrackhabit/privacy" element={<ITrackHabitPrivacy />} />
+          <Route path="/itrackhabit/privacy" element={<ITrackHabitPrivacy />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
         <Footer />
