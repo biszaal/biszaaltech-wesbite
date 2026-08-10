@@ -25,7 +25,9 @@ const Footer: React.FC = () => {
         <nav className="footer-links" aria-label="Footer">
           <Link to="/" className="footer-link">Home</Link>
           <Link to="/games" className="footer-link">Games</Link>
-          <Link to="/privacy" className="footer-link">Privacy policy</Link>
+          <Link to="/privacy" className="footer-link">Website privacy policy</Link>
+          <Link to="/apps/expenzez/privacy" className="footer-link">Expenzez privacy policy</Link>
+          <Link to="/apps/itrackhabit/privacy" className="footer-link">iTrackHabit privacy policy</Link>
           <Link to="/terms" className="footer-link">Terms of service</Link>
         </nav>
 

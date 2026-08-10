@@ -92,6 +92,45 @@
   font-weight: 600;
 }
 
+/* Wide tables scroll inside their own box so the page never scrolls sideways. */
+.legal-table-scroll {
+  overflow-x: auto;
+  margin: 1.25rem 0 1.6rem;
+  border: 1px solid var(--line);
+  border-radius: var(--r-inner);
+}
+
+.legal-table {
+  width: 100%;
+  min-width: 34rem;
+  border-collapse: collapse;
+  font-size: 0.92rem;
+}
+
+.legal-table th,
+.legal-table td {
+  text-align: left;
+  padding: 0.85rem 1.1rem;
+  line-height: 1.6;
+  vertical-align: top;
+}
+
+.legal-table th {
+  color: var(--ink);
+  font-weight: 600;
+  background: var(--paper-sunken);
+  border-bottom: 1px solid var(--line);
+}
+
+.legal-table td {
+  color: var(--ink-soft);
+  border-bottom: 1px solid var(--line);
+}
+
+.legal-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
 @media (max-width: 768px) {
   .legal-container {
     margin: 0 1rem;

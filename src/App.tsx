@@ -6,6 +6,7 @@ import TermsOfService from './pages/TermsOfService';
 import Games from './pages/Games';
 import GamePrivacyPolicy from './pages/GamePrivacyPolicy';
 import ITrackHabitPrivacy from './pages/ITrackHabitPrivacy';
+import ExpenzezPrivacy from './pages/ExpenzezPrivacy';
 import NotFound from './pages/NotFound';
 import SiteNav from './components/SiteNav';
 import Footer from './components/Footer';
@@ -33,6 +34,8 @@ function App() {
           {/* App store listings link to /apps/…; the short path is kept as an alias. */}
           <Route path="/apps/itrackhabit/privacy" element={<ITrackHabitPrivacy />} />
           <Route path="/itrackhabit/privacy" element={<ITrackHabitPrivacy />} />
+          <Route path="/apps/expenzez/privacy" element={<ExpenzezPrivacy />} />
+          <Route path="/expenzez/privacy" element={<ExpenzezPrivacy />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
         <Footer />
