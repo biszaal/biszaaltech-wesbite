@@ -2,7 +2,7 @@ import React from 'react';
 import { useReveal } from '../hooks/useReveal';
 import './Hero.css';
 
-const facts = ['Founded 2025', 'London, UK', 'Company № 16693100', 'Free on iOS'];
+const facts = ['Founded 2025', 'London, UK', 'Company № 16693100', 'Free on iOS & Android'];
 
 const Hero: React.FC = () => {
   const copyRef = useReveal<HTMLDivElement>();
@@ -19,7 +19,7 @@ const Hero: React.FC = () => {
           <p className="hero-sub">
             Expenzez is our free expense tracker built in London — manual entry, CSV
             import, and clean analytics that make sense of your spending. Available
-            now on iOS.
+            now on iOS and Android.
           </p>
           <div className="hero-actions">
             <a
@@ -38,6 +38,14 @@ const Hero: React.FC = () => {
               className="text-link"
             >
               Download for iOS
+            </a>
+            <a
+              href="https://play.google.com/store/apps/details?id=com.biszaaltech.expenzez"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-link"
+            >
+              Download for Android
             </a>
           </div>
         </div>

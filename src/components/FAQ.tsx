@@ -21,7 +21,7 @@ const faqs = [
   {
     question: 'Can I use it on Android?',
     answer:
-      'Expenzez is on iOS today. The Android version is in development on the same React Native codebase, so the two will stay in step.',
+      'Yes. Expenzez is out on both Google Play and the App Store, built from the same React Native codebase, so the two stay in step.',
   },
   {
     question: 'How does categorisation work?',

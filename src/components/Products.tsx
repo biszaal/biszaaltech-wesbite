@@ -2,9 +2,9 @@ import React from 'react';
 import { useReveal } from '../hooks/useReveal';
 import './Products.css';
 
+// The Android app shipped — it belongs on the store links, not on "what's next".
 const roadmap = [
   { title: 'Open Banking connections', status: 'In development' },
-  { title: 'Android app', status: 'In development' },
   { title: 'Richer analytics', status: 'Planned' },
 ];
 
