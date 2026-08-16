@@ -8,6 +8,10 @@ interface GamePrivacyPolicyProps {
   hasAds?: boolean;
   /** Sells optional in-app purchases (processed by the app stores via RevenueCat). */
   hasInAppPurchases?: boolean;
+  /** Registers a device push token to deliver room invites and friend requests. */
+  hasPushNotifications?: boolean;
+  /** Shown to players; only bump it for the game whose practices actually changed. */
+  lastUpdated?: string;
 }
 
 const GamePrivacyPolicy: React.FC<GamePrivacyPolicyProps> = ({
@@ -15,17 +19,24 @@ const GamePrivacyPolicy: React.FC<GamePrivacyPolicyProps> = ({
   dataPractices,
   hasAds = false,
   hasInAppPurchases = false,
+  hasPushNotifications = false,
+  lastUpdated = 'July 28, 2026',
 }) => {
   const isOnline = dataPractices === 'online-multiplayer';
+
+  // Sections are numbered as they render, so a section that only applies to one
+  // variant (data retention, below) doesn't leave a gap in the other.
+  let sectionNumber = 0;
+  const next = () => (sectionNumber += 1);
 
   return (
     <main id="main" className="legal-page">
       <div className="legal-container">
         <h1>{gameName} Privacy Policy</h1>
-        <p className="last-updated">Last updated: July 28, 2026</p>
+        <p className="last-updated">Last updated: {lastUpdated}</p>
 
         <section>
-          <h2>1. Introduction</h2>
+          <h2>{next()}. Introduction</h2>
           <p>
             BISZAAL TECH LTD ("we," "our," or "us") develops {gameName}. This privacy policy
             explains what information {gameName} collects (if any), how it is used, and your
@@ -34,7 +45,7 @@ const GamePrivacyPolicy: React.FC<GamePrivacyPolicyProps> = ({
         </section>
 
         <section>
-          <h2>2. Information We Collect</h2>
+          <h2>{next()}. Information We Collect</h2>
           {isOnline ? (
             <>
               <p>
@@ -43,23 +54,44 @@ const GamePrivacyPolicy: React.FC<GamePrivacyPolicyProps> = ({
                 number.
               </p>
               <p>
-                You may choose a display name (up to 20 characters) and an avatar, both of which
-                are visible to other players you interact with. If you add friends within the
-                game, we store the connection between your account and theirs, along with the
-                status of that request. If you invite someone to a game room, we store the room
-                code and both accounts involved until the invite is accepted, declined, or
-                expires.
+                You choose a username (up to 20 characters) and an avatar, both of which are
+                visible to other players you interact with. Usernames are unique, and other players
+                can find you by entering your exact username or the friend code shown in the game —
+                so please don't use your full name or anything else you would rather not share.
+                Your username can be changed once.
+              </p>
+              <p>
+                If you add friends within the game, we store the connection between your account
+                and theirs, along with the status of that request, and your friends can see when
+                you were last active in the game. If you invite someone to a game room, we store
+                the room code, the entry stake, and both accounts involved until the invite is
+                accepted, declined, or expires.
               </p>
               <p>
                 {gameName} includes in-game virtual currencies (coins and gems) and cosmetic items.
-                We store your balances and the items and entitlements linked to your account so
-                they are available when you return.
+                We store your balances, the items and entitlements linked to your account, your
+                daily-bonus streak, and a record of rewarded ads you have chosen to watch so that
+                daily reward limits can be applied fairly.
               </p>
+              {hasPushNotifications && (
+                <p>
+                  If you allow notifications, we store a push token issued by your device's
+                  operating system, which platform it came from (iOS or Android), and the account it
+                  belongs to, so we can tell you when a friend invites you to a room or sends you a
+                  friend request. We ask for permission at the point it becomes useful rather than
+                  at first launch, and the game works normally if you decline. Turning notifications
+                  off in the game (Settings › Notifications) deletes the token from our servers.
+                </p>
+              )}
               <p>
                 Saving your account is optional. If you choose to save it — so your progress carries
                 to a new device — you provide an email address and password, which we store so you
                 can sign back in. You can otherwise keep playing as a guest indefinitely without
-                providing them.
+                providing them. So that reinstalling the game doesn't cost you your progress, a
+                sign-in token is also kept in your device's secure storage (the iOS Keychain or
+                Android Keystore). On iOS that storage can outlive deleting the app, which means
+                reinstalling returns you to the same account rather than a new one; deleting your
+                account in the game clears it.
               </p>
               {hasAds && (
                 <p>
@@ -85,7 +117,7 @@ const GamePrivacyPolicy: React.FC<GamePrivacyPolicyProps> = ({
         </section>
 
         <section>
-          <h2>3. Third-Party Services</h2>
+          <h2>{next()}. Third-Party Services</h2>
           {isOnline ? (
             <>
               <p>
@@ -93,6 +125,15 @@ const GamePrivacyPolicy: React.FC<GamePrivacyPolicyProps> = ({
                 account, profile, friend, room-invite, currency, and entitlement data described
                 above, and to synchronize real-time game state between players.
               </p>
+              {hasPushNotifications && (
+                <p>
+                  Notifications are delivered through Expo's push notification service, which hands
+                  the message to Apple's or Google's notification system for delivery to your
+                  device. Expo receives the push token and the contents of the notification (for
+                  example, that a named player has invited you to a room). No other account data is
+                  shared with them.
+                </p>
+              )}
               {hasInAppPurchases && (
                 <p>
                   Optional in-app purchases (gem packs) are processed by the Apple App Store or
@@ -122,6 +163,12 @@ const GamePrivacyPolicy: React.FC<GamePrivacyPolicyProps> = ({
               <p>
                 You can review each provider's privacy practices:{' '}
                 <a href="https://supabase.com/privacy" target="_blank" rel="noreferrer">Supabase</a>
+                {hasPushNotifications && (
+                  <>
+                    ,{' '}
+                    <a href="https://expo.dev/privacy" target="_blank" rel="noreferrer">Expo</a>
+                  </>
+                )}
                 {hasAds && (
                   <>
                     ,{' '}
@@ -152,12 +199,12 @@ const GamePrivacyPolicy: React.FC<GamePrivacyPolicyProps> = ({
         </section>
 
         <section>
-          <h2>4. Children's Privacy</h2>
+          <h2>{next()}. Children's Privacy</h2>
           {isOnline ? (
             <p>
               {gameName} is not directed to children under 13 (or the minimum age required in your
               country), and we do not knowingly collect personal information from children beyond
-              the self-chosen display name and avatar described above.
+              the self-chosen username and avatar described above.
               {hasAds
                 ? ' Advertising is provided by Google AdMob; we do not knowingly enable personalized' +
                   ' (interest-based) advertising for children.'
@@ -176,12 +223,16 @@ const GamePrivacyPolicy: React.FC<GamePrivacyPolicyProps> = ({
         </section>
 
         <section>
-          <h2>5. Data Security</h2>
+          <h2>{next()}. Data Security</h2>
           {isOnline ? (
             <p>
               Account, profile, friend, room-invite, currency, and entitlement data is protected
               using Supabase's row-level security, which restricts each player to their own data
               and the game state they are actively part of.
+              {hasPushNotifications
+                ? ' Push tokens are stored so that only our server can read them — no other player' +
+                  ' can see or send to your device.'
+                : ''}
               {hasInAppPurchases
                 ? ' Payments are handled by the Apple App Store or Google Play and are never' +
                   ' processed on our servers.'
@@ -197,8 +248,29 @@ const GamePrivacyPolicy: React.FC<GamePrivacyPolicyProps> = ({
           )}
         </section>
 
+        {isOnline && (
+          <section>
+            <h2>{next()}. How Long We Keep Your Data</h2>
+            <p>
+              Your account and the profile, friend, currency, and entitlement data attached to it
+              are kept until you delete your account or ask us to delete them. Match data is kept
+              only as long as it is useful: individual moves are removed 30 days after they are
+              played, finished games 60 days after they end, and rooms that nobody joined are
+              cleared within a day.
+              {hasPushNotifications
+                ? ' A push token is removed as soon as you turn notifications off, when your device' +
+                  ' reports that it no longer accepts them, or with your account.'
+                : ''}
+            </p>
+            <p>
+              You can delete your account from the Account screen inside the game, which removes
+              the account and the data linked to it.
+            </p>
+          </section>
+        )}
+
         <section>
-          <h2>6. Your Rights and Choices</h2>
+          <h2>{next()}. Your Rights and Choices</h2>
           <p>Under UK and EU data protection law, you have the right to:</p>
           <ul>
             <li>Request access to any personal data we hold about you</li>
@@ -212,6 +284,13 @@ const GamePrivacyPolicy: React.FC<GamePrivacyPolicyProps> = ({
             <li>Object to processing of your data</li>
             <li>Request data portability</li>
           </ul>
+          {hasPushNotifications && (
+            <p>
+              You can turn notifications off at any time in the game under Settings › Notifications,
+              or in your device's notification settings. Doing it in the game also deletes the push
+              token we hold for that device.
+            </p>
+          )}
           {hasAds && (
             <p>
               You can also control ad personalization at any time: on iOS, through Settings ›
@@ -224,7 +303,7 @@ const GamePrivacyPolicy: React.FC<GamePrivacyPolicyProps> = ({
         </section>
 
         <section>
-          <h2>7. Changes to This Policy</h2>
+          <h2>{next()}. Changes to This Policy</h2>
           <p>
             We may update this privacy policy from time to time — for example, if we change the
             third-party services {gameName} uses. We will post any changes on this page with an
@@ -233,7 +312,7 @@ const GamePrivacyPolicy: React.FC<GamePrivacyPolicyProps> = ({
         </section>
 
         <section>
-          <h2>8. Contact Us</h2>
+          <h2>{next()}. Contact Us</h2>
           <p>If you have any questions about this privacy policy, please contact us at:</p>
           <div className="contact-info">
             <p><strong>BISZAAL TECH LTD</strong></p>

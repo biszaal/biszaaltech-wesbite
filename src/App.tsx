@@ -29,7 +29,16 @@ function App() {
           />
           <Route
             path="/games/ludo/privacy"
-            element={<GamePrivacyPolicy gameName="Ludo Game" dataPractices="online-multiplayer" hasAds hasInAppPurchases />}
+            element={
+              <GamePrivacyPolicy
+                gameName="Ludo Game"
+                dataPractices="online-multiplayer"
+                hasAds
+                hasInAppPurchases
+                hasPushNotifications
+                lastUpdated="August 16, 2026"
+              />
+            }
           />
           {/* App store listings link to /apps/…; the short path is kept as an alias. */}
           <Route path="/apps/itrackhabit/privacy" element={<ITrackHabitPrivacy />} />
