@@ -5,6 +5,7 @@ import PrivacyPolicy from './pages/PrivacyPolicy';
 import TermsOfService from './pages/TermsOfService';
 import Games from './pages/Games';
 import GamePrivacyPolicy from './pages/GamePrivacyPolicy';
+import GameDeleteAccount from './pages/GameDeleteAccount';
 import ITrackHabitPrivacy from './pages/ITrackHabitPrivacy';
 import ExpenzezPrivacy from './pages/ExpenzezPrivacy';
 import NotFound from './pages/NotFound';
@@ -37,6 +38,16 @@ function App() {
                 hasInAppPurchases
                 hasPushNotifications
                 lastUpdated="August 16, 2026"
+              />
+            }
+          />
+          <Route
+            path="/games/ludo/delete-account"
+            element={
+              <GameDeleteAccount
+                gameName="Ludo Game"
+                storeName="Ludo: Classic Board Game"
+                bundleId="com.biszaal.mobile"
               />
             }
           />
