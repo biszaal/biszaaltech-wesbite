@@ -37,7 +37,8 @@ function App() {
                 hasAds
                 hasInAppPurchases
                 hasPushNotifications
-                lastUpdated="August 16, 2026"
+                deleteAccountPath="/games/ludo/delete-account"
+                lastUpdated="August 19, 2026"
               />
             }
           />

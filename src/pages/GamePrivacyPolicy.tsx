@@ -10,6 +10,8 @@ interface GamePrivacyPolicyProps {
   hasInAppPurchases?: boolean;
   /** Registers a device push token to deliver room invites and friend requests. */
   hasPushNotifications?: boolean;
+  /** Path to this game's account deletion page, when it has one (Play requires it). */
+  deleteAccountPath?: string;
   /** Shown to players; only bump it for the game whose practices actually changed. */
   lastUpdated?: string;
 }
@@ -20,6 +22,7 @@ const GamePrivacyPolicy: React.FC<GamePrivacyPolicyProps> = ({
   hasAds = false,
   hasInAppPurchases = false,
   hasPushNotifications = false,
+  deleteAccountPath,
   lastUpdated = 'July 28, 2026',
 }) => {
   const isOnline = dataPractices === 'online-multiplayer';
@@ -253,18 +256,31 @@ const GamePrivacyPolicy: React.FC<GamePrivacyPolicyProps> = ({
             <h2>{next()}. How Long We Keep Your Data</h2>
             <p>
               Your account and the profile, friend, currency, and entitlement data attached to it
-              are kept until you delete your account or ask us to delete them. Match data is kept
-              only as long as it is useful: individual moves are removed 30 days after they are
-              played, finished games 60 days after they end, and rooms that nobody joined are
-              cleared within a day.
+              are kept until you delete your account or ask us to delete them. That includes the
+              record of your coin and gem transactions and any purchases, which we keep for as long
+              as the account exists so we can answer a question about where a balance went.
+            </p>
+            <p>
+              Match data is kept only as long as it is useful, and is then deleted automatically:
+              individual moves are removed 24 hours after they are played, finished games 7 days
+              after they end, and a game abandoned part-way through is cleared a day after the last
+              move (any entry stake is refunded when that happens). Rooms nobody started go sooner —
+              within 15 minutes for a quick match, and within a day for a private room. The record
+              of a rewarded ad you chose to watch is removed after 7 days.
               {hasPushNotifications
                 ? ' A push token is removed as soon as you turn notifications off, when your device' +
                   ' reports that it no longer accepts them, or with your account.'
                 : ''}
             </p>
             <p>
-              You can delete your account from the Account screen inside the game, which removes
-              the account and the data linked to it.
+              You can delete your account from the Account screen inside the game, which removes the
+              account and the data linked to it.
+              {deleteAccountPath && (
+                <>
+                  {' '}Our <a href={deleteAccountPath}>account deletion page</a> sets out the steps,
+                  what is deleted, and what is kept afterwards.
+                </>
+              )}
             </p>
           </section>
         )}

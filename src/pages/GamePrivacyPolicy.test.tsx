@@ -81,7 +81,10 @@ test('discloses push notifications, retention, and account recovery (Ludo)', () 
   expect(
     screen.getByRole('heading', { name: '6. How Long We Keep Your Data' })
   ).toBeInTheDocument();
-  expect(screen.getByText(/finished games 60 days after they end/)).toBeInTheDocument();
+  // Retention windows must track the reaper in migration 0038, not the 0021 ones.
+  expect(screen.getByText(/moves are removed 24 hours after they are played/)).toBeInTheDocument();
+  expect(screen.getByText(/finished games 7 days\s+after they end/)).toBeInTheDocument();
+  expect(screen.getByText(/within 15 minutes for a quick match/)).toBeInTheDocument();
   expect(screen.getByText(/delete your account from the Account screen/)).toBeInTheDocument();
 });
 
@@ -90,4 +93,23 @@ test('leaves the local-only policy untouched by the online-game flags', () => {
   expect(screen.getByText(/Last updated: July 28, 2026/)).toBeInTheDocument();
   expect(screen.queryByText(/push token/)).not.toBeInTheDocument();
   expect(screen.queryByRole('heading', { name: /How Long We Keep Your Data/ })).not.toBeInTheDocument();
+});
+
+test('links to the deletion page only for a game that has one', () => {
+  const { unmount } = render(
+    <GamePrivacyPolicy
+      gameName="Ludo Game"
+      dataPractices="online-multiplayer"
+      deleteAccountPath="/games/ludo/delete-account"
+    />
+  );
+  expect(screen.getByRole('link', { name: 'account deletion page' })).toHaveAttribute(
+    'href',
+    '/games/ludo/delete-account'
+  );
+  unmount();
+
+  // A game without its own deletion page must not borrow another game's link.
+  render(<GamePrivacyPolicy gameName="Ludo Game" dataPractices="online-multiplayer" />);
+  expect(screen.queryByRole('link', { name: 'account deletion page' })).not.toBeInTheDocument();
 });
