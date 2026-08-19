@@ -14,7 +14,14 @@ test('showcases both games with status and privacy links', () => {
   expect(screen.getByRole('heading', { name: 'Helicopter' })).toBeInTheDocument();
   expect(screen.getByRole('heading', { name: 'Ludo' })).toBeInTheDocument();
 
-  expect(screen.getAllByText('Coming soon to the App Store')).toHaveLength(2);
+  // Helicopter is live, so only Ludo still carries the status chip.
+  expect(screen.getAllByText('Coming soon to the App Store')).toHaveLength(1);
+  const storeLink = screen.getByRole('link', { name: /Download on the App Store/ });
+  expect(storeLink).toHaveAttribute(
+    'href',
+    'https://apps.apple.com/us/app/helicopter-game-cave-edition/id6786880982'
+  );
+  expect(storeLink).toHaveAttribute('rel', 'noopener noreferrer');
 
   const privacyLinks = screen.getAllByRole('link', { name: 'Privacy policy' });
   expect(privacyLinks.map((l) => l.getAttribute('href'))).toEqual(

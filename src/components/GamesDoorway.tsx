@@ -18,7 +18,7 @@ const GamesDoorway: React.FC = () => {
               <h2>We also make games.</h2>
               <p>
                 Two originals — a cave-flying arcade run and a fresh take on Ludo.
-                Coming soon to the App Store.
+                Helicopter is on the App Store now.
               </p>
               <Link to="/games" className="pill-btn pill-btn--accent doorway-cta">
                 See the games

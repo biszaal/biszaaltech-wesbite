@@ -26,7 +26,14 @@ function App() {
           <Route path="/games" element={<Games />} />
           <Route
             path="/games/helicopter/privacy"
-            element={<GamePrivacyPolicy gameName="Helicopter Game" dataPractices="local-only" />}
+            element={
+              <GamePrivacyPolicy
+                gameName="Helicopter Game"
+                storeName="Helicopter Game: Cave Edition"
+                dataPractices="online-leaderboard"
+                lastUpdated="August 19, 2026"
+              />
+            }
           />
           <Route
             path="/games/ludo/privacy"

@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, screen } from '@testing-library/react';
+import { cleanup, render, screen } from '@testing-library/react';
 import GamePrivacyPolicy from './GamePrivacyPolicy';
 
 test('renders the local-only policy heading and body for a game with no backend', () => {
@@ -38,6 +38,48 @@ test('keeps section numbering contiguous in both variants', () => {
 
   render(<GamePrivacyPolicy gameName="Ludo Game" dataPractices="online-multiplayer" />);
   expect(numbering()).toEqual(['1', '2', '3', '4', '5', '6', '7', '8', '9']);
+  cleanup();
+
+  // A leaderboard keeps data on our servers too, so it earns the same section.
+  render(<GamePrivacyPolicy gameName="Helicopter Game" dataPractices="online-leaderboard" />);
+  expect(numbering()).toEqual(['1', '2', '3', '4', '5', '6', '7', '8', '9']);
+});
+
+test('renders the leaderboard policy for a game whose only backend is a public board', () => {
+  render(
+    <GamePrivacyPolicy
+      gameName="Helicopter Game"
+      storeName="Helicopter Game: Cave Edition"
+      dataPractices="online-leaderboard"
+      lastUpdated="August 19, 2026"
+    />
+  );
+
+  // The store listing title, so a reviewer can match the policy to the app.
+  expect(
+    screen.getByText(/develops Helicopter Game \(listed on the App Store as "Helicopter Game: Cave Edition"\)/)
+  ).toBeInTheDocument();
+
+  // Opt-in, what a username is, and what a submitted run carries.
+  expect(screen.getByText(/Playing Helicopter Game collects nothing/)).toBeInTheDocument();
+  expect(screen.getByText(/taking part is your choice/)).toBeInTheDocument();
+  expect(screen.getByText(/3 to 16 letters, numbers, or\s+underscores/)).toBeInTheDocument();
+  expect(screen.getByText(/never claim a username, nothing about your play leaves your device/))
+    .toBeInTheDocument();
+
+  // Supabase is the only processor, and the removal route is spelled out.
+  expect(screen.getByRole('link', { name: 'Supabase' })).toHaveAttribute(
+    'href',
+    'https://supabase.com/privacy'
+  );
+  expect(screen.getByText(/no analytics or\s+tracking services, and no in-app purchases/))
+    .toBeInTheDocument();
+  expect(screen.getAllByRole('link', { name: 'hello@biszaaltech.com' }).length).toBeGreaterThan(0);
+
+  // None of the multiplayer game's disclosures leak into this variant.
+  expect(screen.queryByText(/AdMob/)).not.toBeInTheDocument();
+  expect(screen.queryByText(/RevenueCat/)).not.toBeInTheDocument();
+  expect(screen.queryByText(/push token/)).not.toBeInTheDocument();
 });
 
 test('discloses ads and in-app purchases when those flags are set (Ludo)', () => {

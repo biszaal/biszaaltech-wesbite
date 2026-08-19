@@ -14,6 +14,8 @@ interface GameEntry {
   icon: string;
   iconAlt: string;
   artClass: string;
+  /** Set once the game is on the App Store — swaps the status chip for a link. */
+  appStoreUrl?: string;
 }
 
 const games: GameEntry[] = [
@@ -24,10 +26,11 @@ const games: GameEntry[] = [
     description:
       'Hold to climb, release to dive. The cave narrows, the blocks close in, and ' +
       'the only score that matters is the one run further than last time.',
-    meta: ['Arcade', '1 player', 'One button'],
+    meta: ['Arcade', '1 player', 'Global leaderboard'],
     icon: helicopterIcon,
     iconAlt: 'Helicopter game icon: a white helicopter flying through a dark cave',
     artClass: 'game-art--heli',
+    appStoreUrl: 'https://apps.apple.com/us/app/helicopter-game-cave-edition/id6786880982',
   },
   {
     slug: 'ludo',
@@ -53,7 +56,8 @@ const Games: React.FC = () => {
           <span className="eyebrow">Biszaal Games</span>
           <h1>Press start.</h1>
           <p className="games-hero-sub mono-meta">
-            Original mobile games from Biszaal Tech — coming soon to the App Store.
+            Original mobile games from Biszaal Tech. Helicopter is on the App Store now;
+            Ludo is next.
           </p>
         </div>
       </section>
@@ -89,7 +93,19 @@ const GameRow: React.FC<{ game: GameEntry; flip: boolean }> = ({ game, flip }) =
           <p className="game-desc">{game.description}</p>
           <p className="mono-meta game-meta">{game.meta.join(' · ')}</p>
           <div className="game-actions">
-            <span className="game-status">Coming soon to the App Store</span>
+            {game.appStoreUrl ? (
+              <a
+                href={game.appStoreUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="pill-btn pill-btn--accent"
+              >
+                Download on the App Store
+                <span className="btn-orb" aria-hidden="true">↗</span>
+              </a>
+            ) : (
+              <span className="game-status">Coming soon to the App Store</span>
+            )}
             <Link to={`/games/${game.slug}/privacy`} className="text-link">
               Privacy policy
             </Link>

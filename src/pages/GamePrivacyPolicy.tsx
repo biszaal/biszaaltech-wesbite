@@ -3,7 +3,9 @@ import './LegalPages.css';
 
 interface GamePrivacyPolicyProps {
   gameName: string;
-  dataPractices: 'local-only' | 'online-multiplayer';
+  /** Store listing title, when it differs from the name used elsewhere on this site. */
+  storeName?: string;
+  dataPractices: 'local-only' | 'online-multiplayer' | 'online-leaderboard';
   /** Serves ads through Google AdMob (advertising identifier, consent, ATT). */
   hasAds?: boolean;
   /** Sells optional in-app purchases (processed by the app stores via RevenueCat). */
@@ -18,6 +20,7 @@ interface GamePrivacyPolicyProps {
 
 const GamePrivacyPolicy: React.FC<GamePrivacyPolicyProps> = ({
   gameName,
+  storeName,
   dataPractices,
   hasAds = false,
   hasInAppPurchases = false,
@@ -26,6 +29,9 @@ const GamePrivacyPolicy: React.FC<GamePrivacyPolicyProps> = ({
   lastUpdated = 'July 28, 2026',
 }) => {
   const isOnline = dataPractices === 'online-multiplayer';
+  // One public leaderboard and nothing else: no friends, currency, invites,
+  // ads, purchases or push, so the multiplayer wording would overstate it.
+  const isLeaderboard = dataPractices === 'online-leaderboard';
 
   // Sections are numbered as they render, so a section that only applies to one
   // variant (data retention, below) doesn't leave a gap in the other.
@@ -41,7 +47,8 @@ const GamePrivacyPolicy: React.FC<GamePrivacyPolicyProps> = ({
         <section>
           <h2>{next()}. Introduction</h2>
           <p>
-            BISZAAL TECH LTD ("we," "our," or "us") develops {gameName}. This privacy policy
+            BISZAAL TECH LTD ("we," "our," or "us") develops {gameName}
+            {storeName ? ` (listed on the App Store as "${storeName}")` : ''}. This privacy policy
             explains what information {gameName} collects (if any), how it is used, and your
             rights regarding that information.
           </p>
@@ -107,6 +114,36 @@ const GamePrivacyPolicy: React.FC<GamePrivacyPolicyProps> = ({
               <p>
                 Local, pass-and-play games on a single device do not require an account and are
                 never transmitted to us.
+              </p>
+            </>
+          ) : isLeaderboard ? (
+            <>
+              <p>
+                Playing {gameName} collects nothing. Your settings, coins, unlocked helicopters,
+                and personal best are stored on your device and are never sent to us.
+              </p>
+              <p>
+                The online leaderboard is the one exception, and taking part is your choice. The
+                first time you open the leaderboard we create an anonymous account for you. It
+                holds no email address, name, or phone number — it exists only so the board can
+                tell one player's entry from another's.
+              </p>
+              <p>
+                To appear on the board you pick a username of 3 to 16 letters, numbers, or
+                underscores. It has to be unique, it is checked against a profanity filter, and it
+                is public: anyone who opens the leaderboard sees it beside your best score. Please
+                don't use your real name or anything else you would rather not share.
+              </p>
+              <p>
+                Once you have claimed a username, a run that beats your personal best is sent to
+                the board, and we store that score along with the distance and duration of the run
+                behind it and when it was set. Runs that don't beat your best are never sent, and
+                if you never claim a username, nothing about your play leaves your device.
+              </p>
+              <p>
+                The anonymous account lives only on your device — there is no password and nothing
+                to sign in with. Deleting the game loses it, and reinstalling starts a new one, so
+                an entry already on the board can no longer be changed from the app.
               </p>
             </>
           ) : (
@@ -191,6 +228,23 @@ const GamePrivacyPolicy: React.FC<GamePrivacyPolicyProps> = ({
                 .
               </p>
             </>
+          ) : isLeaderboard ? (
+            <>
+              <p>
+                {gameName} uses Supabase, a third-party backend and database provider, to host the
+                leaderboard, the anonymous account behind it, and the server-side checks that
+                validate a submitted score.
+              </p>
+              <p>
+                Nothing else leaves the game. {gameName} contains no advertising, no analytics or
+                tracking services, and no in-app purchases — the coins and helicopters in the shop
+                are earned by playing and are held on your device.
+              </p>
+              <p>
+                You can review Supabase's privacy practices:{' '}
+                <a href="https://supabase.com/privacy" target="_blank" rel="noreferrer">Supabase</a>.
+              </p>
+            </>
           ) : (
             <p>
               {gameName} does not currently integrate any third-party advertising, analytics, or
@@ -214,6 +268,15 @@ const GamePrivacyPolicy: React.FC<GamePrivacyPolicyProps> = ({
                 : ''}{' '}
               We take appropriate steps to comply with applicable children's privacy laws, including
               COPPA and UK data protection requirements, for the information we collect.
+            </p>
+          ) : isLeaderboard ? (
+            <p>
+              {gameName} is not directed to children under 13 (or the minimum age required in your
+              country). The only thing a player can provide is a self-chosen leaderboard username,
+              which is checked against a profanity filter before it is accepted, and playing
+              without one collects nothing at all. There is no advertising in the game. We take
+              appropriate steps to comply with applicable children's privacy laws, including COPPA
+              and UK data protection requirements, for the information we collect.
             </p>
           ) : (
             <p>
@@ -242,6 +305,15 @@ const GamePrivacyPolicy: React.FC<GamePrivacyPolicyProps> = ({
                 : ''}{' '}
               We follow reasonable security practices in how we develop and maintain the app.
             </p>
+          ) : isLeaderboard ? (
+            <p>
+              The leaderboard is protected by Supabase's row-level security. The board is public to
+              read — usernames and best scores, nothing more — and no client can write to it
+              directly: every score goes through a server-side function that checks which account
+              is submitting and rejects runs that aren't physically possible. There are no payments
+              anywhere in the game, so we hold no payment details of any kind. We follow reasonable
+              security practices in how we develop and maintain the app.
+            </p>
           ) : (
             <p>
               Because {gameName} stores data locally on your device rather than on our servers,
@@ -251,37 +323,57 @@ const GamePrivacyPolicy: React.FC<GamePrivacyPolicyProps> = ({
           )}
         </section>
 
-        {isOnline && (
+        {(isOnline || isLeaderboard) && (
           <section>
             <h2>{next()}. How Long We Keep Your Data</h2>
-            <p>
-              Your account and the profile, friend, currency, and entitlement data attached to it
-              are kept until you delete your account or ask us to delete them. That includes the
-              record of your coin and gem transactions and any purchases, which we keep for as long
-              as the account exists so we can answer a question about where a balance went.
-            </p>
-            <p>
-              Match data is kept only as long as it is useful, and is then deleted automatically:
-              individual moves are removed 24 hours after they are played, finished games 7 days
-              after they end, and a game abandoned part-way through is cleared a day after the last
-              move (any entry stake is refunded when that happens). Rooms nobody started go sooner —
-              within 15 minutes for a quick match, and within a day for a private room. The record
-              of a rewarded ad you chose to watch is removed after 7 days.
-              {hasPushNotifications
-                ? ' A push token is removed as soon as you turn notifications off, when your device' +
-                  ' reports that it no longer accepts them, or with your account.'
-                : ''}
-            </p>
-            <p>
-              You can delete your account from the Account screen inside the game, which removes the
-              account and the data linked to it.
-              {deleteAccountPath && (
-                <>
-                  {' '}Our <a href={deleteAccountPath}>account deletion page</a> sets out the steps,
-                  what is deleted, and what is kept afterwards.
+            {isLeaderboard && (
+              <>
+                <p>
+                  Your leaderboard entry — the username, the best score, and the distance and
+                  duration of the run behind it — stays on the board until you ask us to remove it.
+                  Everything else lives on your device and goes with the game when you delete it.
+                </p>
+                <p>
+                  To have an entry and its username removed, email{' '}
+                  <a href="mailto:hello@biszaaltech.com">hello@biszaaltech.com</a> with the username
+                  as it appears on the board. There is no sign-in behind a leaderboard name, so
+                  tell us the rank you appear at as well if you still have the game installed —
+                  that is how we check the entry is yours before deleting it.
+                </p>
+              </>
+            )}
+            {isOnline && (
+              <>
+                <p>
+                  Your account and the profile, friend, currency, and entitlement data attached to it
+                  are kept until you delete your account or ask us to delete them. That includes the
+                  record of your coin and gem transactions and any purchases, which we keep for as long
+                  as the account exists so we can answer a question about where a balance went.
+                </p>
+                <p>
+                  Match data is kept only as long as it is useful, and is then deleted automatically:
+                  individual moves are removed 24 hours after they are played, finished games 7 days
+                  after they end, and a game abandoned part-way through is cleared a day after the last
+                  move (any entry stake is refunded when that happens). Rooms nobody started go sooner —
+                  within 15 minutes for a quick match, and within a day for a private room. The record
+                  of a rewarded ad you chose to watch is removed after 7 days.
+                  {hasPushNotifications
+                    ? ' A push token is removed as soon as you turn notifications off, when your device' +
+                      ' reports that it no longer accepts them, or with your account.'
+                    : ''}
+                </p>
+                <p>
+                  You can delete your account from the Account screen inside the game, which removes the
+                  account and the data linked to it.
+                  {deleteAccountPath && (
+                    <>
+                      {' '}Our <a href={deleteAccountPath}>account deletion page</a> sets out the steps,
+                      what is deleted, and what is kept afterwards.
                 </>
               )}
             </p>
+              </>
+            )}
           </section>
         )}
 
@@ -296,10 +388,19 @@ const GamePrivacyPolicy: React.FC<GamePrivacyPolicyProps> = ({
               {isOnline
                 ? ', including your account, saved email, profile, friend connections, currency balances, and room invites'
                 : ''}
+              {isLeaderboard ? ', including your leaderboard entry and the username on it' : ''}
             </li>
             <li>Object to processing of your data</li>
             <li>Request data portability</li>
           </ul>
+          {isLeaderboard && (
+            <p>
+              For the leaderboard, email{' '}
+              <a href="mailto:hello@biszaaltech.com">hello@biszaaltech.com</a> with your username to
+              exercise any of these. The game itself has no way to edit or remove an entry once the
+              username is claimed, so this is the route — we answer within 30 days.
+            </p>
+          )}
           {hasPushNotifications && (
             <p>
               You can turn notifications off at any time in the game under Settings › Notifications,
