@@ -11,7 +11,7 @@ const Projects: React.FC = () => {
 
   return (
     <main id="main" className="projects-page">
-      <Seo title="Our work — Biszaal Tech" canonical="https://biszaaltech.com/projects" />
+      <Seo title="Our work — Biszaal Tech" canonical="https://www.biszaaltech.com/projects" />
 
       <section className="projects-hero">
         <div className="container projects-hero-inner reveal" ref={headRef}>

@@ -13,7 +13,7 @@ const Home: React.FC = () => {
     <main id="main">
       <Seo
         title="Biszaal Tech — websites, mobile apps and custom software"
-        canonical="https://biszaaltech.com/"
+        canonical="https://www.biszaaltech.com/"
       />
       <Hero />
       <Services />

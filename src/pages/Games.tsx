@@ -53,7 +53,7 @@ const Games: React.FC = () => {
 
   return (
     <main id="main" className="world-dark games-page">
-      <Seo title="Biszaal Games — Biszaal Tech" canonical="https://biszaaltech.com/games" />
+      <Seo title="Biszaal Games — Biszaal Tech" canonical="https://www.biszaaltech.com/games" />
       <section className="games-hero">
         <div className="container games-hero-inner reveal" ref={headRef}>
           <span className="eyebrow">Biszaal Games</span>

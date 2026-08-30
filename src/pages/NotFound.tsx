@@ -6,7 +6,7 @@ import Seo from '../components/Seo';
 const NotFound: React.FC = () => {
   return (
     <main id="main" className="not-found">
-      <Seo title="Page not found — Biszaal Tech" canonical="https://biszaaltech.com/" />
+      <Seo title="Page not found — Biszaal Tech" canonical="https://www.biszaaltech.com/" />
       <div className="container not-found-inner">
         <p className="not-found-code mono-meta">404</p>
         <h1>Page not found.</h1>
