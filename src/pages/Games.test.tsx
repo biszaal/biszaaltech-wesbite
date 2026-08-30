@@ -14,14 +14,20 @@ test('showcases both games with status and privacy links', () => {
   expect(screen.getByRole('heading', { name: 'Helicopter' })).toBeInTheDocument();
   expect(screen.getByRole('heading', { name: 'Ludo' })).toBeInTheDocument();
 
-  // Helicopter is live, so only Ludo still carries the status chip.
-  expect(screen.getAllByText('Coming soon to the App Store')).toHaveLength(1);
-  const storeLink = screen.getByRole('link', { name: /Download on the App Store/ });
-  expect(storeLink).toHaveAttribute(
-    'href',
-    'https://apps.apple.com/us/app/helicopter-game-cave-edition/id6786880982'
-  );
-  expect(storeLink).toHaveAttribute('rel', 'noopener noreferrer');
+  // Both games are released, so no status chip should be left anywhere.
+  expect(screen.queryByText(/coming soon/i)).not.toBeInTheDocument();
+
+  const storeLinks = screen.getAllByRole('link', { name: /Download on the App Store/ });
+  expect(storeLinks.map((l) => l.getAttribute('href'))).toEqual([
+    'https://apps.apple.com/us/app/helicopter-game-cave-edition/id6786880982',
+    'https://apps.apple.com/gb/app/ludo-classic-board-game/id6788536072',
+  ]);
+  storeLinks.forEach((l) => expect(l).toHaveAttribute('rel', 'noopener noreferrer'));
+
+  // Ludo is the only one we can claim is on Google Play.
+  const play = screen.getByRole('link', { name: /Get it on Google Play/ });
+  expect(play).toHaveAttribute('href', 'https://play.google.com/store/apps/details?id=com.biszaal.mobile');
+  expect(play).toHaveAttribute('rel', 'noopener noreferrer');
 
   const privacyLinks = screen.getAllByRole('link', { name: 'Privacy policy' });
   expect(privacyLinks.map((l) => l.getAttribute('href'))).toEqual(

@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { useReveal } from '../hooks/useReveal';
-import { HELICOPTER_APP_STORE } from '../data/projects';
+import { HELICOPTER_APP_STORE, LUDO_APP_STORE, LUDO_PLAY_STORE } from '../data/projects';
 import helicopterIcon from '../assets/helicopter-icon.png';
 import ludoIcon from '../assets/ludo-icon.svg';
 import './Games.css';
@@ -16,8 +16,9 @@ interface GameEntry {
   icon: string;
   iconAlt: string;
   artClass: string;
-  /** Set once the game is on the App Store — swaps the status chip for a link. */
+  /** Set once the game is on a store — the status chip only shows while both are unset. */
   appStoreUrl?: string;
+  playStoreUrl?: string;
 }
 
 const games: GameEntry[] = [
@@ -45,6 +46,8 @@ const games: GameEntry[] = [
     icon: ludoIcon,
     iconAlt: 'Ludo game icon: colourful pawns and a die beneath a golden crown',
     artClass: 'game-art--ludo',
+    appStoreUrl: LUDO_APP_STORE,
+    playStoreUrl: LUDO_PLAY_STORE,
   },
 ];
 
@@ -59,8 +62,8 @@ const Games: React.FC = () => {
           <span className="eyebrow">Biszaal Games</span>
           <h1>Press start.</h1>
           <p className="games-hero-sub mono-meta">
-            Original mobile games from Biszaal Tech. Helicopter is on the App Store now;
-            Ludo is next.
+            Original mobile games from Biszaal Tech. Helicopter is on the App Store,
+            and Ludo is out on both the App Store and Google Play.
           </p>
         </div>
       </section>
@@ -73,7 +76,7 @@ const Games: React.FC = () => {
 
       <section className="games-crossband container">
         <p>
-          Looking for the finance side?{' '}
+          We build software for other people too.{' '}
           <Link to="/" className="text-link">Visit Biszaal Tech</Link>
         </p>
       </section>
@@ -96,7 +99,7 @@ const GameRow: React.FC<{ game: GameEntry; flip: boolean }> = ({ game, flip }) =
           <p className="game-desc">{game.description}</p>
           <p className="mono-meta game-meta">{game.meta.join(' · ')}</p>
           <div className="game-actions">
-            {game.appStoreUrl ? (
+            {game.appStoreUrl && (
               <a
                 href={game.appStoreUrl}
                 target="_blank"
@@ -106,7 +109,18 @@ const GameRow: React.FC<{ game: GameEntry; flip: boolean }> = ({ game, flip }) =
                 Download on the App Store
                 <span className="btn-orb" aria-hidden="true">↗</span>
               </a>
-            ) : (
+            )}
+            {game.playStoreUrl && (
+              <a
+                href={game.playStoreUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-link"
+              >
+                Get it on Google Play
+              </a>
+            )}
+            {!game.appStoreUrl && !game.playStoreUrl && (
               <span className="game-status">Coming soon to the App Store</span>
             )}
             <Link to={`/games/${game.slug}/privacy`} className="text-link">

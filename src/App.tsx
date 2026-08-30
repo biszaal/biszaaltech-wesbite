@@ -58,7 +58,7 @@ function App() {
             element={
               <GameDeleteAccount
                 gameName="Ludo Game"
-                storeName="Ludo: Classic Board Game"
+                storeName="Ludo Classic: Board Game"
                 bundleId="com.biszaal.mobile"
               />
             }

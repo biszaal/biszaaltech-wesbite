@@ -42,6 +42,10 @@ export interface ProjectEntry {
 /** Shared with Games.tsx so the two pages can't drift apart. */
 export const HELICOPTER_APP_STORE =
   'https://apps.apple.com/us/app/helicopter-game-cave-edition/id6786880982';
+export const LUDO_APP_STORE =
+  'https://apps.apple.com/gb/app/ludo-classic-board-game/id6788536072';
+export const LUDO_PLAY_STORE =
+  'https://play.google.com/store/apps/details?id=com.biszaal.mobile';
 
 export const projects: ProjectEntry[] = [
   {
@@ -112,12 +116,13 @@ export const projects: ProjectEntry[] = [
     description:
       'Roll, race, and send your rivals home. Face the computer, pass-and-play, or ' +
       'take friends on in online multiplayer — captures, safe squares, and all.',
-    meta: ['Board', '2–4 players', 'Online multiplayer'],
+    meta: ['Board', '2–4 players', 'iOS & Android'],
     icon: ludoIcon,
     iconAlt: 'Ludo game icon: colourful pawns and a die beneath a golden crown',
-    status: 'Coming soon to the App Store',
     links: [
-      { label: 'In the arcade', href: '/games', primary: true },
+      { label: 'App Store', href: LUDO_APP_STORE, external: true, primary: true },
+      { label: 'Google Play', href: LUDO_PLAY_STORE, external: true },
+      { label: 'In the arcade', href: '/games' },
       { label: 'Privacy policy', href: '/games/ludo/privacy' },
     ],
   },

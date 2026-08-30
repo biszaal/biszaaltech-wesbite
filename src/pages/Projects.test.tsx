@@ -41,15 +41,26 @@ test('Helicopter points at the same App Store URL the arcade uses', () => {
 });
 
 /**
- * Ludo is the only product with an approved "coming soon" claim. iTrackHabit is
- * unreleased but we have no date, so it must never acquire a status chip.
+ * Ludo shipped, so nothing on the page should claim a release is pending.
+ * iTrackHabit is unreleased but we have no date, so it must never acquire a
+ * status chip either — that is what this guards.
  */
-test('only Ludo carries a coming-soon status', () => {
+test('nothing claims a pending release', () => {
   renderPage();
-  expect(screen.getAllByText(/coming soon/i)).toHaveLength(1);
+  expect(screen.queryByText(/coming soon/i)).not.toBeInTheDocument();
+});
 
-  const row = screen.getByRole('heading', { name: 'iTrackHabit' }).closest('.project-row') as HTMLElement;
-  expect(within(row).queryByText(/coming soon/i)).not.toBeInTheDocument();
+test('Ludo links to both stores', () => {
+  renderPage();
+  const row = screen.getByRole('heading', { name: 'Ludo' }).closest('.project-row') as HTMLElement;
+  expect(within(row).getByRole('link', { name: /App Store/ })).toHaveAttribute(
+    'href',
+    'https://apps.apple.com/gb/app/ludo-classic-board-game/id6788536072'
+  );
+  expect(within(row).getByRole('link', { name: 'Google Play' })).toHaveAttribute(
+    'href',
+    'https://play.google.com/store/apps/details?id=com.biszaal.mobile'
+  );
 });
 
 test('iTrackHabit advertises no store listing', () => {
