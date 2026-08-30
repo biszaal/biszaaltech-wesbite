@@ -1,10 +1,12 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import './NotFound.css';
+import Seo from '../components/Seo';
 
 const NotFound: React.FC = () => {
   return (
     <main id="main" className="not-found">
+      <Seo title="Page not found — Biszaal Tech" canonical="https://biszaaltech.com/" />
       <div className="container not-found-inner">
         <p className="not-found-code mono-meta">404</p>
         <h1>Page not found.</h1>
@@ -14,6 +16,7 @@ const NotFound: React.FC = () => {
             Go home
             <span className="btn-orb" aria-hidden="true">→</span>
           </Link>
+          <Link to="/projects" className="text-link">See our work</Link>
           <Link to="/games" className="text-link">See our games</Link>
         </div>
       </div>

@@ -1,0 +1,88 @@
+/* Hairline rows, not cards — the services bento sits directly above, and
+   /projects carries the big shells. Same idiom as .about-value. */
+
+.work {
+  padding: var(--section-y) 0;
+  background: var(--paper-sunken);
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+}
+
+.work-head {
+  max-width: 640px;
+  margin-bottom: clamp(2rem, 5vw, 3rem);
+}
+
+.work-head .eyebrow {
+  margin-bottom: 1.5rem;
+}
+
+.work-head h2 {
+  margin-bottom: 1.25rem;
+}
+
+.work-lead {
+  font-size: 1.08rem;
+  line-height: 1.65;
+}
+
+.work-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+}
+
+.work-item {
+  display: grid;
+  grid-template-columns: 3rem 1fr auto;
+  align-items: center;
+  gap: 1.25rem;
+  padding: 1.4rem 0;
+  border-bottom: 1px solid var(--line);
+}
+
+.work-item:last-child {
+  border-bottom: none;
+}
+
+.work-chip {
+  width: 3rem;
+  height: 3rem;
+  border-radius: 26%;
+  box-shadow: var(--shadow-soft);
+}
+
+.work-name {
+  font-size: 1.15rem;
+  margin-bottom: 0.15rem;
+}
+
+.work-tagline {
+  font-size: 0.95rem;
+  line-height: 1.5;
+  color: var(--ink-soft);
+}
+
+.work-kind {
+  white-space: nowrap;
+}
+
+.work-cta {
+  margin-top: clamp(2rem, 5vw, 3rem);
+}
+
+@media (max-width: 620px) {
+  .work-item {
+    grid-template-columns: 2.5rem 1fr;
+  }
+
+  .work-chip {
+    width: 2.5rem;
+    height: 2.5rem;
+  }
+
+  /* The kind chip drops to its own row rather than squeezing the name. */
+  .work-kind {
+    grid-column: 2;
+  }
+}

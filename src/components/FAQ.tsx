@@ -4,34 +4,28 @@ import './FAQ.css';
 
 const faqs = [
   {
-    question: 'Is my financial data secure with Expenzez?',
-    answer:
-      'Yes. Data is encrypted in transit and at rest, and the upcoming Open Banking integration will be PSD2-compliant. Security is a design constraint, not a feature.',
+    question: 'What kinds of projects do you take on?',
+    answer: 'Mobile apps, websites and web apps, backends and APIs, and the product design around them. Whole builds, or one piece of a build that has stalled.',
   },
   {
-    question: 'How do I add my transactions?',
-    answer:
-      'Two ways today: quick manual entry for individual transactions, and CSV upload for bulk imports from bank statements. Open Banking will add automatic imports.',
+    question: 'Who owns the code?',
+    answer: 'You do. The repository, the accounts and the deployment are yours from day one and stay yours — including if you take the work elsewhere.',
   },
   {
-    question: 'Is Expenzez really free?',
-    answer:
-      'The core product — manual entry, CSV import, and analytics — is free. If premium features arrive later, they will be additions, not paywalls around what you already use.',
+    question: 'Do you handle App Store and Play Store submission?',
+    answer: 'Yes. We have taken our own apps through App Store and Google Play review, so signing, privacy labels, store listings and the review back-and-forth are all part of the job.',
   },
   {
-    question: 'Can I use it on Android?',
-    answer:
-      'Yes. Expenzez is out on both Google Play and the App Store, built from the same React Native codebase, so the two stay in step.',
+    question: 'Do you work with people outside London?',
+    answer: 'We are a London company and we work remotely. Where you are matters much less than whether we can get a clear picture of what you need.',
   },
   {
-    question: 'How does categorisation work?',
-    answer:
-      'Assign categories at entry or during CSV import, create your own custom ones, and reports follow suit. Smarter automatic categorisation is on the roadmap.',
+    question: 'What do you build with?',
+    answer: 'React Native for mobile, so iOS and Android stay in step, with the web and backend stack chosen to fit the project rather than our habits.',
   },
   {
-    question: 'Can I get my data out?',
-    answer:
-      'Always. Export everything as CSV for your accountant, a backup, or another tool. Your data stays yours.',
+    question: 'Can I see something you have built?',
+    answer: 'Four products of our own — two apps and two games, all on the projects page, all shipped by the same people who would build yours.',
   },
 ];
 

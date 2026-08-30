@@ -1,0 +1,57 @@
+/* The numbered hairline list that used to carry the product roadmap, promoted
+   to a section of its own. Same rules, block-renamed, minus the right-aligned
+   status column. */
+
+.process {
+  padding: var(--section-y) 0;
+  background: var(--paper);
+}
+
+.process-head {
+  max-width: 640px;
+  margin-bottom: clamp(2rem, 5vw, 3rem);
+}
+
+.process-head .eyebrow {
+  margin-bottom: 1.5rem;
+}
+
+.process-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+}
+
+.process-item {
+  display: grid;
+  grid-template-columns: 3rem 1fr;
+  gap: 1.5rem;
+  padding: 1.4rem 0;
+  border-bottom: 1px solid var(--line);
+}
+
+.process-item:last-child {
+  border-bottom: none;
+}
+
+.process-index {
+  color: var(--accent);
+  padding-top: 0.35rem;
+}
+
+.process-name {
+  font-size: 1.15rem;
+  margin-bottom: 0.4rem;
+}
+
+.process-copy p {
+  font-size: 0.98rem;
+  line-height: 1.6;
+}
+
+@media (max-width: 620px) {
+  .process-item {
+    grid-template-columns: 2.25rem 1fr;
+    gap: 1rem;
+  }
+}

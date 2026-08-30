@@ -1,12 +1,13 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { useReveal } from '../hooks/useReveal';
 import './Hero.css';
 
-const facts = ['Founded 2025', 'London, UK', 'Company № 16693100', 'Free on iOS & Android'];
+const facts = ['Founded 2025', 'London, UK', 'Company № 16693100', 'iOS · Android · Web'];
 
 const Hero: React.FC = () => {
   const copyRef = useReveal<HTMLDivElement>();
-  const mockRef = useReveal<HTMLDivElement>();
+  const visualRef = useReveal<HTMLDivElement>();
 
   return (
     <section className="hero">
@@ -14,75 +15,59 @@ const Hero: React.FC = () => {
         <div className="hero-copy reveal" ref={copyRef}>
           <span className="eyebrow">Biszaal Tech · London</span>
           <h1 className="hero-headline">
-            Know where every <em>pound</em> goes.
+            We build the <em>software</em> you have in mind.
           </h1>
           <p className="hero-sub">
-            Expenzez is our free expense tracker built in London — manual entry, CSV
-            import, and clean analytics that make sense of your spending. Available
-            now on iOS and Android.
+            A London software studio. We build mobile apps, websites, backends and
+            the design that holds them together — for people with an idea and
+            businesses with a problem.
           </p>
           <div className="hero-actions">
-            <a
-              href="https://expenzez.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="pill-btn pill-btn--accent"
-            >
-              Open Expenzez
-              <span className="btn-orb" aria-hidden="true">↗</span>
-            </a>
-            <a
-              href="https://apps.apple.com/us/app/expenzez/id6751338089"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-link"
-            >
-              Download for iOS
-            </a>
-            <a
-              href="https://play.google.com/store/apps/details?id=com.biszaaltech.expenzez"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-link"
-            >
-              Download for Android
-            </a>
+            <Link to="/#contact" className="pill-btn pill-btn--accent">
+              Start a project
+              <span className="btn-orb" aria-hidden="true">→</span>
+            </Link>
+            <Link to="/projects" className="text-link">
+              See what we've built
+            </Link>
           </div>
         </div>
 
-        <div className="hero-visual reveal reveal-delay-2" ref={mockRef}>
-          <div className="shell phone-shell">
-            <div className="shell-core phone-core" role="img" aria-label="Preview of the Expenzez app dashboard">
-              <div className="phone-notch" />
-              <div className="phone-app-title mono-meta">Expenzez</div>
-              <div className="phone-balance">
-                <span className="phone-balance-label mono-meta">Total balance</span>
-                <span className="phone-balance-value">£2,847.32</span>
-              </div>
-              <div className="phone-chart">
-                <span style={{ height: '34%' }} />
-                <span style={{ height: '58%' }} />
-                <span style={{ height: '42%' }} />
-                <span style={{ height: '78%' }} />
-                <span style={{ height: '52%' }} />
-                <span style={{ height: '66%' }} />
-                <span style={{ height: '88%' }} />
-              </div>
-              <div className="phone-rows">
-                <div className="phone-row">
-                  <span className="phone-row-dot" />
-                  <span className="phone-row-name">Groceries</span>
-                  <span className="phone-row-amt">−£54.20</span>
+        {/* Two surfaces, one system — a website and an app, drawn as wireframes.
+            Pure DOM: no image assets, no invented UI, no numbers. */}
+        <div className="hero-visual reveal reveal-delay-2" ref={visualRef}>
+          <div
+            className="hero-stage"
+            role="img"
+            aria-label="A website layout and a mobile app screen, drawn as wireframes"
+          >
+            <div className="shell hero-window">
+              <div className="shell-core hero-window-core">
+                <div className="hero-chrome" aria-hidden="true">
+                  <span className="hero-chrome-tab" />
+                  <span className="hero-chrome-bar" />
                 </div>
-                <div className="phone-row">
-                  <span className="phone-row-dot" />
-                  <span className="phone-row-name">Transport</span>
-                  <span className="phone-row-amt">−£12.65</span>
+                <div className="hero-wire" aria-hidden="true">
+                  <span className="hero-wire-band hero-wire-band--accent" />
+                  <span className="hero-wire-line hero-wire-line--long" />
+                  <span className="hero-wire-line hero-wire-line--short" />
+                  <div className="hero-wire-row">
+                    <span className="hero-wire-tile" />
+                    <span className="hero-wire-tile" />
+                    <span className="hero-wire-tile" />
+                  </div>
                 </div>
-                <div className="phone-row">
-                  <span className="phone-row-dot" />
-                  <span className="phone-row-name">Salary</span>
-                  <span className="phone-row-amt phone-row-amt--in">+£2,150.00</span>
+              </div>
+            </div>
+
+            <div className="shell hero-handset">
+              <div className="shell-core hero-handset-core" aria-hidden="true">
+                <span className="hero-handset-notch" />
+                <span className="hero-wire-band hero-wire-band--solid" />
+                <span className="hero-wire-line hero-wire-line--long" />
+                <div className="hero-wire-stack">
+                  <span className="hero-wire-card" />
+                  <span className="hero-wire-card" />
                 </div>
               </div>
             </div>

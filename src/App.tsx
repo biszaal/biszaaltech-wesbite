@@ -4,6 +4,7 @@ import Home from './pages/Home';
 import PrivacyPolicy from './pages/PrivacyPolicy';
 import TermsOfService from './pages/TermsOfService';
 import Games from './pages/Games';
+import Projects from './pages/Projects';
 import GamePrivacyPolicy from './pages/GamePrivacyPolicy';
 import GameDeleteAccount from './pages/GameDeleteAccount';
 import ITrackHabitPrivacy from './pages/ITrackHabitPrivacy';
@@ -11,11 +12,13 @@ import ExpenzezPrivacy from './pages/ExpenzezPrivacy';
 import NotFound from './pages/NotFound';
 import SiteNav from './components/SiteNav';
 import Footer from './components/Footer';
+import ScrollToHash from './components/ScrollToHash';
 import './App.css';
 
 function App() {
   return (
     <Router>
+      <ScrollToHash />
       <div className="App">
         <a href="#main" className="skip-link">Skip to content</a>
         <SiteNav />
@@ -23,6 +26,7 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/privacy" element={<PrivacyPolicy />} />
           <Route path="/terms" element={<TermsOfService />} />
+          <Route path="/projects" element={<Projects />} />
           <Route path="/games" element={<Games />} />
           <Route
             path="/games/helicopter/privacy"

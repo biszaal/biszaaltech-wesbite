@@ -58,7 +58,9 @@
   color: var(--accent);
 }
 
-.footer-bottom {
+/* Scoped past .container, which also lands on this element and whose
+   `margin: 0 auto` shorthand would otherwise zero the top margin. */
+.site-footer .footer-bottom {
   margin-top: clamp(2rem, 4vw, 3rem);
   padding-top: 1.5rem;
   border-top: 1px solid var(--line);

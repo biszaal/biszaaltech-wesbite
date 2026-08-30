@@ -1,9 +1,11 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { useReveal } from '../hooks/useReveal';
+import { HELICOPTER_APP_STORE } from '../data/projects';
 import helicopterIcon from '../assets/helicopter-icon.png';
 import ludoIcon from '../assets/ludo-icon.svg';
 import './Games.css';
+import Seo from '../components/Seo';
 
 interface GameEntry {
   slug: string;
@@ -30,7 +32,7 @@ const games: GameEntry[] = [
     icon: helicopterIcon,
     iconAlt: 'Helicopter game icon: a white helicopter flying through a dark cave',
     artClass: 'game-art--heli',
-    appStoreUrl: 'https://apps.apple.com/us/app/helicopter-game-cave-edition/id6786880982',
+    appStoreUrl: HELICOPTER_APP_STORE,
   },
   {
     slug: 'ludo',
@@ -51,6 +53,7 @@ const Games: React.FC = () => {
 
   return (
     <main id="main" className="world-dark games-page">
+      <Seo title="Biszaal Games — Biszaal Tech" canonical="https://biszaaltech.com/games" />
       <section className="games-hero">
         <div className="container games-hero-inner reveal" ref={headRef}>
           <span className="eyebrow">Biszaal Games</span>

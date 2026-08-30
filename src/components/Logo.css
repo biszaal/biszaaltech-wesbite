@@ -1,0 +1,8 @@
+/* Default ink for the mark. `currentColor` keeps it overridable by setting
+   `color:` on any ancestor; --accent means it flips emerald -> amber in the
+   dark world for free. */
+.logo-mark {
+  color: var(--accent);
+  display: block;
+  flex: none;
+}

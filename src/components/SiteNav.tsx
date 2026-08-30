@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Link, NavLink, useLocation } from 'react-router-dom';
+import Logo from './Logo';
 import './SiteNav.css';
 
 /** The dark "games world" covers the arcade pages, not the legal sub-pages. */
@@ -11,6 +12,12 @@ interface NavItem {
   to: string;
   label: string;
   end?: boolean;
+  /**
+   * Anchors on the home page. They render as plain <Link>, never <NavLink>:
+   * NavLink's isActive ignores the hash, so on `/` every hash item would claim
+   * aria-current="page" and three pills would light up at once.
+   */
+  hash?: boolean;
 }
 
 const SiteNav: React.FC = () => {
@@ -25,7 +32,9 @@ const SiteNav: React.FC = () => {
       ]
     : [
         { to: '/', label: 'Home', end: true },
-        { to: '/games', label: 'Games' },
+        { to: '/#services', label: 'Services', hash: true },
+        { to: '/projects', label: 'Projects' },
+        { to: '/#contact', label: 'Contact', hash: true },
       ];
 
   useEffect(() => {
@@ -52,16 +61,22 @@ const SiteNav: React.FC = () => {
     >
       <div className="site-nav-pill">
         <Link className="nav-wordmark" to={games ? '/games' : '/'}>
-          <span className="wordmark-dot" aria-hidden="true" />
+          <Logo size={22} />
           {games ? 'Biszaal Games' : 'Biszaal Tech'}
         </Link>
 
         <div className="nav-links">
-          {items.map((item) => (
-            <NavLink key={item.to + item.label} to={item.to} end={item.end} className="nav-link">
-              {item.label}
-            </NavLink>
-          ))}
+          {items.map((item) =>
+            item.hash ? (
+              <Link key={item.to + item.label} to={item.to} className="nav-link">
+                {item.label}
+              </Link>
+            ) : (
+              <NavLink key={item.to + item.label} to={item.to} end={item.end} className="nav-link">
+                {item.label}
+              </NavLink>
+            )
+          )}
         </div>
 
         <button
@@ -76,18 +91,31 @@ const SiteNav: React.FC = () => {
       </div>
 
       <div className="nav-overlay" aria-hidden={!open}>
-        {items.map((item, i) => (
-          <NavLink
-            key={item.to + item.label}
-            to={item.to}
-            end={item.end}
-            className={`nav-overlay-link nav-overlay-link-${i + 1}`}
-            tabIndex={open ? 0 : -1}
-            onClick={() => setOpen(false)}
-          >
-            {item.label}
-          </NavLink>
-        ))}
+        {items.map((item, i) => {
+          const className = `nav-overlay-link nav-overlay-link-${i + 1}`;
+          return item.hash ? (
+            <Link
+              key={item.to + item.label}
+              to={item.to}
+              className={className}
+              tabIndex={open ? 0 : -1}
+              onClick={() => setOpen(false)}
+            >
+              {item.label}
+            </Link>
+          ) : (
+            <NavLink
+              key={item.to + item.label}
+              to={item.to}
+              end={item.end}
+              className={className}
+              tabIndex={open ? 0 : -1}
+              onClick={() => setOpen(false)}
+            >
+              {item.label}
+            </NavLink>
+          );
+        })}
       </div>
     </nav>
   );

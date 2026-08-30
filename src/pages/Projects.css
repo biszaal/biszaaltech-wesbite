@@ -1,0 +1,174 @@
+/* The light-world twin of the games page: same row shells, but left-aligned
+   copy and paper-toned art panels instead of the arcade's dark key art. */
+
+.projects-page {
+  background: var(--paper);
+}
+
+.projects-hero {
+  padding: clamp(8rem, 16vh, 11rem) 0 clamp(3rem, 6vw, 5rem);
+  background:
+    radial-gradient(900px 420px at 78% -10%, rgba(14, 107, 74, 0.07), transparent 70%),
+    var(--paper);
+}
+
+/* Left-aligned, unlike the arcade hero — the light world never centres. */
+.projects-hero-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1.4rem;
+}
+
+.projects-hero-sub {
+  font-size: clamp(1.05rem, 1.6vw, 1.2rem);
+  line-height: 1.65;
+  max-width: 48ch;
+}
+
+/* Rows */
+.projects-list {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(1.5rem, 4vw, 2.5rem);
+  padding-bottom: clamp(3rem, 7vw, 5rem);
+}
+
+.project-row {
+  border-radius: var(--r-outer);
+  transition: transform 600ms var(--ease), box-shadow 600ms var(--ease);
+}
+
+.project-row:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-lift);
+}
+
+.project-row-core {
+  display: grid;
+  grid-template-columns: 0.9fr 1.1fr;
+  background: var(--paper-raised);
+}
+
+.project-row--flip .project-row-core {
+  grid-template-columns: 1.1fr 0.9fr;
+}
+
+.project-row--flip .project-art {
+  order: 2;
+  border-right: none;
+  border-left: 1px solid var(--line);
+}
+
+.project-art {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: clamp(2rem, 5vw, 3.5rem);
+  min-height: 320px;
+  border-right: 1px solid var(--line);
+  background:
+    radial-gradient(420px 260px at 50% 30%, var(--accent-soft), transparent 70%),
+    var(--paper-sunken);
+}
+
+.project-icon {
+  width: clamp(140px, 20vw, 210px);
+  border-radius: 26%;
+  box-shadow: var(--shadow-lift);
+  transform: rotate(-3deg);
+  transition: transform 700ms var(--ease);
+}
+
+.project-row--flip .project-icon {
+  transform: rotate(3deg);
+}
+
+.project-row:hover .project-icon {
+  transform: rotate(0deg) scale(1.03);
+}
+
+.project-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: clamp(2rem, 5vw, 3.5rem);
+}
+
+.project-name {
+  font-size: clamp(1.9rem, 4vw, 2.6rem);
+  margin-bottom: 0.5rem;
+}
+
+.project-tagline {
+  font-size: 1.08rem;
+  color: var(--accent);
+  font-weight: 500;
+  margin-bottom: 1rem;
+}
+
+.project-desc {
+  line-height: 1.65;
+  margin-bottom: 1.4rem;
+  max-width: 46ch;
+}
+
+.project-meta {
+  margin-bottom: 1.75rem;
+}
+
+.project-actions {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.project-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1.1rem;
+  border: 1px solid var(--accent-line);
+  border-radius: var(--r-pill);
+  background: var(--accent-soft);
+  color: var(--accent);
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.project-status::before {
+  content: '';
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--accent);
+}
+
+.projects-crossband {
+  padding-bottom: clamp(4rem, 8vw, 6rem);
+}
+
+@media (max-width: 860px) {
+  .project-row-core,
+  .project-row--flip .project-row-core {
+    grid-template-columns: 1fr;
+  }
+
+  .project-row--flip .project-art {
+    order: 0;
+    border-left: none;
+  }
+
+  .project-art {
+    min-height: 240px;
+    border-right: none;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .project-info {
+    padding-top: 1.5rem;
+  }
+}

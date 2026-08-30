@@ -18,7 +18,16 @@
 }
 
 .contact-pill {
-  margin-top: 0.5rem;
   font-family: var(--font-mono);
   font-size: 0.95rem;
+}
+
+/* Two pills side by side — mailto and WhatsApp. Same ink treatment: a brand
+   colour for WhatsApp would be a second accent, which the system doesn't have. */
+.contact-actions {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin-top: 0.5rem;
 }

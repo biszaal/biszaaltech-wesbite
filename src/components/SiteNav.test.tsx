@@ -13,12 +13,13 @@ describe('isGamesWorld', () => {
     ['/games/ludo', true],
     ['/games/helicopter/privacy', false],
     ['/games/ludo/privacy', false],
+    ['/projects', false],
   ])('%s -> %s', (path, expected) => {
     expect(isGamesWorld(path)).toBe(expected);
   });
 });
 
-test('renders tech wordmark with Home and Games links on the home route', () => {
+test('renders tech wordmark with the four light-world links on the home route', () => {
   render(
     <MemoryRouter initialEntries={['/']}>
       <SiteNav />
@@ -27,8 +28,13 @@ test('renders tech wordmark with Home and Games links on the home route', () => 
   const nav = screen.getByRole('navigation');
   expect(within(nav).getByText('Biszaal Tech')).toBeInTheDocument();
   expect(within(nav).getByRole('link', { name: 'Home' })).toHaveAttribute('href', '/');
-  expect(within(nav).getByRole('link', { name: 'Games' })).toHaveAttribute('href', '/games');
+  expect(within(nav).getByRole('link', { name: 'Projects' })).toHaveAttribute('href', '/projects');
+  expect(within(nav).getByRole('link', { name: 'Services' })).toHaveAttribute('href', '/#services');
+  expect(within(nav).getByRole('link', { name: 'Contact' })).toHaveAttribute('href', '/#contact');
   expect(within(nav).getByRole('link', { name: 'Home' })).toHaveAttribute('aria-current', 'page');
+  // Hash items must stay plain <Link>: NavLink ignores the hash, so making them
+  // NavLinks would light up three pills at once on `/`.
+  expect(within(nav).getByRole('link', { name: 'Services' })).not.toHaveAttribute('aria-current');
 });
 
 test('renders games wordmark and dark-world links on /games', () => {
