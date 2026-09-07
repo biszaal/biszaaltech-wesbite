@@ -16,6 +16,8 @@ interface GameEntry {
   icon: string;
   iconAlt: string;
   artClass: string;
+  /** Set where the game has its own page at /games/<slug>. */
+  hasPage?: boolean;
   /** Set once the game is on a store — the status chip only shows while both are unset. */
   appStoreUrl?: string;
   playStoreUrl?: string;
@@ -46,6 +48,7 @@ const games: GameEntry[] = [
     icon: ludoIcon,
     iconAlt: 'Ludo game icon: colourful pawns and a die beneath a golden crown',
     artClass: 'game-art--ludo',
+    hasPage: true,
     appStoreUrl: LUDO_APP_STORE,
     playStoreUrl: LUDO_PLAY_STORE,
   },
@@ -122,6 +125,11 @@ const GameRow: React.FC<{ game: GameEntry; flip: boolean }> = ({ game, flip }) =
             )}
             {!game.appStoreUrl && !game.playStoreUrl && (
               <span className="game-status">Coming soon to the App Store</span>
+            )}
+            {game.hasPage && (
+              <Link to={`/games/${game.slug}`} className="text-link">
+                About {game.name}
+              </Link>
             )}
             <Link to={`/games/${game.slug}/privacy`} className="text-link">
               Privacy policy

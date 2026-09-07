@@ -1,0 +1,242 @@
+/*
+  The Ludo ad landing page. Dark world throughout, and centred like /games —
+  the arcade exception to the left-aligned light world.
+*/
+
+.ludo-page {
+  background: var(--paper);
+  min-height: 100vh;
+  min-height: 100dvh;
+}
+
+/* ------------------------------------------------------------
+   Hero
+   ------------------------------------------------------------ */
+
+.ludo-hero {
+  padding: clamp(7rem, 16vh, 10rem) 0 clamp(3rem, 7vw, 4.5rem);
+  background:
+    radial-gradient(900px 460px at 50% -5%, rgba(62, 139, 255, 0.16), transparent 70%),
+    radial-gradient(700px 380px at 50% 0%, rgba(232, 163, 61, 0.1), transparent 70%),
+    var(--paper);
+}
+
+.ludo-hero-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 1.3rem;
+}
+
+.ludo-hero-art {
+  margin-bottom: 0.4rem;
+}
+
+.ludo-icon {
+  width: clamp(112px, 26vw, 168px);
+  border-radius: 24%;
+  box-shadow:
+    0 32px 64px -20px rgba(0, 0, 0, 0.8),
+    0 0 0 1px rgba(244, 242, 236, 0.08);
+  transition: transform 700ms var(--ease);
+}
+
+.ludo-hero-art:hover .ludo-icon {
+  transform: scale(1.03);
+}
+
+.ludo-hero-copy {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.2rem;
+}
+
+.ludo-hero h1 {
+  font-size: clamp(2.5rem, 8vw, 4.6rem);
+}
+
+.ludo-lead {
+  max-width: 46ch;
+  font-size: 1.05rem;
+  line-height: 1.7;
+}
+
+.ludo-hero-meta {
+  margin-top: -0.3rem;
+}
+
+/* ------------------------------------------------------------
+   Store buttons — the visitor's own platform is always the pill
+   ------------------------------------------------------------ */
+
+.ludo-actions {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.ludo-actions--centred,
+.ludo-hero .ludo-actions {
+  justify-content: center;
+}
+
+.ludo-smallprint {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.1em;
+  color: var(--ink-faint);
+  max-width: none;
+}
+
+/* ------------------------------------------------------------
+   Features
+   ------------------------------------------------------------ */
+
+.ludo-features {
+  padding: clamp(2rem, 5vw, 3.5rem) 0 clamp(3rem, 7vw, 5rem);
+}
+
+.ludo-features-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: clamp(2rem, 5vw, 3rem);
+}
+
+.ludo-features h2 {
+  text-align: center;
+}
+
+.ludo-feature-grid {
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  width: 100%;
+}
+
+.ludo-feature {
+  transition: transform 600ms var(--ease), box-shadow 600ms var(--ease);
+}
+
+.ludo-feature:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-lift), var(--shadow-ambient);
+}
+
+.ludo-feature-core {
+  height: 100%;
+  padding: clamp(1.4rem, 3vw, 1.9rem);
+}
+
+.ludo-feature h3 {
+  font-size: 1.08rem;
+  margin-bottom: 0.55rem;
+}
+
+.ludo-feature p {
+  font-size: 0.95rem;
+  line-height: 1.65;
+  max-width: none;
+}
+
+/* ------------------------------------------------------------
+   Closing call to action
+   ------------------------------------------------------------ */
+
+.ludo-close {
+  padding-bottom: clamp(4rem, 9vw, 7rem);
+}
+
+.ludo-close-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 1.8rem;
+}
+
+.ludo-links {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  max-width: none;
+}
+
+/* ------------------------------------------------------------
+   Redirect bar — visible for a few seconds on phones only
+   ------------------------------------------------------------ */
+
+.ludo-redirect {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 90;
+  background: var(--paper-sunken);
+  border-top: 1px solid var(--line);
+  box-shadow: 0 -20px 48px -24px rgba(0, 0, 0, 0.8);
+  padding: 0.85rem 0;
+  padding-bottom: calc(0.85rem + env(safe-area-inset-bottom, 0px));
+}
+
+.ludo-redirect-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.ludo-redirect-text {
+  margin: 0;
+  color: var(--ink-soft);
+  max-width: none;
+}
+
+.ludo-redirect-cancel {
+  flex-shrink: 0;
+  padding: 0.5rem 1.1rem;
+  border: 1px solid var(--line-strong);
+  border-radius: var(--r-pill);
+  background: transparent;
+  color: var(--ink);
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: border-color 300ms var(--ease), color 300ms var(--ease);
+}
+
+.ludo-redirect-cancel:hover {
+  color: var(--accent);
+  border-color: var(--accent-line);
+}
+
+@media (max-width: 900px) {
+  .ludo-feature-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 620px) {
+  .ludo-feature-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .ludo-actions {
+    flex-direction: column;
+    gap: 1.1rem;
+  }
+
+  .ludo-redirect-inner {
+    flex-direction: column;
+    align-items: stretch;
+    text-align: center;
+    gap: 0.7rem;
+  }
+}

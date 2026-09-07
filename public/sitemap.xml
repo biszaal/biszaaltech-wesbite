@@ -3,6 +3,7 @@
   <url><loc>https://www.biszaaltech.com/</loc><priority>1.0</priority></url>
   <url><loc>https://www.biszaaltech.com/projects</loc><priority>0.9</priority></url>
   <url><loc>https://www.biszaaltech.com/games</loc><priority>0.7</priority></url>
+  <url><loc>https://www.biszaaltech.com/games/ludo</loc><priority>0.7</priority></url>
   <url><loc>https://www.biszaaltech.com/privacy</loc><priority>0.3</priority></url>
   <url><loc>https://www.biszaaltech.com/terms</loc><priority>0.3</priority></url>
   <url><loc>https://www.biszaaltech.com/apps/expenzez/privacy</loc><priority>0.3</priority></url>

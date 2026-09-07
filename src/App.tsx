@@ -4,6 +4,7 @@ import Home from './pages/Home';
 import PrivacyPolicy from './pages/PrivacyPolicy';
 import TermsOfService from './pages/TermsOfService';
 import Games from './pages/Games';
+import LudoLanding from './pages/LudoLanding';
 import Projects from './pages/Projects';
 import GamePrivacyPolicy from './pages/GamePrivacyPolicy';
 import GameDeleteAccount from './pages/GameDeleteAccount';
@@ -28,6 +29,8 @@ function App() {
           <Route path="/terms" element={<TermsOfService />} />
           <Route path="/projects" element={<Projects />} />
           <Route path="/games" element={<Games />} />
+          {/* Ad landing page — the link used in the Instagram campaign. */}
+          <Route path="/games/ludo" element={<LudoLanding />} />
           <Route
             path="/games/helicopter/privacy"
             element={
