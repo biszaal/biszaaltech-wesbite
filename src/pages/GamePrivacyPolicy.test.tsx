@@ -155,3 +155,24 @@ test('links to the deletion page only for a game that has one', () => {
   render(<GamePrivacyPolicy gameName="Ludo Game" dataPractices="online-multiplayer" />);
   expect(screen.queryByRole('link', { name: 'account deletion page' })).not.toBeInTheDocument();
 });
+
+test('shows a game its own contact address when it has one (Cascade)', () => {
+  render(
+    <GamePrivacyPolicy
+      gameName="Cascade"
+      storeName="Cascade: Colour Sorting"
+      dataPractices="local-only"
+      contactEmail="biszaalgames@gmail.com"
+      lastUpdated="September 13, 2026"
+    />
+  );
+  expect(
+    screen.getByText(/develops Cascade \(listed on the App Store as "Cascade: Colour Sorting"\)/)
+  ).toBeInTheDocument();
+  expect(
+    screen.getByText(/does not currently collect any personal information/i)
+  ).toBeInTheDocument();
+  expect(screen.getByText(/Email: biszaalgames@gmail\.com/)).toBeInTheDocument();
+  // A game with its own inbox must not also send players to the company one.
+  expect(screen.queryByText(/hello@biszaaltech\.com/)).not.toBeInTheDocument();
+});

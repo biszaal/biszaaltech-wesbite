@@ -16,6 +16,8 @@ interface GamePrivacyPolicyProps {
   deleteAccountPath?: string;
   /** Shown to players; only bump it for the game whose practices actually changed. */
   lastUpdated?: string;
+  /** Where players write to, when a game has its own inbox rather than the company one. */
+  contactEmail?: string;
 }
 
 const GamePrivacyPolicy: React.FC<GamePrivacyPolicyProps> = ({
@@ -27,6 +29,7 @@ const GamePrivacyPolicy: React.FC<GamePrivacyPolicyProps> = ({
   hasPushNotifications = false,
   deleteAccountPath,
   lastUpdated = 'July 28, 2026',
+  contactEmail = 'hello@biszaaltech.com',
 }) => {
   const isOnline = dataPractices === 'online-multiplayer';
   // One public leaderboard and nothing else: no friends, currency, invites,
@@ -335,7 +338,7 @@ const GamePrivacyPolicy: React.FC<GamePrivacyPolicyProps> = ({
                 </p>
                 <p>
                   To have an entry and its username removed, email{' '}
-                  <a href="mailto:hello@biszaaltech.com">hello@biszaaltech.com</a> with the username
+                  <a href={`mailto:${contactEmail}`}>{contactEmail}</a> with the username
                   as it appears on the board. There is no sign-in behind a leaderboard name, so
                   tell us the rank you appear at as well if you still have the game installed —
                   that is how we check the entry is yours before deleting it.
@@ -396,7 +399,7 @@ const GamePrivacyPolicy: React.FC<GamePrivacyPolicyProps> = ({
           {isLeaderboard && (
             <p>
               For the leaderboard, email{' '}
-              <a href="mailto:hello@biszaaltech.com">hello@biszaaltech.com</a> with your username to
+              <a href={`mailto:${contactEmail}`}>{contactEmail}</a> with your username to
               exercise any of these. The game itself has no way to edit or remove an entry once the
               username is claimed, so this is the route — we answer within 30 days.
             </p>
@@ -433,7 +436,7 @@ const GamePrivacyPolicy: React.FC<GamePrivacyPolicyProps> = ({
           <p>If you have any questions about this privacy policy, please contact us at:</p>
           <div className="contact-info">
             <p><strong>BISZAAL TECH LTD</strong></p>
-            <p>Email: hello@biszaaltech.com</p>
+            <p>Email: {contactEmail}</p>
             <p>Address: 71-75 Shelton Street, Covent Garden, London, WC2H 9JQ</p>
           </div>
         </section>

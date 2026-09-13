@@ -5,7 +5,7 @@ import './SiteNav.css';
 
 /** The dark "games world" covers the arcade pages, not the legal sub-pages. */
 export function isGamesWorld(pathname: string): boolean {
-  return /^\/games(\/(helicopter|ludo))?\/?$/.test(pathname);
+  return /^\/games(\/(helicopter|ludo|cascade))?\/?$/.test(pathname);
 }
 
 interface NavItem {

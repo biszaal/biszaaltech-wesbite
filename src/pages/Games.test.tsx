@@ -3,7 +3,7 @@ import { render, screen } from '@testing-library/react';
 import { MemoryRouter } from 'react-router-dom';
 import Games from './Games';
 
-test('showcases both games with status and privacy links', () => {
+test('showcases every game with its status and privacy links', () => {
   render(
     <MemoryRouter>
       <Games />
@@ -13,9 +13,10 @@ test('showcases both games with status and privacy links', () => {
   expect(screen.getByRole('heading', { name: 'Press start.' })).toBeInTheDocument();
   expect(screen.getByRole('heading', { name: 'Helicopter' })).toBeInTheDocument();
   expect(screen.getByRole('heading', { name: 'Ludo' })).toBeInTheDocument();
+  expect(screen.getByRole('heading', { name: 'Cascade' })).toBeInTheDocument();
 
-  // Both games are released, so no status chip should be left anywhere.
-  expect(screen.queryByText(/coming soon/i)).not.toBeInTheDocument();
+  // Cascade is the only game not on a store yet, so it alone carries the status chip.
+  expect(screen.getAllByText(/Coming soon to the App Store/)).toHaveLength(1);
 
   const storeLinks = screen.getAllByRole('link', { name: /Download on the App Store/ });
   expect(storeLinks.map((l) => l.getAttribute('href'))).toEqual([
@@ -31,7 +32,16 @@ test('showcases both games with status and privacy links', () => {
 
   const privacyLinks = screen.getAllByRole('link', { name: 'Privacy policy' });
   expect(privacyLinks.map((l) => l.getAttribute('href'))).toEqual(
-    expect.arrayContaining(['/games/helicopter/privacy', '/games/ludo/privacy'])
+    expect.arrayContaining([
+      '/games/helicopter/privacy',
+      '/games/ludo/privacy',
+      '/games/cascade/privacy',
+    ])
+  );
+
+  expect(screen.getByRole('link', { name: 'About Cascade' })).toHaveAttribute(
+    'href',
+    '/games/cascade'
   );
 });
 
@@ -43,4 +53,5 @@ test('shows the real game icons', () => {
   );
   expect(screen.getByAltText(/white helicopter flying through a dark cave/i)).toBeInTheDocument();
   expect(screen.getByAltText(/pawns and a die beneath a golden crown/i)).toBeInTheDocument();
+  expect(screen.getByAltText(/green, orange and blue discs/i)).toBeInTheDocument();
 });

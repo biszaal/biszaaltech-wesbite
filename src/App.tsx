@@ -5,6 +5,7 @@ import PrivacyPolicy from './pages/PrivacyPolicy';
 import TermsOfService from './pages/TermsOfService';
 import Games from './pages/Games';
 import LudoLanding from './pages/LudoLanding';
+import CascadeLanding from './pages/CascadeLanding';
 import Projects from './pages/Projects';
 import GamePrivacyPolicy from './pages/GamePrivacyPolicy';
 import GameDeleteAccount from './pages/GameDeleteAccount';
@@ -31,6 +32,8 @@ function App() {
           <Route path="/games" element={<Games />} />
           {/* Ad landing page — the link used in the Instagram campaign. */}
           <Route path="/games/ludo" element={<LudoLanding />} />
+          {/* Game page and App Store support URL for Cascade. */}
+          <Route path="/games/cascade" element={<CascadeLanding />} />
           <Route
             path="/games/helicopter/privacy"
             element={
@@ -63,6 +66,18 @@ function App() {
                 gameName="Ludo Game"
                 storeName="Ludo Classic: Board Game"
                 bundleId="com.biszaal.mobile"
+              />
+            }
+          />
+          <Route
+            path="/games/cascade/privacy"
+            element={
+              <GamePrivacyPolicy
+                gameName="Cascade"
+                storeName="Cascade: Colour Sorting"
+                dataPractices="local-only"
+                contactEmail="biszaalgames@gmail.com"
+                lastUpdated="September 13, 2026"
               />
             }
           />

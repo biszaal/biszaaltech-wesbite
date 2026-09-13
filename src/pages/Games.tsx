@@ -4,6 +4,7 @@ import { useReveal } from '../hooks/useReveal';
 import { HELICOPTER_APP_STORE, LUDO_APP_STORE, LUDO_PLAY_STORE } from '../data/projects';
 import helicopterIcon from '../assets/helicopter-icon.png';
 import ludoIcon from '../assets/ludo-icon.svg';
+import cascadeIcon from '../assets/cascade-icon.png';
 import './Games.css';
 import Seo from '../components/Seo';
 
@@ -52,6 +53,20 @@ const games: GameEntry[] = [
     appStoreUrl: LUDO_APP_STORE,
     playStoreUrl: LUDO_PLAY_STORE,
   },
+  {
+    slug: 'cascade',
+    name: 'Cascade',
+    tagline: 'One token at a time.',
+    description:
+      'A calm colour-sorting puzzle. Every lane should end up one colour, and the ' +
+      'fewer moves it takes, the better you played — across 100 hand-built levels.',
+    meta: ['Puzzle', '1 player', 'Plays offline'],
+    icon: cascadeIcon,
+    iconAlt: 'Cascade game icon: three dark lanes holding green, orange and blue discs',
+    artClass: 'game-art--cascade',
+    hasPage: true,
+    // Not on a store yet, so it carries the "Coming soon" chip. Add appStoreUrl once live.
+  },
 ];
 
 const Games: React.FC = () => {
@@ -66,7 +81,7 @@ const Games: React.FC = () => {
           <h1>Press start.</h1>
           <p className="games-hero-sub mono-meta">
             Original mobile games from Biszaal Tech. Helicopter is on the App Store,
-            and Ludo is out on both the App Store and Google Play.
+            Ludo is out on both the App Store and Google Play, and Cascade is coming soon.
           </p>
         </div>
       </section>

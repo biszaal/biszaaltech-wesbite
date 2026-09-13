@@ -11,8 +11,10 @@ describe('isGamesWorld', () => {
     ['/games', true],
     ['/games/helicopter', true],
     ['/games/ludo', true],
+    ['/games/cascade', true],
     ['/games/helicopter/privacy', false],
     ['/games/ludo/privacy', false],
+    ['/games/cascade/privacy', false],
     ['/projects', false],
   ])('%s -> %s', (path, expected) => {
     expect(isGamesWorld(path)).toBe(expected);

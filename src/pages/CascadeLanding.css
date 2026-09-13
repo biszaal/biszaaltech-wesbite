@@ -1,0 +1,189 @@
+/*
+  Cascade's page: game page and App Store support URL. Dark world and centred like
+  /games/ludo, without the store-redirect bar - there is no store to send anyone to yet.
+*/
+
+.cascade-page {
+  background: var(--paper);
+  min-height: 100vh;
+  min-height: 100dvh;
+}
+
+/* ------------------------------------------------------------
+   Hero
+   ------------------------------------------------------------ */
+
+.cascade-hero {
+  padding: clamp(7rem, 16vh, 10rem) 0 clamp(3rem, 7vw, 4.5rem);
+  background:
+    radial-gradient(900px 460px at 50% -5%, rgba(0, 158, 115, 0.16), transparent 70%),
+    radial-gradient(700px 380px at 50% 0%, rgba(224, 149, 43, 0.1), transparent 70%),
+    var(--paper);
+}
+
+.cascade-hero-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 1.3rem;
+}
+
+.cascade-hero-art {
+  margin-bottom: 0.4rem;
+}
+
+.cascade-icon {
+  width: clamp(112px, 26vw, 168px);
+  border-radius: 24%;
+  box-shadow:
+    0 32px 64px -20px rgba(0, 0, 0, 0.8),
+    0 0 0 1px rgba(244, 242, 236, 0.08);
+  transition: transform 700ms var(--ease);
+}
+
+.cascade-hero-art:hover .cascade-icon {
+  transform: scale(1.03);
+}
+
+.cascade-hero-copy {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.2rem;
+}
+
+.cascade-hero h1 {
+  font-size: clamp(2.5rem, 8vw, 4.6rem);
+}
+
+.cascade-lead {
+  max-width: 46ch;
+  font-size: 1.05rem;
+  line-height: 1.7;
+}
+
+.cascade-hero-meta {
+  margin-top: -0.3rem;
+}
+
+.cascade-status {
+  padding: 0.55rem 1.2rem;
+  border: 1px solid var(--line-strong);
+  border-radius: var(--r-pill);
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+  max-width: none;
+}
+
+.cascade-smallprint {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.1em;
+  color: var(--ink-faint);
+  max-width: none;
+}
+
+/* ------------------------------------------------------------
+   Sections
+   ------------------------------------------------------------ */
+
+.cascade-features,
+.cascade-play,
+.cascade-support {
+  padding: clamp(2rem, 5vw, 3.5rem) 0 clamp(3rem, 7vw, 5rem);
+}
+
+.cascade-support {
+  padding-bottom: clamp(4rem, 9vw, 7rem);
+}
+
+.cascade-section-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: clamp(2rem, 5vw, 3rem);
+}
+
+.cascade-grid {
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  width: 100%;
+  text-align: left;
+}
+
+.cascade-card {
+  transition: transform 600ms var(--ease), box-shadow 600ms var(--ease);
+}
+
+.cascade-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-lift), var(--shadow-ambient);
+}
+
+.cascade-card-core {
+  height: 100%;
+  padding: clamp(1.4rem, 3vw, 1.9rem);
+}
+
+.cascade-card h3 {
+  font-size: 1.08rem;
+  margin-bottom: 0.55rem;
+}
+
+.cascade-card p {
+  font-size: 0.95rem;
+  line-height: 1.65;
+  max-width: none;
+}
+
+/* ------------------------------------------------------------
+   How to play
+   ------------------------------------------------------------ */
+
+.cascade-steps {
+  max-width: 56ch;
+  margin: 0 auto;
+  padding-left: 1.4rem;
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+  line-height: 1.7;
+}
+
+/* ------------------------------------------------------------
+   Support
+   ------------------------------------------------------------ */
+
+.cascade-support-lead {
+  max-width: 52ch;
+  font-size: 1.05rem;
+  line-height: 1.7;
+}
+
+.cascade-links {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  max-width: none;
+}
+
+@media (max-width: 900px) {
+  .cascade-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 620px) {
+  .cascade-grid {
+    grid-template-columns: 1fr;
+  }
+}
