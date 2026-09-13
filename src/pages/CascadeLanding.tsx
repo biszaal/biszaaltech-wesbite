@@ -88,6 +88,10 @@ const questions: Item[] = [
     title: 'Are there ads or in-app purchases?',
     body: 'No.',
   },
+  {
+    title: 'Does it work with VoiceOver?',
+    body: 'Yes. Every lane describes what it holds and what tapping it will do.',
+  },
 ];
 
 const CascadeLanding: React.FC = () => {
