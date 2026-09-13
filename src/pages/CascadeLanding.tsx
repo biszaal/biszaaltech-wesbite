@@ -13,7 +13,8 @@ import './CascadeLanding.css';
  * status line to "Out now", in the same change that adds `appStoreUrl` on the games page.
  *
  * Every feature line is something the shipped 1.0 build does - see "content integrity" in
- * DESIGN.md. It has no ads, purchases or account, which the privacy page also states.
+ * DESIGN.md. It has no ads, purchases or sign-up. The anonymous account behind the daily
+ * leaderboard and backups is described on the privacy page.
  */
 
 const SUPPORT_EMAIL = 'biszaalgames@gmail.com';
@@ -50,7 +51,9 @@ const features: Item[] = [
   },
   {
     title: 'A daily puzzle.',
-    body: 'One board a day, the same for everyone, and it works with no connection at all.',
+    body:
+      'One board a day, the same for everyone, with a leaderboard for the fewest moves. The ' +
+      'puzzle itself works with no connection at all.',
   },
   {
     title: 'Made for everyone.',
@@ -70,7 +73,9 @@ const steps: string[] = [
 const questions: Item[] = [
   {
     title: 'Is my progress saved?',
-    body: 'Yes, on your device, after every level you solve.',
+    body:
+      'Yes, on your device after every level you solve, and backed up online whenever you are ' +
+      'connected.',
   },
   {
     title: 'Can I move my progress to a new phone?',
@@ -125,7 +130,7 @@ const CascadeLanding: React.FC = () => {
             </p>
             <p className="mono-meta cascade-hero-meta">Puzzle · 1 player · iPhone &amp; iPad</p>
             <p className="cascade-status">Coming soon to the App Store</p>
-            <p className="cascade-smallprint">No ads, no in-app purchases, no account.</p>
+            <p className="cascade-smallprint">No ads, no in-app purchases, no sign-up.</p>
           </div>
         </div>
       </section>

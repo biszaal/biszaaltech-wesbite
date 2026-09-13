@@ -5,7 +5,7 @@ interface GamePrivacyPolicyProps {
   gameName: string;
   /** Store listing title, when it differs from the name used elsewhere on this site. */
   storeName?: string;
-  dataPractices: 'local-only' | 'online-multiplayer' | 'online-leaderboard';
+  dataPractices: 'local-only' | 'online-multiplayer' | 'online-leaderboard' | 'online-sync';
   /** Serves ads through Google AdMob (advertising identifier, consent, ATT). */
   hasAds?: boolean;
   /** Sells optional in-app purchases (processed by the app stores via RevenueCat). */
@@ -35,6 +35,10 @@ const GamePrivacyPolicy: React.FC<GamePrivacyPolicyProps> = ({
   // One public leaderboard and nothing else: no friends, currency, invites,
   // ads, purchases or push, so the multiplayer wording would overstate it.
   const isLeaderboard = dataPractices === 'online-leaderboard';
+  // An anonymous account made on first launch that backs up results and enters the daily
+  // board. Unlike the leaderboard variant there is no username to claim and no server-side
+  // score check, so that variant's wording would overstate both.
+  const isSync = dataPractices === 'online-sync';
 
   // Sections are numbered as they render, so a section that only applies to one
   // variant (data retention, below) doesn't leave a gap in the other.
@@ -117,6 +121,31 @@ const GamePrivacyPolicy: React.FC<GamePrivacyPolicyProps> = ({
               <p>
                 Local, pass-and-play games on a single device do not require an account and are
                 never transmitted to us.
+              </p>
+            </>
+          ) : isSync ? (
+            <>
+              <p>
+                The first time {gameName} opens with an internet connection, it creates an anonymous
+                account for you. There is no sign-up: the account holds no email address, name, or
+                phone number, and exists only so your results can be backed up and entered on the
+                daily leaderboard.
+              </p>
+              <p>
+                Each account is given a player name made from a random number, such as
+                "Player 1234". You don't choose it and it contains nothing about you. It is shown
+                beside your result on the daily leaderboard.
+              </p>
+              <p>
+                For every level you solve, we store your best number of moves, your star rating,
+                and your fastest time. For the daily puzzle, we store your number of moves and
+                your time for that day. Results you finish while offline are kept on your device
+                and sent the next time the game connects. Your settings and hints never leave
+                your device.
+              </p>
+              <p>
+                The account lives on your device — there is no password and nothing to sign in
+                with. Deleting the game loses it, and reinstalling starts a new one.
               </p>
             </>
           ) : isLeaderboard ? (
@@ -231,6 +260,22 @@ const GamePrivacyPolicy: React.FC<GamePrivacyPolicyProps> = ({
                 .
               </p>
             </>
+          ) : isSync ? (
+            <>
+              <p>
+                {gameName} uses Supabase, a third-party backend and database provider, to host the
+                anonymous accounts, the results described above, and the daily leaderboard. The
+                database is hosted in Ireland.
+              </p>
+              <p>
+                Nothing else leaves the game. {gameName} contains no advertising, no analytics or
+                tracking services, and no in-app purchases.
+              </p>
+              <p>
+                You can review Supabase's privacy practices:{' '}
+                <a href="https://supabase.com/privacy" target="_blank" rel="noreferrer">Supabase</a>.
+              </p>
+            </>
           ) : isLeaderboard ? (
             <>
               <p>
@@ -272,6 +317,15 @@ const GamePrivacyPolicy: React.FC<GamePrivacyPolicyProps> = ({
               We take appropriate steps to comply with applicable children's privacy laws, including
               COPPA and UK data protection requirements, for the information we collect.
             </p>
+          ) : isSync ? (
+            <p>
+              {gameName} is not directed to children under 13 (or the minimum age required in your
+              country). A player never enters any information: the account is anonymous, its name
+              is generated, and the only data stored is the game results described above. There
+              is no advertising in the game. We take appropriate steps to comply with applicable
+              children's privacy laws, including COPPA and UK data protection requirements, for
+              the information we collect.
+            </p>
           ) : isLeaderboard ? (
             <p>
               {gameName} is not directed to children under 13 (or the minimum age required in your
@@ -308,6 +362,16 @@ const GamePrivacyPolicy: React.FC<GamePrivacyPolicyProps> = ({
                 : ''}{' '}
               We follow reasonable security practices in how we develop and maintain the app.
             </p>
+          ) : isSync ? (
+            <p>
+              Your results are protected by Supabase's row-level security, which lets each account
+              read and write only its own results. The daily leaderboard is served by a single
+              function that returns the day's top 100 — player names, moves, and times, along with
+              the anonymous identifier the game uses to highlight your own row — and only to
+              players of the game. There are no payments anywhere in the game, so we hold no
+              payment details of any kind. We follow reasonable security practices in how we
+              develop and maintain the app.
+            </p>
           ) : isLeaderboard ? (
             <p>
               The leaderboard is protected by Supabase's row-level security. The board is public to
@@ -326,9 +390,24 @@ const GamePrivacyPolicy: React.FC<GamePrivacyPolicyProps> = ({
           )}
         </section>
 
-        {(isOnline || isLeaderboard) && (
+        {(isOnline || isLeaderboard || isSync) && (
           <section>
             <h2>{next()}. How Long We Keep Your Data</h2>
+            {isSync && (
+              <>
+                <p>
+                  Your anonymous account, your level results, and your daily results are kept until
+                  you ask us to delete them. Your settings and hints live only on your device and go
+                  with the game when you delete it.
+                </p>
+                <p>
+                  To have your account and results deleted, email{' '}
+                  <a href={`mailto:${contactEmail}`}>{contactEmail}</a> with the player name shown
+                  for you on the daily leaderboard. That name is the only way to tell us which
+                  anonymous account is yours, because there is no sign-in behind it.
+                </p>
+              </>
+            )}
             {isLeaderboard && (
               <>
                 <p>
@@ -392,6 +471,7 @@ const GamePrivacyPolicy: React.FC<GamePrivacyPolicyProps> = ({
                 ? ', including your account, saved email, profile, friend connections, currency balances, and room invites'
                 : ''}
               {isLeaderboard ? ', including your leaderboard entry and the username on it' : ''}
+              {isSync ? ', including your anonymous account and the results stored with it' : ''}
             </li>
             <li>Object to processing of your data</li>
             <li>Request data portability</li>

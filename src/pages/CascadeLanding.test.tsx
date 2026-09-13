@@ -27,7 +27,7 @@ test('lists what the shipped game actually does', () => {
 
   expect(screen.getByRole('heading', { name: '100 hand-built levels.' })).toBeInTheDocument();
   expect(screen.getByRole('heading', { name: 'Anchors that never move.' })).toBeInTheDocument();
-  expect(screen.getByText(/No ads, no in-app purchases, no account/)).toBeInTheDocument();
+  expect(screen.getByText(/No ads, no in-app purchases, no sign-up/)).toBeInTheDocument();
 });
 
 test('works as the App Store support URL', () => {

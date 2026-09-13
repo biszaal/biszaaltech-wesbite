@@ -156,12 +156,12 @@ test('links to the deletion page only for a game that has one', () => {
   expect(screen.queryByRole('link', { name: 'account deletion page' })).not.toBeInTheDocument();
 });
 
-test('shows a game its own contact address when it has one (Cascade)', () => {
+test('describes Cascade\'s anonymous account, synced results and daily board accurately', () => {
   render(
     <GamePrivacyPolicy
       gameName="Cascade"
       storeName="Cascade: Colour Sorting"
-      dataPractices="local-only"
+      dataPractices="online-sync"
       contactEmail="biszaalgames@gmail.com"
       lastUpdated="September 13, 2026"
     />
@@ -169,10 +169,31 @@ test('shows a game its own contact address when it has one (Cascade)', () => {
   expect(
     screen.getByText(/develops Cascade \(listed on the App Store as "Cascade: Colour Sorting"\)/)
   ).toBeInTheDocument();
-  expect(
-    screen.getByText(/does not currently collect any personal information/i)
-  ).toBeInTheDocument();
+
+  // What is created and what is stored.
+  expect(screen.getByText(/creates an anonymous\s+account for you/)).toBeInTheDocument();
+  expect(screen.getByText(/"Player 1234"/)).toBeInTheDocument();
+  expect(screen.getByText(/best number of moves, your star rating/)).toBeInTheDocument();
+  expect(screen.getByText(/database is hosted in Ireland/)).toBeInTheDocument();
+
+  // Cascade has no username to claim and no server-side score check; neither may be claimed.
+  expect(screen.queryByText(/pick a username/)).not.toBeInTheDocument();
+  expect(screen.queryByText(/server-side checks/)).not.toBeInTheDocument();
+  expect(screen.queryByText(/does not currently collect any personal information/)).not.toBeInTheDocument();
+
+  // Its own inbox, in the deletion route and the contact block, and not the company one.
+  expect(screen.getAllByRole('link', { name: 'biszaalgames@gmail.com' }).length).toBeGreaterThan(0);
   expect(screen.getByText(/Email: biszaalgames@gmail\.com/)).toBeInTheDocument();
-  // A game with its own inbox must not also send players to the company one.
   expect(screen.queryByText(/hello@biszaaltech\.com/)).not.toBeInTheDocument();
+
+  // Stored off-device, so it earns the retention section and numbering stays contiguous.
+  expect(screen.getByRole('heading', { name: /How Long We Keep Your Data/ })).toBeInTheDocument();
+  expect(
+    screen.getAllByRole('heading', { level: 2 }).map((h) => (h.textContent ?? '').split('.')[0])
+  ).toEqual(['1', '2', '3', '4', '5', '6', '7', '8', '9']);
+
+  // None of the other games' disclosures leak in.
+  expect(screen.queryByText(/AdMob/)).not.toBeInTheDocument();
+  expect(screen.queryByText(/RevenueCat/)).not.toBeInTheDocument();
+  expect(screen.queryByText(/push token/)).not.toBeInTheDocument();
 });

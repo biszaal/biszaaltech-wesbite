@@ -75,7 +75,7 @@ function App() {
               <GamePrivacyPolicy
                 gameName="Cascade"
                 storeName="Cascade: Colour Sorting"
-                dataPractices="local-only"
+                dataPractices="online-sync"
                 contactEmail="biszaalgames@gmail.com"
                 lastUpdated="September 13, 2026"
               />
