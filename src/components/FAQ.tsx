@@ -25,7 +25,7 @@ const faqs = [
   },
   {
     question: 'Can I see something you have built?',
-    answer: 'Four products of our own — two apps and two games, all on the projects page, all shipped by the same people who would build yours.',
+    answer: 'Five products of our own — two apps and three games, all on the projects page, all shipped by the same people who would build yours.',
   },
 ];
 

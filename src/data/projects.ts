@@ -2,9 +2,10 @@ import expenzezIcon from '../assets/expenzez-icon.png';
 import itrackhabitIcon from '../assets/itrackhabit-icon.png';
 import helicopterIcon from '../assets/helicopter-icon.png';
 import ludoIcon from '../assets/ludo-icon.svg';
+import cascadeIcon from '../assets/cascade-icon.png';
 
 /**
- * Single source of truth for the four shipped products — used by the homepage
+ * Single source of truth for our five products — used by the homepage
  * proof strip and the /projects page.
  *
  * Every claim here has to be defensible. Two constraints worth remembering:
@@ -124,6 +125,25 @@ export const projects: ProjectEntry[] = [
       { label: 'Google Play', href: LUDO_PLAY_STORE, external: true },
       { label: 'In the arcade', href: '/games' },
       { label: 'Privacy policy', href: '/games/ludo/privacy' },
+    ],
+  },
+  {
+    slug: 'cascade',
+    name: 'Cascade',
+    kind: 'game',
+    tagline: 'One token at a time.',
+    description:
+      'A calm colour-sorting puzzle. Every lane should end up one colour, and the ' +
+      'fewer moves it takes, the better you played — across 100 hand-built levels.',
+    meta: ['Puzzle', '1 player', 'Plays offline'],
+    icon: cascadeIcon,
+    iconAlt: 'Cascade game icon: three dark lanes holding green, orange and blue discs',
+    // Same rule as iTrackHabit: no status chip and no store links until the listing is live.
+    // TODO(user): add the App Store link once Cascade clears review.
+    links: [
+      { label: 'Game page', href: '/games/cascade', primary: true },
+      { label: 'In the arcade', href: '/games' },
+      { label: 'Privacy policy', href: '/games/cascade/privacy' },
     ],
   },
 ];

@@ -10,9 +10,9 @@ const renderPage = () =>
     </MemoryRouter>
   );
 
-test('lists all four shipped products', () => {
+test('lists all five products', () => {
   renderPage();
-  ['Expenzez', 'iTrackHabit', 'Helicopter', 'Ludo'].forEach((name) => {
+  ['Expenzez', 'iTrackHabit', 'Helicopter', 'Ludo', 'Cascade'].forEach((name) => {
     expect(screen.getByRole('heading', { name })).toBeInTheDocument();
   });
 });
@@ -77,9 +77,24 @@ test('iTrackHabit advertises no store listing', () => {
   );
 });
 
-test('both games cross-link into the arcade', () => {
+test('Cascade links to its own page and advertises no store listing', () => {
   renderPage();
-  ['Helicopter', 'Ludo'].forEach((name) => {
+  const row = screen.getByRole('heading', { name: 'Cascade' }).closest('.project-row') as HTMLElement;
+  within(row)
+    .getAllByRole('link')
+    .forEach((link) => {
+      expect(link.getAttribute('href')).not.toMatch(/apps\.apple\.com|play\.google\.com/);
+    });
+  expect(within(row).getByRole('link', { name: /Game page/ })).toHaveAttribute('href', '/games/cascade');
+  expect(within(row).getByRole('link', { name: 'Privacy policy' })).toHaveAttribute(
+    'href',
+    '/games/cascade/privacy'
+  );
+});
+
+test('every game cross-links into the arcade', () => {
+  renderPage();
+  ['Helicopter', 'Ludo', 'Cascade'].forEach((name) => {
     const row = screen.getByRole('heading', { name }).closest('.project-row') as HTMLElement;
     expect(within(row).getByRole('link', { name: /In the arcade/ })).toHaveAttribute('href', '/games');
   });

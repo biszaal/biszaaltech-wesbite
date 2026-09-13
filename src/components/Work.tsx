@@ -13,9 +13,9 @@ const Work: React.FC = () => {
       <div className="container">
         <div className="work-head reveal" ref={headRef}>
           <span className="eyebrow">Proof</span>
-          <h2>Four we built ourselves.</h2>
+          <h2>Five we built ourselves.</h2>
           <p className="work-lead">
-            Two apps and two games — designed, built, submitted and maintained by
+            Two apps and three games — designed, built, submitted and maintained by
             the same people who would build yours.
           </p>
         </div>
