@@ -147,3 +147,17 @@ test('links on to the privacy and delete-account pages', () => {
     '/games/ludo/delete-account'
   );
 });
+
+
+test('invite links preserve the room and suppress the automatic store redirect', () => {
+  setUserAgent(IPHONE);
+  render(<MemoryRouter initialEntries={['/games/ludo?room=ABCD']}><LudoLanding /></MemoryRouter>);
+  expect(screen.getByRole('link', { name: 'Open room in Ludo' })).toHaveAttribute('href', 'ludobiszaal://join/ABCD');
+  tick(5);
+  expect(assigned).toBe('');
+});
+test('malformed room codes never become custom-scheme links', () => {
+  setUserAgent(DESKTOP);
+  render(<MemoryRouter initialEntries={['/games/ludo?room=ABCD%2Fextra']}><LudoLanding /></MemoryRouter>);
+  expect(screen.queryByRole('link', { name: 'Open room in Ludo' })).not.toBeInTheDocument();
+});

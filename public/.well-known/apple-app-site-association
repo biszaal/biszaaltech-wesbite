@@ -1,0 +1,20 @@
+{
+  "applinks": {
+    "details": [
+      {
+        "appIDs": [
+          "HG4G2ZMGV8.com.biszaal.mobile"
+        ],
+        "components": [
+          {
+            "/": "/games/ludo",
+            "?": {
+              "room": "????"
+            },
+            "comment": "Four-character Ludo room invitations"
+          }
+        ]
+      }
+    ]
+  }
+}

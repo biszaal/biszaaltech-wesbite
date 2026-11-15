@@ -1,0 +1,14 @@
+[
+  {
+    "relation": [
+      "delegate_permission/common.handle_all_urls"
+    ],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "com.biszaal.mobile",
+      "sha256_cert_fingerprints": [
+        "5C:62:B3:0D:C1:D6:49:F3:7C:5B:05:57:8F:02:F5:DA:83:B7:47:2A:A8:B5:46:0B:22:65:2E:85:5D:5E:E1:CD"
+      ]
+    }
+  }
+]

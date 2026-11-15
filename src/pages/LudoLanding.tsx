@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useSearchParams } from 'react-router-dom';
 import { useReveal } from '../hooks/useReveal';
 import { detectPlatform } from '../utils/platform';
 import { LUDO_APP_STORE, LUDO_PLAY_STORE } from '../data/projects';
@@ -92,6 +92,9 @@ const features: Feature[] = [
 ];
 
 const LudoLanding: React.FC = () => {
+  const [params] = useSearchParams();
+  const rawRoom = params.getAll('room');
+  const invite = rawRoom.length === 1 && /^[A-Za-z0-9]{4}$/.test(rawRoom[0]) ? rawRoom[0].toUpperCase() : null;
   const heroRef = useReveal<HTMLDivElement>();
   const featuresRef = useReveal<HTMLDivElement>();
   const closeRef = useReveal<HTMLDivElement>();
@@ -107,10 +110,10 @@ const LudoLanding: React.FC = () => {
 
   useEffect(() => {
     // Desktop, unrecognised agents and bots get the page and nothing else.
-    if (platform === 'other' || readRedirected()) return;
+    if (invite || platform === 'other' || readRedirected()) return;
     markRedirected();
     setCountdown(REDIRECT_SECONDS);
-  }, [platform]);
+  }, [platform, invite]);
 
   useEffect(() => {
     if (countdown === null) return;
@@ -158,6 +161,15 @@ const LudoLanding: React.FC = () => {
         canonical="https://www.biszaaltech.com/games/ludo"
       />
 
+      {invite && (
+        <section className="container" aria-labelledby="invite-heading" style={{ paddingTop: '2rem' }}>
+          <h1 id="invite-heading">You’re invited to play Ludo</h1>
+          <p>Room code: <strong>{invite}</strong>. Keep this code if you need to install the game first.</p>
+          <a className="pill-btn pill-btn--accent" href={`ludobiszaal://join/${invite}`}>Open room in Ludo</a>
+          <p>If Ludo doesn’t open, install it below, then choose Friends room and enter the code.</p>
+          <p>The room may expire before you join. Ask your friend for a new code if needed.</p>
+        </section>
+      )}
       <section className="ludo-hero">
         <div className="container ludo-hero-inner reveal" ref={heroRef}>
           <div className="ludo-hero-art">
