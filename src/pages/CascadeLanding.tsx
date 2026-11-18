@@ -2,15 +2,15 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { useReveal } from '../hooks/useReveal';
 import cascadeIcon from '../assets/cascade-icon.png';
+import { CASCADE_APP_STORE } from '../data/projects';
 import Seo from '../components/Seo';
 import './CascadeLanding.css';
 
 /**
  * Cascade's page, and the support URL on its App Store listing.
  *
- * Unlike the Ludo page this is not an ad landing: the game is not on a store yet, so there
- * is no store to redirect to and no store link to show. Add the App Store link, and move the
- * status line to "Out now", in the same change that adds `appStoreUrl` on the games page.
+ * Unlike the Ludo page this is not an ad landing, so there is no automatic store redirect:
+ * people arrive here from the listing itself, and bouncing them back would be a loop.
  *
  * Every feature line is something the shipped 1.0 build does - see "content integrity" in
  * DESIGN.md. It has no ads, purchases or sign-up. The anonymous account behind the daily
@@ -129,7 +129,15 @@ const CascadeLanding: React.FC = () => {
               a single token at a time, and the fewer moves it takes, the better you played.
             </p>
             <p className="mono-meta cascade-hero-meta">Puzzle · 1 player · iPhone &amp; iPad</p>
-            <p className="cascade-status">Coming soon to the App Store</p>
+            <a
+              href={CASCADE_APP_STORE}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="pill-btn pill-btn--accent"
+            >
+              Download on the App Store
+              <span className="btn-orb" aria-hidden="true">↗</span>
+            </a>
             <p className="cascade-smallprint">No ads, no in-app purchases, no sign-up.</p>
           </div>
         </div>

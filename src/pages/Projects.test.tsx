@@ -77,14 +77,17 @@ test('iTrackHabit advertises no store listing', () => {
   );
 });
 
-test('Cascade links to its own page and advertises no store listing', () => {
+test('Cascade links to the App Store and its own page', () => {
   renderPage();
   const row = screen.getByRole('heading', { name: 'Cascade' }).closest('.project-row') as HTMLElement;
-  within(row)
-    .getAllByRole('link')
-    .forEach((link) => {
-      expect(link.getAttribute('href')).not.toMatch(/apps\.apple\.com|play\.google\.com/);
-    });
+  const appStore = within(row).getByRole('link', { name: /App Store/ });
+  expect(appStore).toHaveAttribute(
+    'href',
+    'https://apps.apple.com/gb/app/cascade-colour-sorting/id6810394977'
+  );
+  expect(appStore).toHaveAttribute('rel', 'noopener noreferrer');
+  // iOS only: no Google Play listing exists, so none may be advertised.
+  expect(within(row).queryByRole('link', { name: /Google Play/ })).not.toBeInTheDocument();
   expect(within(row).getByRole('link', { name: /Game page/ })).toHaveAttribute('href', '/games/cascade');
   expect(within(row).getByRole('link', { name: 'Privacy policy' })).toHaveAttribute(
     'href',

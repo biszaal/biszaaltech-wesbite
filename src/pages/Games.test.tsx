@@ -15,13 +15,14 @@ test('showcases every game with its status and privacy links', () => {
   expect(screen.getByRole('heading', { name: 'Ludo' })).toBeInTheDocument();
   expect(screen.getByRole('heading', { name: 'Cascade' })).toBeInTheDocument();
 
-  // Cascade is the only game not on a store yet, so it alone carries the status chip.
-  expect(screen.getAllByText(/Coming soon to the App Store/)).toHaveLength(1);
+  // Every game is on a store now, so nothing carries the status chip.
+  expect(screen.queryByText(/coming soon/i)).not.toBeInTheDocument();
 
   const storeLinks = screen.getAllByRole('link', { name: /Download on the App Store/ });
   expect(storeLinks.map((l) => l.getAttribute('href'))).toEqual([
     'https://apps.apple.com/us/app/helicopter-game-cave-edition/id6786880982',
     'https://apps.apple.com/gb/app/ludo-classic-board-game/id6788536072',
+    'https://apps.apple.com/gb/app/cascade-colour-sorting/id6810394977',
   ]);
   storeLinks.forEach((l) => expect(l).toHaveAttribute('rel', 'noopener noreferrer'));
 

@@ -1,6 +1,6 @@
 /*
   Cascade's page: game page and App Store support URL. Dark world and centred like
-  /games/ludo, without the store-redirect bar - there is no store to send anyone to yet.
+  /games/ludo, without the store-redirect bar - people reach it from the store listing.
 */
 
 .cascade-page {
@@ -65,18 +65,6 @@
 
 .cascade-hero-meta {
   margin-top: -0.3rem;
-}
-
-.cascade-status {
-  padding: 0.55rem 1.2rem;
-  border: 1px solid var(--line-strong);
-  border-radius: var(--r-pill);
-  font-family: var(--font-mono);
-  font-size: 0.72rem;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--ink-soft);
-  max-width: none;
 }
 
 .cascade-smallprint {

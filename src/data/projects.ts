@@ -47,6 +47,8 @@ export const LUDO_APP_STORE =
   'https://apps.apple.com/gb/app/ludo-classic-board-game/id6788536072';
 export const LUDO_PLAY_STORE =
   'https://play.google.com/store/apps/details?id=com.biszaal.mobile';
+export const CASCADE_APP_STORE =
+  'https://apps.apple.com/gb/app/cascade-colour-sorting/id6810394977';
 
 export const projects: ProjectEntry[] = [
   {
@@ -138,10 +140,9 @@ export const projects: ProjectEntry[] = [
     meta: ['Puzzle', '1 player', 'Plays offline'],
     icon: cascadeIcon,
     iconAlt: 'Cascade game icon: three dark lanes holding green, orange and blue discs',
-    // Same rule as iTrackHabit: no status chip and no store links until the listing is live.
-    // TODO(user): add the App Store link once Cascade clears review.
     links: [
-      { label: 'Game page', href: '/games/cascade', primary: true },
+      { label: 'App Store', href: CASCADE_APP_STORE, external: true, primary: true },
+      { label: 'Game page', href: '/games/cascade' },
       { label: 'In the arcade', href: '/games' },
       { label: 'Privacy policy', href: '/games/cascade/privacy' },
     ],

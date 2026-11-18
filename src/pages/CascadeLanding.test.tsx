@@ -11,14 +11,20 @@ function renderPage() {
   );
 }
 
-test('shows the game and says plainly that it is not on a store yet', () => {
+test('shows the game and links to its App Store listing', () => {
   renderPage();
 
   expect(screen.getByRole('heading', { name: 'One token at a time.' })).toBeInTheDocument();
-  expect(screen.getByText('Coming soon to the App Store')).toBeInTheDocument();
+  expect(screen.queryByText(/coming soon/i)).not.toBeInTheDocument();
 
-  // No store listing exists yet, so the page must not link to one or offer to redirect.
-  expect(screen.queryByRole('link', { name: /Download on the App Store/ })).not.toBeInTheDocument();
+  const store = screen.getByRole('link', { name: /Download on the App Store/ });
+  expect(store).toHaveAttribute(
+    'href',
+    'https://apps.apple.com/gb/app/cascade-colour-sorting/id6810394977'
+  );
+  expect(store).toHaveAttribute('rel', 'noopener noreferrer');
+
+  // Not an ad landing: people arrive from the listing, so no redirect back to it.
   expect(screen.queryByRole('button', { name: /stay on this page/i })).not.toBeInTheDocument();
 });
 

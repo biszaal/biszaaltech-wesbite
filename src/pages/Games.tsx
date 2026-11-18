@@ -1,7 +1,12 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { useReveal } from '../hooks/useReveal';
-import { HELICOPTER_APP_STORE, LUDO_APP_STORE, LUDO_PLAY_STORE } from '../data/projects';
+import {
+  CASCADE_APP_STORE,
+  HELICOPTER_APP_STORE,
+  LUDO_APP_STORE,
+  LUDO_PLAY_STORE,
+} from '../data/projects';
 import helicopterIcon from '../assets/helicopter-icon.png';
 import ludoIcon from '../assets/ludo-icon.svg';
 import cascadeIcon from '../assets/cascade-icon.png';
@@ -65,7 +70,7 @@ const games: GameEntry[] = [
     iconAlt: 'Cascade game icon: three dark lanes holding green, orange and blue discs',
     artClass: 'game-art--cascade',
     hasPage: true,
-    // Not on a store yet, so it carries the "Coming soon" chip. Add appStoreUrl once live.
+    appStoreUrl: CASCADE_APP_STORE,
   },
 ];
 
@@ -80,8 +85,8 @@ const Games: React.FC = () => {
           <span className="eyebrow">Biszaal Games</span>
           <h1>Press start.</h1>
           <p className="games-hero-sub mono-meta">
-            Original mobile games from Biszaal Tech. Helicopter is on the App Store,
-            Ludo is out on both the App Store and Google Play, and Cascade is coming soon.
+            Original mobile games from Biszaal Tech. Helicopter and Cascade are on the
+            App Store, and Ludo is out on both the App Store and Google Play.
           </p>
         </div>
       </section>
