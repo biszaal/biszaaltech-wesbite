@@ -181,6 +181,11 @@ test('describes Cascade\'s anonymous account, synced results and daily board acc
   expect(screen.queryByText(/server-side checks/)).not.toBeInTheDocument();
   expect(screen.queryByText(/does not currently collect any personal information/)).not.toBeInTheDocument();
 
+  // Deletion is in the app (App Store guideline 5.1.1(v)), with email kept for players who
+  // have already removed the game.
+  expect(screen.getByText(/Settings › Delete my data/)).toBeInTheDocument();
+  expect(screen.getByText(/If you no longer have the game installed/)).toBeInTheDocument();
+
   // Its own inbox, in the deletion route and the contact block, and not the company one.
   expect(screen.getAllByRole('link', { name: 'biszaalgames@gmail.com' }).length).toBeGreaterThan(0);
   expect(screen.getByText(/Email: biszaalgames@gmail\.com/)).toBeInTheDocument();

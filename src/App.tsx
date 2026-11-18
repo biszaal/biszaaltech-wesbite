@@ -77,7 +77,7 @@ function App() {
                 storeName="Cascade: Colour Sorting"
                 dataPractices="online-sync"
                 contactEmail="biszaalgames@gmail.com"
-                lastUpdated="September 13, 2026"
+                lastUpdated="September 14, 2026"
               />
             }
           />

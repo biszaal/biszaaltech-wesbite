@@ -397,11 +397,16 @@ const GamePrivacyPolicy: React.FC<GamePrivacyPolicyProps> = ({
               <>
                 <p>
                   Your anonymous account, your level results, and your daily results are kept until
-                  you ask us to delete them. Your settings and hints live only on your device and go
-                  with the game when you delete it.
+                  you delete them. Your settings and hints live only on your device and go with the
+                  game when you delete it.
                 </p>
                 <p>
-                  To have your account and results deleted, email{' '}
+                  To delete them yourself, open Settings › Delete my data in the game. It deletes
+                  your anonymous account and every result stored with it from our servers, then
+                  clears your progress on the device.
+                </p>
+                <p>
+                  If you no longer have the game installed, email{' '}
                   <a href={`mailto:${contactEmail}`}>{contactEmail}</a> with the player name shown
                   for you on the daily leaderboard. That name is the only way to tell us which
                   anonymous account is yours, because there is no sign-in behind it.
