@@ -162,8 +162,9 @@ test('describes Cascade\'s anonymous account, synced results and daily board acc
       gameName="Cascade"
       storeName="Cascade: Colour Sorting"
       dataPractices="online-sync"
+      hasLocalReminders
       contactEmail="biszaalgames@gmail.com"
-      lastUpdated="September 13, 2026"
+      lastUpdated="November 19, 2026"
     />
   );
   expect(
@@ -197,8 +198,30 @@ test('describes Cascade\'s anonymous account, synced results and daily board acc
     screen.getAllByRole('heading', { level: 2 }).map((h) => (h.textContent ?? '').split('.')[0])
   ).toEqual(['1', '2', '3', '4', '5', '6', '7', '8', '9']);
 
+  // The 1.1.0 reminder is a local notification: described as such, with how to turn it off.
+  expect(screen.getByRole('heading', { name: 'Reminders' })).toBeInTheDocument();
+  expect(screen.getByText(/there is no push server/)).toBeInTheDocument();
+  expect(screen.getByText(/never asks for this permission until you turn the reminder on/)).toBeInTheDocument();
+  expect(screen.getByText(/turn the daily reminder off at any time/)).toBeInTheDocument();
+  // Streak and records are worked out on the device, so the policy says they stay there.
+  expect(screen.getByText(/daily streak, and\s+records never leave your device/)).toBeInTheDocument();
+
   // None of the other games' disclosures leak in.
   expect(screen.queryByText(/AdMob/)).not.toBeInTheDocument();
   expect(screen.queryByText(/RevenueCat/)).not.toBeInTheDocument();
   expect(screen.queryByText(/push token/)).not.toBeInTheDocument();
+  expect(screen.queryByText(/Expo's push notification service/)).not.toBeInTheDocument();
+});
+
+test('describes local reminders only for a game that schedules them', () => {
+  const { unmount } = render(
+    <GamePrivacyPolicy gameName="Ludo Game" dataPractices="online-multiplayer" hasPushNotifications />
+  );
+  expect(screen.queryByRole('heading', { name: 'Reminders' })).not.toBeInTheDocument();
+  expect(screen.queryByText(/daily reminder/)).not.toBeInTheDocument();
+  unmount();
+
+  render(<GamePrivacyPolicy gameName="Helicopter Game" dataPractices="online-leaderboard" />);
+  expect(screen.queryByRole('heading', { name: 'Reminders' })).not.toBeInTheDocument();
+  expect(screen.queryByText(/daily reminder/)).not.toBeInTheDocument();
 });

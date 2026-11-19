@@ -12,6 +12,12 @@ interface GamePrivacyPolicyProps {
   hasInAppPurchases?: boolean;
   /** Registers a device push token to deliver room invites and friend requests. */
   hasPushNotifications?: boolean;
+  /**
+   * Schedules an opt-in reminder as a LOCAL notification: made and delivered by the device,
+   * with no push token, no server and nothing sent anywhere. Never combine with the push
+   * wording above, which describes a token held on our servers.
+   */
+  hasLocalReminders?: boolean;
   /** Path to this game's account deletion page, when it has one (Play requires it). */
   deleteAccountPath?: string;
   /** Shown to players; only bump it for the game whose practices actually changed. */
@@ -27,6 +33,7 @@ const GamePrivacyPolicy: React.FC<GamePrivacyPolicyProps> = ({
   hasAds = false,
   hasInAppPurchases = false,
   hasPushNotifications = false,
+  hasLocalReminders = false,
   deleteAccountPath,
   lastUpdated = 'July 28, 2026',
   contactEmail = 'hello@biszaaltech.com',
@@ -140,8 +147,8 @@ const GamePrivacyPolicy: React.FC<GamePrivacyPolicyProps> = ({
                 For every level you solve, we store your best number of moves, your star rating,
                 and your fastest time. For the daily puzzle, we store your number of moves and
                 your time for that day. Results you finish while offline are kept on your device
-                and sent the next time the game connects. Your settings and hints never leave
-                your device.
+                and sent the next time the game connects. Your settings, hints, daily streak, and
+                records never leave your device.
               </p>
               <p>
                 The account lives on your device — there is no password and nothing to sign in
@@ -185,6 +192,19 @@ const GamePrivacyPolicy: React.FC<GamePrivacyPolicyProps> = ({
               transmitted to us or any third party. No account, sign-in, or personal details are
               required to play.
             </p>
+          )}
+          {hasLocalReminders && (
+            <>
+              <h3>Reminders</h3>
+              <p>
+                If you turn on the daily reminder in Settings › Daily, the game asks your device for
+                permission to show notifications and schedules them on the device. Nothing is sent
+                anywhere: there is no push server, each reminder is created and delivered entirely
+                by your own device, and we learn nothing about whether you saw or opened one. The
+                game never asks for this permission until you turn the reminder on, and declining
+                leaves the game unaffected.
+              </p>
+            </>
           )}
         </section>
 
@@ -494,6 +514,13 @@ const GamePrivacyPolicy: React.FC<GamePrivacyPolicyProps> = ({
               You can turn notifications off at any time in the game under Settings › Notifications,
               or in your device's notification settings. Doing it in the game also deletes the push
               token we hold for that device.
+            </p>
+          )}
+          {hasLocalReminders && (
+            <p>
+              You can turn the daily reminder off at any time in the game under Settings › Daily,
+              which cancels every reminder it has scheduled, or block the game's notifications in
+              your device's settings.
             </p>
           )}
           {hasAds && (

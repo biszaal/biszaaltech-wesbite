@@ -76,8 +76,9 @@ function App() {
                 gameName="Cascade"
                 storeName="Cascade: Colour Sorting"
                 dataPractices="online-sync"
+                hasLocalReminders
                 contactEmail="biszaalgames@gmail.com"
-                lastUpdated="September 14, 2026"
+                lastUpdated="November 19, 2026"
               />
             }
           />
