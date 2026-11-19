@@ -285,7 +285,10 @@ const GamePrivacyPolicy: React.FC<GamePrivacyPolicyProps> = ({
               <p>
                 {gameName} uses Supabase, a third-party backend and database provider, to host the
                 anonymous accounts, the results described above, and the daily leaderboard. The
-                database is hosted in Ireland.
+                database is hosted in the United States (Supabase's US East region), so if you play
+                from the UK or the EU your results are transferred there. Supabase's data processing
+                agreement protects that transfer with the standard contractual clauses UK and EU
+                data protection law provides for it.
               </p>
               <p>
                 Nothing else leaves the game. {gameName} contains no advertising, no analytics or

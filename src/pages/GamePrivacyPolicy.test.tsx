@@ -175,7 +175,10 @@ test('describes Cascade\'s anonymous account, synced results and daily board acc
   expect(screen.getByText(/creates an anonymous\s+account for you/)).toBeInTheDocument();
   expect(screen.getByText(/"Player 1234"/)).toBeInTheDocument();
   expect(screen.getByText(/best number of moves, your star rating/)).toBeInTheDocument();
-  expect(screen.getByText(/database is hosted in Ireland/)).toBeInTheDocument();
+  // Since 1.1.0 the backend is the shared US East project, and the transfer is disclosed.
+  expect(screen.getByText(/database is hosted in the United States/)).toBeInTheDocument();
+  expect(screen.getByText(/standard contractual clauses/)).toBeInTheDocument();
+  expect(screen.queryByText(/Ireland/)).not.toBeInTheDocument();
 
   // Cascade has no username to claim and no server-side score check; neither may be claimed.
   expect(screen.queryByText(/pick a username/)).not.toBeInTheDocument();
