@@ -10,6 +10,7 @@
   <url><loc>https://www.biszaaltech.com/apps/expenzez/privacy</loc><priority>0.3</priority></url>
   <url><loc>https://www.biszaaltech.com/apps/itrackhabit/privacy</loc><priority>0.3</priority></url>
   <url><loc>https://www.biszaaltech.com/games/helicopter/privacy</loc><priority>0.3</priority></url>
+  <url><loc>https://www.biszaaltech.com/games/helicopter/delete-account</loc><priority>0.3</priority></url>
   <url><loc>https://www.biszaaltech.com/games/ludo/privacy</loc><priority>0.3</priority></url>
   <url><loc>https://www.biszaaltech.com/games/ludo/delete-account</loc><priority>0.3</priority></url>
   <url><loc>https://www.biszaaltech.com/games/cascade/privacy</loc><priority>0.3</priority></url>

@@ -9,6 +9,7 @@ import CascadeLanding from './pages/CascadeLanding';
 import Projects from './pages/Projects';
 import GamePrivacyPolicy from './pages/GamePrivacyPolicy';
 import GameDeleteAccount from './pages/GameDeleteAccount';
+import HelicopterDeleteData from './pages/HelicopterDeleteData';
 import ITrackHabitPrivacy from './pages/ITrackHabitPrivacy';
 import ExpenzezPrivacy from './pages/ExpenzezPrivacy';
 import NotFound from './pages/NotFound';
@@ -41,10 +42,12 @@ function App() {
                 gameName="Helicopter Game"
                 storeName="Helicopter Game: Cave Edition"
                 dataPractices="online-leaderboard"
-                lastUpdated="August 19, 2026"
+                deleteAccountPath="/games/helicopter/delete-account"
+                lastUpdated="November 20, 2026"
               />
             }
           />
+          <Route path="/games/helicopter/delete-account" element={<HelicopterDeleteData />} />
           <Route
             path="/games/ludo/privacy"
             element={

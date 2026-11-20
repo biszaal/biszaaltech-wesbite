@@ -174,10 +174,11 @@ const GamePrivacyPolicy: React.FC<GamePrivacyPolicyProps> = ({
                 don't use your real name or anything else you would rather not share.
               </p>
               <p>
-                Once you have claimed a username, a run that beats your personal best is sent to
-                the board, and we store that score along with the distance and duration of the run
-                behind it and when it was set. Runs that don't beat your best are never sent, and
-                if you never claim a username, nothing about your play leaves your device.
+                Once you have claimed a username, your personal best is sent to the board: when
+                you claim it, whenever you open the leaderboard, and whenever a run beats it. We
+                store that score along with the distance and duration of the run behind it and
+                when it was set. Runs that don't beat your best are never sent, and if you never
+                claim a username, nothing about your play leaves your device.
               </p>
               <p>
                 The anonymous account lives only on your device — there is no password and nothing
@@ -449,6 +450,13 @@ const GamePrivacyPolicy: React.FC<GamePrivacyPolicyProps> = ({
                   as it appears on the board. There is no sign-in behind a leaderboard name, so
                   tell us the rank you appear at as well if you still have the game installed —
                   that is how we check the entry is yours before deleting it.
+                  {deleteAccountPath && (
+                    <>
+                      {' '}Our <a href={deleteAccountPath}>data deletion page</a> sets out the
+                      steps, what is deleted, and what is kept afterwards. The game links to it
+                      from Settings › Delete my leaderboard data.
+                    </>
+                  )}
                 </p>
               </>
             )}
