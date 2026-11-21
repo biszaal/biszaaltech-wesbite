@@ -130,6 +130,24 @@ test('discloses push notifications, retention, and account recovery (Ludo)', () 
   expect(screen.getByText(/delete your account from the Account screen/)).toBeInTheDocument();
 });
 
+test('discloses the country flag and referrals only when those flags are set (Ludo)', () => {
+  render(
+    <GamePrivacyPolicy gameName="Ludo Game" dataPractices="online-multiplayer" hasCountryFlags hasReferrals />
+  );
+  // Country: a two-letter code shown to other players, from the network, never an IP or a
+  // precise location, and a switch that hides it and deletes it.
+  expect(screen.getByText(/two-letter code/)).toBeInTheDocument();
+  expect(screen.getByText(/never store your IP address/)).toBeInTheDocument();
+  expect(screen.getByText(/Settings › Show my country flag/)).toBeInTheDocument();
+  // Referrals: who invited whom, recorded so both players can be rewarded.
+  expect(screen.getByText(/record that they invited you/)).toBeInTheDocument();
+  cleanup();
+
+  render(<GamePrivacyPolicy gameName="Ludo Game" dataPractices="online-multiplayer" />);
+  expect(screen.queryByText(/two-letter code/)).not.toBeInTheDocument();
+  expect(screen.queryByText(/record that they invited you/)).not.toBeInTheDocument();
+});
+
 test('leaves the local-only policy untouched by the online-game flags', () => {
   render(<GamePrivacyPolicy gameName="Helicopter Game" dataPractices="local-only" />);
   expect(screen.getByText(/Last updated: July 28, 2026/)).toBeInTheDocument();

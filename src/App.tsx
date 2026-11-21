@@ -57,8 +57,10 @@ function App() {
                 hasAds
                 hasInAppPurchases
                 hasPushNotifications
+                hasCountryFlags
+                hasReferrals
                 deleteAccountPath="/games/ludo/delete-account"
-                lastUpdated="August 19, 2026"
+                lastUpdated="November 21, 2026"
               />
             }
           />

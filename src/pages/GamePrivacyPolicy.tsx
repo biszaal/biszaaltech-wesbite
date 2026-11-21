@@ -18,6 +18,10 @@ interface GamePrivacyPolicyProps {
    * wording above, which describes a token held on our servers.
    */
   hasLocalReminders?: boolean;
+  /** Shows each player's country, as a flag beside their name, to other players. */
+  hasCountryFlags?: boolean;
+  /** Records who invited whom, so both players can be rewarded. */
+  hasReferrals?: boolean;
   /** Path to this game's account deletion page, when it has one (Play requires it). */
   deleteAccountPath?: string;
   /** Shown to players; only bump it for the game whose practices actually changed. */
@@ -34,6 +38,8 @@ const GamePrivacyPolicy: React.FC<GamePrivacyPolicyProps> = ({
   hasInAppPurchases = false,
   hasPushNotifications = false,
   hasLocalReminders = false,
+  hasCountryFlags = false,
+  hasReferrals = false,
   deleteAccountPath,
   lastUpdated = 'July 28, 2026',
   contactEmail = 'hello@biszaaltech.com',
@@ -91,6 +97,22 @@ const GamePrivacyPolicy: React.FC<GamePrivacyPolicyProps> = ({
                 the room code, the entry stake, and both accounts involved until the invite is
                 accepted, declined, or expires.
               </p>
+              {hasCountryFlags && (
+                <p>
+                  We also keep the country you play from, as a two-letter code (for example "NP"
+                  for Nepal), and show it as a small flag next to your username to other players.
+                  We work it out from your network connection when you use the game; we never store
+                  your IP address, your city, or your exact location. You can hide your flag in
+                  Settings › Show my country flag, which also deletes the stored country.
+                </p>
+              )}
+              {hasReferrals && (
+                <p>
+                  If you join {gameName} through a friend's code or a friend's room within your
+                  first day, we record that they invited you, so the game can give you both coins
+                  once you have played. That link is kept for as long as both accounts exist.
+                </p>
+              )}
               <p>
                 {gameName} includes in-game virtual currencies (coins and gems) and cosmetic items.
                 We store your balances, the items and entitlements linked to your account, your
