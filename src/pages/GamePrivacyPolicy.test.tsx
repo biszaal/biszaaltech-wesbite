@@ -148,6 +148,20 @@ test('discloses the country flag and referrals only when those flags are set (Lu
   expect(screen.queryByText(/record that they invited you/)).not.toBeInTheDocument();
 });
 
+test('discloses the install source and device check only when that flag is set (Ludo)', () => {
+  render(<GamePrivacyPolicy gameName="Ludo Game" dataPractices="online-multiplayer" hasInstallAttribution />);
+  // Install source: the campaign fields from Google Play, and a friend's code.
+  expect(screen.getByText(/which link brought you to Google Play/)).toBeInTheDocument();
+  // Device check: a one-way fingerprint of a device identifier, used only against reward abuse.
+  expect(screen.getByText(/one-way scrambled form/)).toBeInTheDocument();
+  expect(screen.getByText(/never for advertising/)).toBeInTheDocument();
+  cleanup();
+
+  render(<GamePrivacyPolicy gameName="Ludo Game" dataPractices="online-multiplayer" />);
+  expect(screen.queryByText(/which link brought you to Google Play/)).not.toBeInTheDocument();
+  expect(screen.queryByText(/one-way scrambled form/)).not.toBeInTheDocument();
+});
+
 test('leaves the local-only policy untouched by the online-game flags', () => {
   render(<GamePrivacyPolicy gameName="Helicopter Game" dataPractices="local-only" />);
   expect(screen.getByText(/Last updated: July 28, 2026/)).toBeInTheDocument();

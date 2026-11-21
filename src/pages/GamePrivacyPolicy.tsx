@@ -22,6 +22,8 @@ interface GamePrivacyPolicyProps {
   hasCountryFlags?: boolean;
   /** Records who invited whom, so both players can be rewarded. */
   hasReferrals?: boolean;
+  /** Keeps where an Android install came from, and a hashed device ID for the referral abuse check. */
+  hasInstallAttribution?: boolean;
   /** Path to this game's account deletion page, when it has one (Play requires it). */
   deleteAccountPath?: string;
   /** Shown to players; only bump it for the game whose practices actually changed. */
@@ -40,6 +42,7 @@ const GamePrivacyPolicy: React.FC<GamePrivacyPolicyProps> = ({
   hasLocalReminders = false,
   hasCountryFlags = false,
   hasReferrals = false,
+  hasInstallAttribution = false,
   deleteAccountPath,
   lastUpdated = 'July 28, 2026',
   contactEmail = 'hello@biszaaltech.com',
@@ -112,6 +115,24 @@ const GamePrivacyPolicy: React.FC<GamePrivacyPolicyProps> = ({
                   first day, we record that they invited you, so the game can give you both coins
                   once you have played. That link is kept for as long as both accounts exist.
                 </p>
+              )}
+              {hasInstallAttribution && (
+                <>
+                  <p>
+                    On Android, when you first open {gameName} we record which link brought you to
+                    Google Play: the campaign labels on that link (for example "website" or
+                    "invite") and, if a friend shared it, their friend code. We use this to see which
+                    ways of finding the game work and to credit the friend who invited you. It is
+                    kept with your account.
+                  </p>
+                  <p>
+                    We also record an identifier for your device, in a one-way scrambled form that
+                    cannot be turned back into the original. On Android this is derived from the
+                    device's Android ID; on iOS it is a random value the game creates. It is used only
+                    to stop one phone from collecting the same invite reward more than once, never for
+                    advertising and never shared. It is kept with your account and deleted with it.
+                  </p>
+                </>
               )}
               <p>
                 {gameName} includes in-game virtual currencies (coins and gems) and cosmetic items.

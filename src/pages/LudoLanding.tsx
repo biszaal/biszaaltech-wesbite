@@ -91,17 +91,40 @@ const features: Feature[] = [
   },
 ];
 
+/** The app's friend-code alphabet: six characters, no O/0/I/1. */
+const FRIEND_CODE = /^[ABCDEFGHJKLMNPQRSTUVWXYZ23456789]{6}$/;
+
+/**
+ * The Play link with an install referrer, which Google Play hands back to the
+ * app on its first launch. A friend's code in it records who invited the new
+ * player, with nothing to type; otherwise it just says the install came from
+ * this page.
+ */
+function playStoreUrl(friend: string | null): string {
+  const referrer = friend
+    ? `utm_source=invite&utm_medium=friend&friend=${friend}`
+    : 'utm_source=website&utm_medium=landing';
+  return `${LUDO_PLAY_STORE}&referrer=${encodeURIComponent(referrer)}`;
+}
+
 const LudoLanding: React.FC = () => {
   const [params] = useSearchParams();
   const rawRoom = params.getAll('room');
   const invite = rawRoom.length === 1 && /^[A-Za-z0-9]{4}$/.test(rawRoom[0]) ? rawRoom[0].toUpperCase() : null;
+  const rawFriend = params.getAll('friend');
+  const friend =
+    rawFriend.length === 1 && FRIEND_CODE.test(rawFriend[0].toUpperCase()) ? rawFriend[0].toUpperCase() : null;
+  const playUrl = playStoreUrl(friend);
   const heroRef = useReveal<HTMLDivElement>();
   const featuresRef = useReveal<HTMLDivElement>();
   const closeRef = useReveal<HTMLDivElement>();
 
   const platform = useMemo(() => detectPlatform(), []);
   const isAndroid = platform === 'android';
-  const storeUrl = isAndroid ? LUDO_PLAY_STORE : LUDO_APP_STORE;
+  const storeUrl = isAndroid ? playUrl : LUDO_APP_STORE;
+  // The App Store carries no referrer, so an iPhone visitor with a friend's
+  // code stays here long enough to see it.
+  const friendNeedsCode = friend !== null && !isAndroid;
   const storeLabel = isAndroid ? 'Google Play' : 'the App Store';
 
   /** null = no countdown running, either never started or cancelled. */
@@ -110,10 +133,10 @@ const LudoLanding: React.FC = () => {
 
   useEffect(() => {
     // Desktop, unrecognised agents and bots get the page and nothing else.
-    if (invite || platform === 'other' || readRedirected()) return;
+    if (invite || friendNeedsCode || platform === 'other' || readRedirected()) return;
     markRedirected();
     setCountdown(REDIRECT_SECONDS);
-  }, [platform, invite]);
+  }, [platform, invite, friendNeedsCode]);
 
   useEffect(() => {
     if (countdown === null) return;
@@ -143,7 +166,7 @@ const LudoLanding: React.FC = () => {
 
   const playStore = (
     <a
-      href={LUDO_PLAY_STORE}
+      href={playUrl}
       target="_blank"
       rel="noopener noreferrer"
       className={isAndroid ? 'pill-btn pill-btn--accent' : 'text-link'}
@@ -168,6 +191,13 @@ const LudoLanding: React.FC = () => {
           <a className="pill-btn pill-btn--accent" href={`ludobiszaal://join/${invite}`}>Open room in Ludo</a>
           <p>If Ludo doesn’t open, install it below, then choose Friends room and enter the code.</p>
           <p>The room may expire before you join. Ask your friend for a new code if needed.</p>
+        </section>
+      )}
+      {friendNeedsCode && (
+        <section className="container" aria-labelledby="friend-heading" style={{ paddingTop: '2rem' }}>
+          <h1 id="friend-heading">Your friend wants to play Ludo with you</h1>
+          <p>Their friend code: <strong>{friend}</strong></p>
+          <p>Install Ludo below, then open Friends › Add friend and enter this code.</p>
         </section>
       )}
       <section className="ludo-hero">

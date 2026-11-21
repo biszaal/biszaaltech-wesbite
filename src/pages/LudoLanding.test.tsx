@@ -5,6 +5,10 @@ import LudoLanding from './LudoLanding';
 
 const APP_STORE = 'https://apps.apple.com/gb/app/ludo-classic-board-game/id6788536072';
 const PLAY_STORE = 'https://play.google.com/store/apps/details?id=com.biszaal.mobile';
+// Play hands the referrer back to the app on first launch (install source, 0084).
+const PLAY_FROM_SITE = `${PLAY_STORE}&referrer=${encodeURIComponent('utm_source=website&utm_medium=landing')}`;
+const playFromFriend = (code: string) =>
+  `${PLAY_STORE}&referrer=${encodeURIComponent(`utm_source=invite&utm_medium=friend&friend=${code}`)}`;
 
 const DESKTOP = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) Chrome/126';
 const IPHONE = 'Mozilla/5.0 (iPhone; CPU iPhone OS 17_5 like Mac OS X) AppleWebKit/605.1.15';
@@ -74,7 +78,7 @@ test('a desktop visitor gets the page, both stores and no redirect', () => {
   );
   expect(screen.getAllByRole('link', { name: /Get it on Google Play/ })[0]).toHaveAttribute(
     'href',
-    PLAY_STORE
+    PLAY_FROM_SITE
   );
 
   expect(screen.queryByRole('button', { name: /stay on this page/i })).not.toBeInTheDocument();
@@ -107,7 +111,7 @@ test('an Android visitor leads with Google Play and is sent there', () => {
   );
 
   tick(3);
-  expect(assigned).toBe(PLAY_STORE);
+  expect(assigned).toBe(PLAY_FROM_SITE);
 });
 
 test('"stay on this page" cancels the redirect for good', () => {
@@ -160,4 +164,25 @@ test('malformed room codes never become custom-scheme links', () => {
   setUserAgent(DESKTOP);
   render(<MemoryRouter initialEntries={['/games/ludo?room=ABCD%2Fextra']}><LudoLanding /></MemoryRouter>);
   expect(screen.queryByRole('link', { name: 'Open room in Ludo' })).not.toBeInTheDocument();
+});
+
+test('a friend link on Android sends the code to Google Play in the install referrer', () => {
+  setUserAgent(ANDROID);
+  render(<MemoryRouter initialEntries={['/games/ludo?friend=k7pxq2']}><LudoLanding /></MemoryRouter>);
+  expect(screen.getAllByRole('link', { name: /Get it on Google Play/ })[0]).toHaveAttribute('href', playFromFriend('K7PXQ2'));
+  tick(3);
+  expect(assigned).toBe(playFromFriend('K7PXQ2'));
+});
+test('a friend link on iPhone shows the code to add and does not redirect', () => {
+  setUserAgent(IPHONE);
+  render(<MemoryRouter initialEntries={['/games/ludo?friend=K7PXQ2']}><LudoLanding /></MemoryRouter>);
+  expect(screen.getByText('K7PXQ2')).toBeInTheDocument();
+  tick(5);
+  expect(assigned).toBe('');
+});
+test('a malformed friend code is ignored', () => {
+  setUserAgent(ANDROID);
+  render(<MemoryRouter initialEntries={['/games/ludo?friend=K7PXQ0']}><LudoLanding /></MemoryRouter>);
+  expect(screen.queryByText('K7PXQ0')).not.toBeInTheDocument();
+  expect(screen.getAllByRole('link', { name: /Get it on Google Play/ })[0]).toHaveAttribute('href', PLAY_FROM_SITE);
 });
