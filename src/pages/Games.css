@@ -90,6 +90,12 @@
     linear-gradient(180deg, #101014 0%, #0a0a0d 100%);
 }
 
+.game-art--invertalk {
+  background:
+    radial-gradient(420px 260px at 50% 30%, rgba(47, 85, 200, 0.22), transparent 70%),
+    linear-gradient(180deg, #101014 0%, #0a0a0d 100%);
+}
+
 .game-icon {
   width: clamp(150px, 22vw, 230px);
   border-radius: 26%;

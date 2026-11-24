@@ -6,6 +6,8 @@ import TermsOfService from './pages/TermsOfService';
 import Games from './pages/Games';
 import LudoLanding from './pages/LudoLanding';
 import CascadeLanding from './pages/CascadeLanding';
+import InvertalkLanding from './pages/InvertalkLanding';
+import InvertalkPrivacy from './pages/InvertalkPrivacy';
 import Projects from './pages/Projects';
 import GamePrivacyPolicy from './pages/GamePrivacyPolicy';
 import GameDeleteAccount from './pages/GameDeleteAccount';
@@ -35,6 +37,8 @@ function App() {
           <Route path="/games/ludo" element={<LudoLanding />} />
           {/* Game page and App Store support URL for Cascade. */}
           <Route path="/games/cascade" element={<CascadeLanding />} />
+          {/* Game page and store support URL for Invertalk (not on a store yet). */}
+          <Route path="/games/invertalk" element={<InvertalkLanding />} />
           <Route
             path="/games/helicopter/privacy"
             element={
@@ -88,6 +92,8 @@ function App() {
               />
             }
           />
+          {/* Invertalk's practices (on-device audio, anonymous analytics) don't fit GamePrivacyPolicy's variants. */}
+          <Route path="/games/invertalk/privacy" element={<InvertalkPrivacy />} />
           {/* App store listings link to /apps/…; the short path is kept as an alias. */}
           <Route path="/apps/itrackhabit/privacy" element={<ITrackHabitPrivacy />} />
           <Route path="/itrackhabit/privacy" element={<ITrackHabitPrivacy />} />

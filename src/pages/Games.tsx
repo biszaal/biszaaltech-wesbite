@@ -10,6 +10,7 @@ import {
 import helicopterIcon from '../assets/helicopter-icon.png';
 import ludoIcon from '../assets/ludo-icon.svg';
 import cascadeIcon from '../assets/cascade-icon.png';
+import invertalkIcon from '../assets/invertalk-icon.png';
 import './Games.css';
 import Seo from '../components/Seo';
 
@@ -27,6 +28,11 @@ interface GameEntry {
   /** Set once the game is on a store — the status chip only shows while both are unset. */
   appStoreUrl?: string;
   playStoreUrl?: string;
+  /**
+   * The chip's text while the game has no store link. State a fact, never a date or
+   * "coming soon" — see "content integrity" in DESIGN.md.
+   */
+  status?: string;
 }
 
 const games: GameEntry[] = [
@@ -71,6 +77,20 @@ const games: GameEntry[] = [
     artClass: 'game-art--cascade',
     hasPage: true,
     appStoreUrl: CASCADE_APP_STORE,
+  },
+  {
+    slug: 'invertalk',
+    name: 'Invertalk',
+    tagline: 'Say it backwards.',
+    description:
+      'A party game for two people and one phone. One of you says a phrase, the other copies ' +
+      'it played backwards, and the reveal flips their attempt forwards.',
+    meta: ['Party', '2 players', 'iOS & Android'],
+    icon: invertalkIcon,
+    iconAlt: 'Invertalk game icon: a white speech bubble holding a sound wave and its reflection',
+    artClass: 'game-art--invertalk',
+    hasPage: true,
+    status: 'Not on the stores yet',
   },
 ];
 
@@ -144,7 +164,7 @@ const GameRow: React.FC<{ game: GameEntry; flip: boolean }> = ({ game, flip }) =
               </a>
             )}
             {!game.appStoreUrl && !game.playStoreUrl && (
-              <span className="game-status">Coming soon to the App Store</span>
+              <span className="game-status">{game.status ?? 'Coming soon to the App Store'}</span>
             )}
             {game.hasPage && (
               <Link to={`/games/${game.slug}`} className="text-link">
