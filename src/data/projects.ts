@@ -3,9 +3,10 @@ import itrackhabitIcon from '../assets/itrackhabit-icon.png';
 import helicopterIcon from '../assets/helicopter-icon.png';
 import ludoIcon from '../assets/ludo-icon.svg';
 import cascadeIcon from '../assets/cascade-icon.png';
+import invertalkIcon from '../assets/invertalk-icon.png';
 
 /**
- * Single source of truth for our five products — used by the homepage
+ * Single source of truth for our six products — used by the homepage
  * proof strip and the /projects page.
  *
  * Every claim here has to be defensible. Two constraints worth remembering:
@@ -145,6 +146,26 @@ export const projects: ProjectEntry[] = [
       { label: 'Game page', href: '/games/cascade' },
       { label: 'In the arcade', href: '/games' },
       { label: 'Privacy policy', href: '/games/cascade/privacy' },
+    ],
+  },
+  {
+    slug: 'invertalk',
+    name: 'Invertalk',
+    kind: 'game',
+    tagline: 'Say it backwards.',
+    description:
+      'A party game for two people and one phone. One of you says a phrase, the other copies ' +
+      'it played backwards, and the reveal flips their attempt forwards.',
+    meta: ['Party', '2 players', 'iOS & Android'],
+    icon: invertalkIcon,
+    iconAlt: 'Invertalk game icon: a white speech bubble holding a sound wave and its reflection',
+    // Not on a store yet. Like iTrackHabit: no status chip, because "coming soon" would be a
+    // promise about a date nobody has agreed to.
+    // TODO(user): add App Store / Google Play links once the listings are live.
+    links: [
+      { label: 'Game page', href: '/games/invertalk', primary: true },
+      { label: 'In the arcade', href: '/games' },
+      { label: 'Privacy policy', href: '/games/invertalk/privacy' },
     ],
   },
 ];

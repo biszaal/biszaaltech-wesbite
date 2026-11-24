@@ -14,9 +14,12 @@ test('showcases every game with its status and privacy links', () => {
   expect(screen.getByRole('heading', { name: 'Helicopter' })).toBeInTheDocument();
   expect(screen.getByRole('heading', { name: 'Ludo' })).toBeInTheDocument();
   expect(screen.getByRole('heading', { name: 'Cascade' })).toBeInTheDocument();
+  expect(screen.getByRole('heading', { name: 'Invertalk' })).toBeInTheDocument();
 
-  // Every game is on a store now, so nothing carries the status chip.
+  // Invertalk isn't on a store yet, so it alone carries a status chip — a fact, never a
+  // "coming soon" promise about a date nobody has agreed to (DESIGN.md, content integrity).
   expect(screen.queryByText(/coming soon/i)).not.toBeInTheDocument();
+  expect(screen.getAllByText('Not on the stores yet')).toHaveLength(1);
 
   const storeLinks = screen.getAllByRole('link', { name: /Download on the App Store/ });
   expect(storeLinks.map((l) => l.getAttribute('href'))).toEqual([
@@ -37,12 +40,17 @@ test('showcases every game with its status and privacy links', () => {
       '/games/helicopter/privacy',
       '/games/ludo/privacy',
       '/games/cascade/privacy',
+      '/games/invertalk/privacy',
     ])
   );
 
   expect(screen.getByRole('link', { name: 'About Cascade' })).toHaveAttribute(
     'href',
     '/games/cascade'
+  );
+  expect(screen.getByRole('link', { name: 'About Invertalk' })).toHaveAttribute(
+    'href',
+    '/games/invertalk'
   );
 });
 
@@ -55,4 +63,5 @@ test('shows the real game icons', () => {
   expect(screen.getByAltText(/white helicopter flying through a dark cave/i)).toBeInTheDocument();
   expect(screen.getByAltText(/pawns and a die beneath a golden crown/i)).toBeInTheDocument();
   expect(screen.getByAltText(/green, orange and blue discs/i)).toBeInTheDocument();
+  expect(screen.getByAltText(/speech bubble holding a sound wave/i)).toBeInTheDocument();
 });

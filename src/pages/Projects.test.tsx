@@ -10,9 +10,9 @@ const renderPage = () =>
     </MemoryRouter>
   );
 
-test('lists all five products', () => {
+test('lists all six products', () => {
   renderPage();
-  ['Expenzez', 'iTrackHabit', 'Helicopter', 'Ludo', 'Cascade'].forEach((name) => {
+  ['Expenzez', 'iTrackHabit', 'Helicopter', 'Ludo', 'Cascade', 'Invertalk'].forEach((name) => {
     expect(screen.getByRole('heading', { name })).toBeInTheDocument();
   });
 });
@@ -97,8 +97,19 @@ test('Cascade links to the App Store and its own page', () => {
 
 test('every game cross-links into the arcade', () => {
   renderPage();
-  ['Helicopter', 'Ludo', 'Cascade'].forEach((name) => {
+  ['Helicopter', 'Ludo', 'Cascade', 'Invertalk'].forEach((name) => {
     const row = screen.getByRole('heading', { name }).closest('.project-row') as HTMLElement;
     expect(within(row).getByRole('link', { name: /In the arcade/ })).toHaveAttribute('href', '/games');
   });
+});
+
+test('Invertalk links to its page and privacy policy, and to no store yet', () => {
+  renderPage();
+  const row = screen.getByRole('heading', { name: 'Invertalk' }).closest('.project-row') as HTMLElement;
+  expect(within(row).getByRole('link', { name: /Game page/ })).toHaveAttribute('href', '/games/invertalk');
+  expect(within(row).getByRole('link', { name: /Privacy policy/ })).toHaveAttribute(
+    'href',
+    '/games/invertalk/privacy'
+  );
+  expect(within(row).queryByRole('link', { name: /App Store|Google Play/ })).not.toBeInTheDocument();
 });
