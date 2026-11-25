@@ -87,7 +87,7 @@ const games: GameEntry[] = [
       'it played backwards, and the reveal flips their attempt forwards.',
     meta: ['Party', '2 players', 'iOS & Android'],
     icon: invertalkIcon,
-    iconAlt: 'Invertalk game icon: a white speech bubble holding a sound wave and its reflection',
+    iconAlt: 'Invertalk game icon: a cream lowercase i beside a saffron upside-down i, on charcoal',
     artClass: 'game-art--invertalk',
     hasPage: true,
     status: 'Not on the stores yet',
