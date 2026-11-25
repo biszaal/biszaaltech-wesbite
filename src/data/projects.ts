@@ -158,7 +158,7 @@ export const projects: ProjectEntry[] = [
       'it played backwards, and the reveal flips their attempt forwards.',
     meta: ['Party', '2 players', 'iOS & Android'],
     icon: invertalkIcon,
-    iconAlt: 'Invertalk game icon: a white speech bubble holding a sound wave and its reflection',
+    iconAlt: 'Invertalk game icon: a cream lowercase i beside a saffron upside-down i, on charcoal',
     // Not on a store yet. Like iTrackHabit: no status chip, because "coming soon" would be a
     // promise about a date nobody has agreed to.
     // TODO(user): add App Store / Google Play links once the listings are live.

@@ -63,5 +63,5 @@ test('shows the real game icons', () => {
   expect(screen.getByAltText(/white helicopter flying through a dark cave/i)).toBeInTheDocument();
   expect(screen.getByAltText(/pawns and a die beneath a golden crown/i)).toBeInTheDocument();
   expect(screen.getByAltText(/green, orange and blue discs/i)).toBeInTheDocument();
-  expect(screen.getByAltText(/speech bubble holding a sound wave/i)).toBeInTheDocument();
+  expect(screen.getByAltText(/lowercase i beside a saffron upside-down i/i)).toBeInTheDocument();
 });

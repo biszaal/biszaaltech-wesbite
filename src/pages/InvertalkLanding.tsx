@@ -101,7 +101,7 @@ const InvertalkLanding: React.FC = () => {
           <div className="invertalk-hero-art">
             <img
               src={invertalkIcon}
-              alt="Invertalk game icon: a white speech bubble holding a sound wave and its reflection"
+              alt="Invertalk game icon: a cream lowercase i beside a saffron upside-down i, on charcoal"
               className="invertalk-icon"
             />
           </div>
