@@ -9,6 +9,15 @@ test('renders the home page hero headline', () => {
   ).toBeInTheDocument();
 });
 
+test('offers availability for select builds', () => {
+  render(<App />);
+  expect(screen.getByRole('heading', { name: 'Available for select builds.' })).toBeInTheDocument();
+  expect(screen.getByRole('link', { name: /Enquire about a build/ })).toHaveAttribute(
+    'href',
+    expect.stringContaining('mailto:biszaaltech@gmail.com')
+  );
+});
+
 test('navigates from the nav to the projects page and a game privacy policy', () => {
   render(<App />);
 

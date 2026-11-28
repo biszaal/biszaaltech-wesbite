@@ -58,7 +58,7 @@ const GameDeleteAccount: React.FC<GameDeleteAccountProps> = ({
       <section>
         <p>
           This page explains how to delete your account and associated data in {gameName}
-          {storeName ? ` (listed as "${storeName}")` : ''}, developed by BISZAAL TECH LTD
+          {storeName ? ` (listed as "${storeName}")` : ''}, developed by Bishal Aryal, trading as Biszaal Tech
           {bundleId ? ` (${bundleId})` : ''}. Deletion is permanent and cannot be undone.
         </p>
       </section>
@@ -91,7 +91,7 @@ const GameDeleteAccount: React.FC<GameDeleteAccountProps> = ({
         <h2>2. Or ask us to delete it for you</h2>
         <p>
           If you have already uninstalled the game, email{' '}
-          <a href="mailto:hello@biszaaltech.com">hello@biszaaltech.com</a> with the subject{' '}
+          <a href="mailto:biszaaltech@gmail.com">biszaaltech@gmail.com</a> with the subject{' '}
           <strong>Delete my {gameName} account</strong>, sending it from the email address on the
           account so we can confirm it is yours. We complete the deletion within 30 days and write
           back when it is done.
@@ -156,9 +156,8 @@ const GameDeleteAccount: React.FC<GameDeleteAccountProps> = ({
         <h2>6. Contact us</h2>
         <p>For any question about deleting your account or the data we hold:</p>
         <div className="contact-info">
-          <p><strong>BISZAAL TECH LTD</strong></p>
-          <p>Email: hello@biszaaltech.com</p>
-          <p>Address: 71-75 Shelton Street, Covent Garden, London, WC2H 9JQ</p>
+          <p><strong>Bishal Aryal, trading as Biszaal Tech</strong></p>
+          <p>Email: biszaaltech@gmail.com</p>
         </div>
         <p>
           Our full privacy policy for this game is at{' '}

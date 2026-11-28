@@ -17,17 +17,20 @@ test('lists all six products', () => {
   });
 });
 
-test('Expenzez links to both stores, safely', () => {
+test('Expenzez is marked temporarily closed, with no store or download links', () => {
   renderPage();
   const row = screen.getByRole('heading', { name: 'Expenzez' }).closest('.project-row') as HTMLElement;
-
-  const appStore = within(row).getByRole('link', { name: /App Store/ });
-  expect(appStore).toHaveAttribute('href', 'https://apps.apple.com/us/app/expenzez/id6751338089');
-  expect(appStore).toHaveAttribute('rel', 'noopener noreferrer');
-
-  expect(within(row).getByRole('link', { name: 'Google Play' })).toHaveAttribute(
+  expect(within(row).getByText('Temporarily closed')).toBeInTheDocument();
+  expect(within(row).getByText('Temporarily closed')).toHaveClass('project-status--muted');
+  within(row)
+    .getAllByRole('link')
+    .forEach((link) => {
+      expect(link.getAttribute('href')).not.toMatch(/apps\.apple\.com|play\.google\.com|expenzez\.com/);
+    });
+  expect(within(row).queryByRole('link', { name: /App Store|Google Play|Website/ })).not.toBeInTheDocument();
+  expect(within(row).getByRole('link', { name: 'Privacy and shutdown info' })).toHaveAttribute(
     'href',
-    'https://play.google.com/store/apps/details?id=com.biszaaltech.expenzez'
+    '/apps/expenzez/privacy'
   );
 });
 

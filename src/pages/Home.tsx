@@ -6,6 +6,7 @@ import Work from '../components/Work';
 import Process from '../components/Process';
 import About from '../components/About';
 import FAQ from '../components/FAQ';
+import Availability from '../components/Availability';
 import Contact from '../components/Contact';
 
 const Home: React.FC = () => {
@@ -21,6 +22,7 @@ const Home: React.FC = () => {
       <Process />
       <About />
       <FAQ />
+      <Availability />
       <Contact />
     </main>
   );

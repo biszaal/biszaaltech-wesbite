@@ -300,3 +300,5 @@ Marketing copy is also constrained by the shipped legal pages. Two live
 examples: `ExpenzezPrivacy.tsx` documents an Expenzez Pro subscription and
 AdMob ads, so Expenzez may **not** be described as "free"; the same page states
 it does not connect to your bank, so Open Banking must not be mentioned.
+(Expenzez shuts down on 31 Dec 2026 and is no longer shown in the showcase; its
+privacy page stays live until user data is deleted by 30 Jan 2027.)

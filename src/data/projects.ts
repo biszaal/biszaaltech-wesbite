@@ -9,10 +9,9 @@ import invertalkIcon from '../assets/invertalk-icon.png';
  * Single source of truth for our six products — used by the homepage
  * proof strip and the /projects page.
  *
- * Every claim here has to be defensible. Two constraints worth remembering:
- * Expenzez is NOT "free" (its privacy page documents a Pro subscription and
- * AdMob ads) and must not mention Open Banking (the same page states it does
- * not connect to your bank).
+ * Every claim here has to be defensible. Expenzez is still listed, but as
+ * temporarily closed (it shuts down on 31 December 2026). It must not carry
+ * store or download links. Its privacy policy page stays live.
  */
 
 export type ProjectKind = 'app' | 'game';
@@ -38,6 +37,8 @@ export interface ProjectEntry {
   iconAlt: string;
   /** Only where an already-approved claim exists. Never invent one. */
   status?: string;
+  /** Mutes the status chip so a closed product is not read as a live offer. */
+  closed?: boolean;
   links: ProjectLink[];
 }
 
@@ -59,25 +60,18 @@ export const projects: ProjectEntry[] = [
     tagline: 'An expense tracker for the UK.',
     description:
       'Manual entry, CSV import and export, custom categories and clean monthly ' +
-      'analytics. Built with React Native, so iOS and Android stay in step.',
-    meta: ['Personal finance', 'iOS & Android', 'Free tier · Pro subscription'],
+      'analytics. Built with React Native, so iOS and Android stay in step. ' +
+      'Temporarily closed — the app shuts down on 31 December 2026, and remaining ' +
+      'user data is deleted by 30 January 2027.',
+    meta: ['Personal finance', 'iOS & Android', 'Temporarily closed'],
     icon: expenzezIcon,
     iconAlt: 'Expenzez app icon',
-    links: [
-      {
-        label: 'App Store',
-        href: 'https://apps.apple.com/us/app/expenzez/id6751338089',
-        external: true,
-        primary: true,
-      },
-      {
-        label: 'Google Play',
-        href: 'https://play.google.com/store/apps/details?id=com.biszaaltech.expenzez',
-        external: true,
-      },
-      { label: 'Website', href: 'https://expenzez.com', external: true },
-      { label: 'Privacy policy', href: '/apps/expenzez/privacy' },
-    ],
+    status: 'Temporarily closed',
+    closed: true,
+    // No store or download links: the app is shutting down and must not look
+    // available. The only link is the privacy policy, which carries the
+    // shutdown notice.
+    links: [{ label: 'Privacy and shutdown info', href: '/apps/expenzez/privacy' }],
   },
   {
     slug: 'itrackhabit',

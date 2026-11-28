@@ -67,6 +67,11 @@
   white-space: nowrap;
 }
 
+.work-kind--muted {
+  color: var(--ink-faint);
+}
+
+
 .work-cta {
   margin-top: clamp(2rem, 5vw, 3rem);
 }

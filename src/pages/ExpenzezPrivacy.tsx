@@ -52,24 +52,33 @@ const ExpenzezPrivacy: React.FC = () => {
     <main id="main" className="legal-page">
       <div className="legal-container">
         <h1>Expenzez Privacy Policy</h1>
-        <p className="last-updated">Last updated: August 10, 2026</p>
+        <p className="last-updated">Last updated: November 28, 2026</p>
+
+        <section>
+          <div className="contact-info">
+            <p>
+              <strong>Expenzez is shutting down.</strong> The Expenzez app and service will close on{' '}
+              <strong>31 December 2026</strong>. Any user data still held will be deleted by{' '}
+              <strong>30 January 2027</strong>. If you have questions, or want your data deleted
+              sooner, email{' '}
+              <a href="mailto:biszaaltech@gmail.com">biszaaltech@gmail.com</a>.
+            </p>
+          </div>
+        </section>
 
         <section>
           <h2>1. Who we are</h2>
           <p>
             Expenzez is an expense-tracking mobile application operated by{' '}
-            <strong>BISZAAL TECH LTD</strong> ("Expenzez", "we", "our", or "us"). We are the data
-            controller responsible for your personal data under the UK General Data Protection
-            Regulation (UK GDPR) and the Data Protection Act 2018.
+            <strong>Bishal Aryal, trading as Biszaal Tech</strong> ("Expenzez", "we", "our", or
+            "us"). We are the data controller responsible for your personal data under the UK
+            General Data Protection Regulation (UK GDPR) and the Data Protection Act 2018.
           </p>
           <div className="contact-info">
-            <p><strong>Controller:</strong> BISZAAL TECH LTD (registered in England and Wales)</p>
-            <p><strong>Company number:</strong> 16693100</p>
-            <p><strong>Registered office:</strong> 71-75 Shelton Street, London, WC2H 9JQ, United Kingdom</p>
-            <p><strong>ICO registration number:</strong> ZC055545</p>
+            <p><strong>Controller:</strong> Bishal Aryal, trading as Biszaal Tech</p>
             <p>
               <strong>Privacy contact:</strong>{' '}
-              <a href="mailto:privacy@expenzez.com">privacy@expenzez.com</a>
+              <a href="mailto:biszaaltech@gmail.com">biszaaltech@gmail.com</a>
             </p>
           </div>
           <p>
@@ -201,7 +210,7 @@ const ExpenzezPrivacy: React.FC = () => {
           <ul>
             <li>
               <strong>Amazon Web Services (AWS)</strong>: secure cloud hosting and database storage
-              (London / UK region)
+              (UK region)
             </li>
             <li>
               <strong>OpenAI</strong>: AI transaction categorisation and insights (United States)
@@ -327,7 +336,7 @@ const ExpenzezPrivacy: React.FC = () => {
           </ul>
           <p>
             To exercise any of these rights, contact{' '}
-            <a href="mailto:privacy@expenzez.com">privacy@expenzez.com</a>. We will respond within one
+            <a href="mailto:biszaaltech@gmail.com">biszaaltech@gmail.com</a>. We will respond within one
             month.
           </p>
           <p>
@@ -346,7 +355,7 @@ const ExpenzezPrivacy: React.FC = () => {
             an account, and we ask for your date of birth at sign-up to confirm this. The Service is
             not directed at children, and we do not knowingly collect personal data from anyone under
             18. If you believe a person under 18 has provided us with personal data, please contact{' '}
-            <a href="mailto:privacy@expenzez.com">privacy@expenzez.com</a> and we will delete it.
+            <a href="mailto:biszaaltech@gmail.com">biszaaltech@gmail.com</a> and we will delete it.
           </p>
         </section>
 
@@ -367,30 +376,26 @@ const ExpenzezPrivacy: React.FC = () => {
           <p>
             We may update this Privacy Policy from time to time. We will post the updated version
             here and change the "Last updated" date. Where changes are significant, we will take
-            reasonable steps to notify you.
+            reasonable steps to notify you. Because Expenzez closes on 31 December 2026, this page
+            stays available until remaining user data has been deleted (by 30 January 2027).
           </p>
         </section>
 
         <section>
           <h2>15. Contact us</h2>
           <div className="contact-info">
-            <p><strong>Company:</strong> BISZAAL TECH LTD</p>
+            <p><strong>Operator:</strong> Bishal Aryal, trading as Biszaal Tech</p>
             <p>
               <strong>Privacy &amp; data requests:</strong>{' '}
-              <a href="mailto:privacy@expenzez.com">privacy@expenzez.com</a>
+              <a href="mailto:biszaaltech@gmail.com">biszaaltech@gmail.com</a>
             </p>
-            <p>
-              <strong>General support:</strong>{' '}
-              <a href="mailto:support@expenzez.com">support@expenzez.com</a>
-            </p>
-            <p><strong>Address:</strong> 71-75 Shelton Street, London, WC2H 9JQ, United Kingdom</p>
           </div>
         </section>
 
         <section>
           <div className="contact-info">
             <p>
-              <strong>Regulatory note:</strong> Expenzez, operated by BISZAAL TECH LTD, complies with
+              <strong>Regulatory note:</strong> Expenzez, operated by Bishal Aryal trading as Biszaal Tech, complies with
               the UK GDPR and the Data Protection Act 2018. Expenzez is an expense-tracking tool; it
               is not a bank or a regulated financial service and does not provide regulated financial
               advice.

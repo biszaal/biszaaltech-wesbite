@@ -1,5 +1,5 @@
-# app-ads.txt - BISZAAL TECH LTD
+# app-ads.txt - Biszaal Tech
 # Spec: https://iabtechlab.com/app-ads-txt/
-# Authorized digital sellers for apps published by BISZAAL TECH LTD.
+# Authorized digital sellers for apps published by Biszaal Tech.
 
 google.com, pub-5089744184168259, DIRECT, f08c47fec0942fa0

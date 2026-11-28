@@ -7,7 +7,7 @@ test('renders the iTrackHabit policy heading and contact details', () => {
   expect(
     screen.getByRole('heading', { name: 'iTrackHabit Privacy Policy' })
   ).toBeInTheDocument();
-  expect(screen.getByText(/hello@biszaaltech\.com/)).toBeInTheDocument();
+  expect(screen.getByText(/biszaaltech@gmail\.com/)).toBeInTheDocument();
 });
 
 test('states the offline-only position the app actually ships with', () => {

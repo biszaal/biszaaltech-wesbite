@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { useReveal } from '../hooks/useReveal';
 import './Hero.css';
 
-const facts = ['Founded 2025', 'London, UK', 'Company № 16693100', 'iOS · Android · Web'];
+const facts = ['Founded 2025', 'Independent studio', 'Remote worldwide', 'iOS · Android · Web'];
 
 const Hero: React.FC = () => {
   const copyRef = useReveal<HTMLDivElement>();
@@ -13,14 +13,14 @@ const Hero: React.FC = () => {
     <section className="hero">
       <div className="container hero-grid">
         <div className="hero-copy reveal" ref={copyRef}>
-          <span className="eyebrow">Biszaal Tech · London</span>
+          <span className="eyebrow">Biszaal Tech · Bishal Aryal</span>
           <h1 className="hero-headline">
             We build the <em>software</em> you have in mind.
           </h1>
           <p className="hero-sub">
-            A London software studio. We build mobile apps, websites, backends and
-            the design that holds them together — for people with an idea and
-            businesses with a problem.
+            An independent software studio run by Bishal Aryal. We build mobile apps,
+            websites, backends and the design that holds them together — for people
+            with an idea and businesses with a problem.
           </p>
           <div className="hero-actions">
             <Link to="/#contact" className="pill-btn pill-btn--accent">
@@ -76,7 +76,7 @@ const Hero: React.FC = () => {
       </div>
 
       <div className="container">
-        <ul className="hero-facts" aria-label="Company facts">
+        <ul className="hero-facts" aria-label="Studio facts">
           {facts.map((fact) => (
             <li key={fact} className="mono-meta">{fact}</li>
           ))}

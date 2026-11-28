@@ -13,10 +13,10 @@ const Work: React.FC = () => {
       <div className="container">
         <div className="work-head reveal" ref={headRef}>
           <span className="eyebrow">Proof</span>
-          <h2>Five we built ourselves.</h2>
+          <h2>Six we built ourselves.</h2>
           <p className="work-lead">
-            Two apps and three games — designed, built, submitted and maintained by
-            the same people who would build yours.
+            Two apps and four games — designed, built, submitted and maintained by
+            the same person who would build yours. One of the apps, Expenzez, is temporarily closed.
           </p>
         </div>
 
@@ -28,8 +28,8 @@ const Work: React.FC = () => {
                 <h3 className="work-name">{project.name}</h3>
                 <p className="work-tagline">{project.tagline}</p>
               </div>
-              <span className="mono-meta work-kind">
-                {project.kind === 'app' ? 'App' : 'Game'}
+              <span className={`mono-meta work-kind${project.closed ? ' work-kind--muted' : ''}`}>
+                {project.status || (project.kind === 'app' ? 'App' : 'Game')}
               </span>
             </li>
           ))}

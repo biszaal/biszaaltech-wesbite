@@ -26,16 +26,16 @@ const About: React.FC = () => {
     <section className="about">
       <div className="container about-grid">
         <div className="about-story reveal" ref={leftRef}>
-          <span className="eyebrow">The company</span>
+          <span className="eyebrow">The studio</span>
           <h2>A small studio that ships its own software.</h2>
           <p>
-            BISZAAL TECH LTD was founded in 2025 on a simple principle: technology
-            should simplify life, not complicate it. We build software for other
-            people, and we build our own — the same standard applies to both.
+            Biszaal Tech was founded in 2025 by Bishal Aryal on a simple principle:
+            technology should simplify life, not complicate it. We build software for
+            other people, and we build our own — the same standard applies to both.
           </p>
           <p>
-            We stay deliberately small and hands-on — design and engineering
-            in one room, shipping software we'd want to use ourselves.
+            The studio stays deliberately small and hands-on — design and engineering
+            by the same person, shipping software we'd want to use ourselves.
           </p>
         </div>
 

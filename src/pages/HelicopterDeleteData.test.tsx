@@ -10,13 +10,13 @@ test('names the app as both stores list it, the package, and the developer', () 
   // Play checks the page refers to the app or developer shown on the listing.
   expect(screen.getAllByText(/Cave Helicopter Game/).length).toBeGreaterThan(0);
   expect(screen.getByText(/com\.biszaal\.helicopter/)).toBeInTheDocument();
-  expect(screen.getByText(/BISZAAL TECH LTD/)).toBeInTheDocument();
+  expect(screen.getByText(/Bishal Aryal, trading as Biszaal Tech/)).toBeInTheDocument();
 });
 
 test('gives a deletion request route and the in-app way to reach it', () => {
   render(<HelicopterDeleteData />);
-  const mailto = screen.getByRole('link', { name: 'hello@biszaaltech.com' });
-  expect(mailto).toHaveAttribute('href', 'mailto:hello@biszaaltech.com');
+  const mailto = screen.getByRole('link', { name: 'biszaaltech@gmail.com' });
+  expect(mailto).toHaveAttribute('href', 'mailto:biszaaltech@gmail.com');
   expect(screen.getByText('Delete my leaderboard data')).toBeInTheDocument();
 });
 

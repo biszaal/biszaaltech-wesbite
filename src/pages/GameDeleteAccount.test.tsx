@@ -19,7 +19,7 @@ test('names the app, the store listing, and the developer', () => {
   // Play checks the page refers to the app or developer shown on the listing.
   expect(screen.getByText(/Ludo: Classic Board Game/)).toBeInTheDocument();
   expect(screen.getByText(/com\.biszaal\.mobile/)).toBeInTheDocument();
-  expect(screen.getAllByText(/BISZAAL TECH LTD/).length).toBeGreaterThan(0);
+  expect(screen.getAllByText(/Bishal Aryal, trading as Biszaal Tech/).length).toBeGreaterThan(0);
 });
 
 test('gives the in-app steps and a route for players who uninstalled', () => {
@@ -28,8 +28,8 @@ test('gives the in-app steps and a route for players who uninstalled', () => {
   expect(screen.getByText(/dock along the bottom/i)).toBeInTheDocument();
   expect(screen.getAllByText('Delete account').length).toBeGreaterThan(0);
   expect(screen.getByText(/already uninstalled the game/i)).toBeInTheDocument();
-  const mailto = screen.getByRole('link', { name: 'hello@biszaaltech.com' });
-  expect(mailto).toHaveAttribute('href', 'mailto:hello@biszaaltech.com');
+  const mailto = screen.getByRole('link', { name: 'biszaaltech@gmail.com' });
+  expect(mailto).toHaveAttribute('href', 'mailto:biszaaltech@gmail.com');
 });
 
 test('states what is deleted and what is retained, with periods', () => {
