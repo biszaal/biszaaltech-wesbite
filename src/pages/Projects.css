@@ -147,6 +147,18 @@
   background: var(--accent);
 }
 
+/* Closed / unavailable: muted so it cannot be read as a live offer. */
+.project-status--muted {
+  border-color: var(--line);
+  background: var(--paper-sunken);
+  color: var(--ink-faint);
+}
+
+.project-status--muted::before {
+  background: var(--ink-faint);
+}
+
+
 .projects-crossband {
   padding-bottom: clamp(4rem, 8vw, 6rem);
 }

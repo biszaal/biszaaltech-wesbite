@@ -1,3 +1,4 @@
+import expenzezIcon from '../assets/expenzez-icon.png';
 import itrackhabitIcon from '../assets/itrackhabit-icon.png';
 import helicopterIcon from '../assets/helicopter-icon.png';
 import ludoIcon from '../assets/ludo-icon.svg';
@@ -5,11 +6,12 @@ import cascadeIcon from '../assets/cascade-icon.png';
 import invertalkIcon from '../assets/invertalk-icon.png';
 
 /**
- * Single source of truth for our five products — used by the homepage
+ * Single source of truth for our six products — used by the homepage
  * proof strip and the /projects page.
  *
- * Every claim here has to be defensible. Expenzez is deliberately not listed:
- * it shuts down on 31 December 2026. Its privacy policy page stays live.
+ * Every claim here has to be defensible. Expenzez is still listed, but as
+ * temporarily closed (it shuts down on 31 December 2026). It must not carry
+ * store or download links. Its privacy policy page stays live.
  */
 
 export type ProjectKind = 'app' | 'game';
@@ -35,6 +37,8 @@ export interface ProjectEntry {
   iconAlt: string;
   /** Only where an already-approved claim exists. Never invent one. */
   status?: string;
+  /** Mutes the status chip so a closed product is not read as a live offer. */
+  closed?: boolean;
   links: ProjectLink[];
 }
 
@@ -49,6 +53,26 @@ export const CASCADE_APP_STORE =
   'https://apps.apple.com/gb/app/cascade-colour-sorting/id6810394977';
 
 export const projects: ProjectEntry[] = [
+  {
+    slug: 'expenzez',
+    name: 'Expenzez',
+    kind: 'app',
+    tagline: 'An expense tracker for the UK.',
+    description:
+      'Manual entry, CSV import and export, custom categories and clean monthly ' +
+      'analytics. Built with React Native, so iOS and Android stay in step. ' +
+      'Temporarily closed — the app shuts down on 31 December 2026, and remaining ' +
+      'user data is deleted by 30 January 2027.',
+    meta: ['Personal finance', 'iOS & Android', 'Temporarily closed'],
+    icon: expenzezIcon,
+    iconAlt: 'Expenzez app icon',
+    status: 'Temporarily closed',
+    closed: true,
+    // No store or download links: the app is shutting down and must not look
+    // available. The only link is the privacy policy, which carries the
+    // shutdown notice.
+    links: [{ label: 'Privacy and shutdown info', href: '/apps/expenzez/privacy' }],
+  },
   {
     slug: 'itrackhabit',
     name: 'iTrackHabit',

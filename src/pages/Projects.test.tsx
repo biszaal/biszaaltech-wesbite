@@ -10,12 +10,28 @@ const renderPage = () =>
     </MemoryRouter>
   );
 
-test('lists the five products, and not Expenzez', () => {
+test('lists all six products', () => {
   renderPage();
-  ['iTrackHabit', 'Helicopter', 'Ludo', 'Cascade', 'Invertalk'].forEach((name) => {
+  ['Expenzez', 'iTrackHabit', 'Helicopter', 'Ludo', 'Cascade', 'Invertalk'].forEach((name) => {
     expect(screen.getByRole('heading', { name })).toBeInTheDocument();
   });
-  expect(screen.queryByRole('heading', { name: 'Expenzez' })).not.toBeInTheDocument();
+});
+
+test('Expenzez is marked temporarily closed, with no store or download links', () => {
+  renderPage();
+  const row = screen.getByRole('heading', { name: 'Expenzez' }).closest('.project-row') as HTMLElement;
+  expect(within(row).getByText('Temporarily closed')).toBeInTheDocument();
+  expect(within(row).getByText('Temporarily closed')).toHaveClass('project-status--muted');
+  within(row)
+    .getAllByRole('link')
+    .forEach((link) => {
+      expect(link.getAttribute('href')).not.toMatch(/apps\.apple\.com|play\.google\.com|expenzez\.com/);
+    });
+  expect(within(row).queryByRole('link', { name: /App Store|Google Play|Website/ })).not.toBeInTheDocument();
+  expect(within(row).getByRole('link', { name: 'Privacy and shutdown info' })).toHaveAttribute(
+    'href',
+    '/apps/expenzez/privacy'
+  );
 });
 
 test('Helicopter points at the same App Store URL the arcade uses', () => {

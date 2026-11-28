@@ -18,8 +18,8 @@ const Projects: React.FC = () => {
           <span className="eyebrow">Our work</span>
           <h1>Built and shipped.</h1>
           <p className="projects-hero-sub">
-            Five products we designed, built and put in front of real people — one
-            app and four games, all made by Bishal Aryal.
+            Six products we designed, built and put in front of real people — two
+            apps and four games, all made by Bishal Aryal. Expenzez is temporarily closed.
           </p>
         </div>
       </section>
@@ -77,7 +77,11 @@ const ProjectRow: React.FC<{ project: ProjectEntry; flip: boolean }> = ({ projec
           <p className="project-desc">{project.description}</p>
           <p className="mono-meta project-meta">{project.meta.join(' · ')}</p>
           <div className="project-actions">
-            {project.status && <span className="project-status">{project.status}</span>}
+            {project.status && (
+              <span className={`project-status${project.closed ? ' project-status--muted' : ''}`}>
+                {project.status}
+              </span>
+            )}
             {project.links.map((link) => (
               <ProjectAction key={link.label} link={link} />
             ))}

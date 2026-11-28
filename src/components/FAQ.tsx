@@ -25,7 +25,7 @@ const faqs = [
   },
   {
     question: 'Can I see something you have built?',
-    answer: 'Five products of our own — one app and four games, all on the projects page, all shipped by the same person who would build yours.',
+    answer: 'Six products of our own — two apps and four games, all on the projects page, all shipped by the same person who would build yours. Expenzez is temporarily closed.',
   },
 ];
 
