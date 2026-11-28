@@ -45,7 +45,7 @@ const GamePrivacyPolicy: React.FC<GamePrivacyPolicyProps> = ({
   hasInstallAttribution = false,
   deleteAccountPath,
   lastUpdated = 'July 28, 2026',
-  contactEmail = 'hello@biszaaltech.com',
+  contactEmail = 'biszaaltech@gmail.com',
 }) => {
   const isOnline = dataPractices === 'online-multiplayer';
   // One public leaderboard and nothing else: no friends, currency, invites,
@@ -70,7 +70,7 @@ const GamePrivacyPolicy: React.FC<GamePrivacyPolicyProps> = ({
         <section>
           <h2>{next()}. Introduction</h2>
           <p>
-            BISZAAL TECH LTD ("we," "our," or "us") develops {gameName}
+            Bishal Aryal, trading as Biszaal Tech ("we," "our," or "us") develops {gameName}
             {storeName ? ` (listed on the App Store as "${storeName}")` : ''}. This privacy policy
             explains what information {gameName} collects (if any), how it is used, and your
             rights regarding that information.
@@ -601,9 +601,8 @@ const GamePrivacyPolicy: React.FC<GamePrivacyPolicyProps> = ({
           <h2>{next()}. Contact Us</h2>
           <p>If you have any questions about this privacy policy, please contact us at:</p>
           <div className="contact-info">
-            <p><strong>BISZAAL TECH LTD</strong></p>
+            <p><strong>Bishal Aryal, trading as Biszaal Tech</strong></p>
             <p>Email: {contactEmail}</p>
-            <p>Address: 71-75 Shelton Street, Covent Garden, London, WC2H 9JQ</p>
           </div>
         </section>
       </div>

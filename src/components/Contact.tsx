@@ -15,8 +15,8 @@ const Contact: React.FC = () => {
           that doesn't have a name yet. One message reaches the whole studio.
         </p>
         <div className="contact-actions">
-          <a href="mailto:hello@biszaaltech.com" className="pill-btn contact-pill">
-            hello@biszaaltech.com
+          <a href="mailto:biszaaltech@gmail.com" className="pill-btn contact-pill">
+            biszaaltech@gmail.com
             <span className="btn-orb" aria-hidden="true">✉</span>
           </a>
           <a

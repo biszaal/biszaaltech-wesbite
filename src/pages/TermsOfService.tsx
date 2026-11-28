@@ -11,7 +11,7 @@ const TermsOfService: React.FC = () => {
         <section>
           <h2>1. Acceptance of Terms</h2>
           <p>
-            By accessing and using the BISZAAL TECH LTD website ("the Service"), you accept and agree to be bound 
+            By accessing and using the Biszaal Tech website ("the Service"), you accept and agree to be bound 
             by the terms and provision of this agreement.
           </p>
         </section>
@@ -19,16 +19,15 @@ const TermsOfService: React.FC = () => {
         <section>
           <h2>2. About the Service</h2>
           <p>
-            This website serves as a corporate information portal for BISZAAL TECH LTD, a company registered in 
-            England and Wales (Company Number: 16693100). The Service provides information about our company, 
-            products, and services.
+            This website serves as an information portal for Biszaal Tech, the independent software studio of 
+            Bishal Aryal. The Service provides information about our studio, products, and services.
           </p>
         </section>
 
         <section>
           <h2>3. Use License</h2>
           <p>
-            Permission is granted to temporarily access the materials on BISZAAL TECH LTD's website for personal, 
+            Permission is granted to temporarily access the materials on Biszaal Tech's website for personal, 
             non-commercial transitory viewing only. This is the grant of a license, not a transfer of title, and under this license you may not:
           </p>
           <ul>
@@ -42,7 +41,7 @@ const TermsOfService: React.FC = () => {
         <section>
           <h2>4. Disclaimer</h2>
           <p>
-            The materials on BISZAAL TECH LTD's website are provided on an 'as is' basis. BISZAAL TECH LTD makes 
+            The materials on Biszaal Tech's website are provided on an 'as is' basis. Biszaal Tech makes 
             no warranties, expressed or implied, and hereby disclaims and negates all other warranties including, 
             without limitation, implied warranties or conditions of merchantability, fitness for a particular purpose, 
             or non-infringement of intellectual property or other violation of rights.
@@ -52,9 +51,9 @@ const TermsOfService: React.FC = () => {
         <section>
           <h2>5. Limitations</h2>
           <p>
-            In no event shall BISZAAL TECH LTD or its suppliers be liable for any damages (including, without limitation, 
+            In no event shall Biszaal Tech or its suppliers be liable for any damages (including, without limitation, 
             damages for loss of data or profit, or due to business interruption) arising out of the use or inability 
-            to use the materials on the website, even if BISZAAL TECH LTD or an authorized representative has been 
+            to use the materials on the website, even if Biszaal Tech or an authorized representative has been 
             notified orally or in writing of the possibility of such damage.
           </p>
         </section>
@@ -74,7 +73,7 @@ const TermsOfService: React.FC = () => {
           <h2>7. Intellectual Property</h2>
           <p>
             The Service and its original content, features, and functionality are and will remain the exclusive 
-            property of BISZAAL TECH LTD and its licensors. The Service is protected by copyright, trademark, 
+            property of Biszaal Tech and its licensors. The Service is protected by copyright, trademark, 
             and other laws.
           </p>
         </section>
@@ -90,7 +89,7 @@ const TermsOfService: React.FC = () => {
         <section>
           <h2>9. Changes to Terms</h2>
           <p>
-            BISZAAL TECH LTD reserves the right, at our sole discretion, to modify or replace these Terms at any time. 
+            Biszaal Tech reserves the right, at our sole discretion, to modify or replace these Terms at any time. 
             If a revision is material, we will try to provide at least 30 days notice prior to any new terms taking effect.
           </p>
         </section>
@@ -109,10 +108,8 @@ const TermsOfService: React.FC = () => {
             If you have any questions about these Terms of Service, please contact us at:
           </p>
           <div className="contact-info">
-            <p><strong>BISZAAL TECH LTD</strong></p>
-            <p>Email: hello@biszaaltech.com</p>
-            <p>Address: 71-75 Shelton Street, Covent Garden, London, WC2H 9JQ</p>
-            <p>Company Number: 16693100</p>
+            <p><strong>Bishal Aryal, trading as Biszaal Tech</strong></p>
+            <p>Email: biszaaltech@gmail.com</p>
           </div>
         </section>
       </div>

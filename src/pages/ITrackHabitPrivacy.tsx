@@ -19,7 +19,7 @@ const ITrackHabitPrivacy: React.FC = () => {
         <section>
           <h2>1. Introduction</h2>
           <p>
-            BISZAAL TECH LTD ("we," "our," or "us") develops iTrackHabit, a habit tracker for
+            Bishal Aryal, trading as Biszaal Tech ("we," "our," or "us") develops iTrackHabit, a habit tracker for
             iOS and Android. This privacy policy explains what information the app handles, where
             that information lives, and what rights you have over it.
           </p>
@@ -194,9 +194,8 @@ const ITrackHabitPrivacy: React.FC = () => {
           <h2>13. Contact Us</h2>
           <p>If you have any questions about this privacy policy, please contact us at:</p>
           <div className="contact-info">
-            <p><strong>BISZAAL TECH LTD</strong></p>
-            <p>Email: hello@biszaaltech.com</p>
-            <p>Address: 71-75 Shelton Street, Covent Garden, London, WC2H 9JQ</p>
+            <p><strong>Bishal Aryal, trading as Biszaal Tech</strong></p>
+            <p>Email: biszaaltech@gmail.com</p>
           </div>
         </section>
       </div>

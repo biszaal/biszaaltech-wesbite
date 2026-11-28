@@ -16,8 +16,8 @@ const faqs = [
     answer: 'Yes. We have taken our own apps through App Store and Google Play review, so signing, privacy labels, store listings and the review back-and-forth are all part of the job.',
   },
   {
-    question: 'Do you work with people outside London?',
-    answer: 'We are a London company and we work remotely. Where you are matters much less than whether we can get a clear picture of what you need.',
+    question: 'Where are you based, and do you work remotely?',
+    answer: 'Biszaal Tech is an independent studio run by Bishal Aryal, who is relocating to New Zealand. Work is remote, so where you are matters much less than whether we can get a clear picture of what you need.',
   },
   {
     question: 'What do you build with?',
@@ -25,7 +25,7 @@ const faqs = [
   },
   {
     question: 'Can I see something you have built?',
-    answer: 'Five products of our own — two apps and three games, all on the projects page, all shipped by the same people who would build yours.',
+    answer: 'Five products of our own — one app and four games, all on the projects page, all shipped by the same person who would build yours.',
   },
 ];
 

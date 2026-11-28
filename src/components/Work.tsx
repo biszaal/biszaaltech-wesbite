@@ -15,8 +15,8 @@ const Work: React.FC = () => {
           <span className="eyebrow">Proof</span>
           <h2>Five we built ourselves.</h2>
           <p className="work-lead">
-            Two apps and three games — designed, built, submitted and maintained by
-            the same people who would build yours.
+            One app and four games — designed, built, submitted and maintained by
+            the same person who would build yours.
           </p>
         </div>
 

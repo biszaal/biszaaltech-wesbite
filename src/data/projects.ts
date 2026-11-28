@@ -1,4 +1,3 @@
-import expenzezIcon from '../assets/expenzez-icon.png';
 import itrackhabitIcon from '../assets/itrackhabit-icon.png';
 import helicopterIcon from '../assets/helicopter-icon.png';
 import ludoIcon from '../assets/ludo-icon.svg';
@@ -6,13 +5,11 @@ import cascadeIcon from '../assets/cascade-icon.png';
 import invertalkIcon from '../assets/invertalk-icon.png';
 
 /**
- * Single source of truth for our six products — used by the homepage
+ * Single source of truth for our five products — used by the homepage
  * proof strip and the /projects page.
  *
- * Every claim here has to be defensible. Two constraints worth remembering:
- * Expenzez is NOT "free" (its privacy page documents a Pro subscription and
- * AdMob ads) and must not mention Open Banking (the same page states it does
- * not connect to your bank).
+ * Every claim here has to be defensible. Expenzez is deliberately not listed:
+ * it shuts down on 31 December 2026. Its privacy policy page stays live.
  */
 
 export type ProjectKind = 'app' | 'game';
@@ -52,33 +49,6 @@ export const CASCADE_APP_STORE =
   'https://apps.apple.com/gb/app/cascade-colour-sorting/id6810394977';
 
 export const projects: ProjectEntry[] = [
-  {
-    slug: 'expenzez',
-    name: 'Expenzez',
-    kind: 'app',
-    tagline: 'An expense tracker for the UK.',
-    description:
-      'Manual entry, CSV import and export, custom categories and clean monthly ' +
-      'analytics. Built with React Native, so iOS and Android stay in step.',
-    meta: ['Personal finance', 'iOS & Android', 'Free tier · Pro subscription'],
-    icon: expenzezIcon,
-    iconAlt: 'Expenzez app icon',
-    links: [
-      {
-        label: 'App Store',
-        href: 'https://apps.apple.com/us/app/expenzez/id6751338089',
-        external: true,
-        primary: true,
-      },
-      {
-        label: 'Google Play',
-        href: 'https://play.google.com/store/apps/details?id=com.biszaaltech.expenzez',
-        external: true,
-      },
-      { label: 'Website', href: 'https://expenzez.com', external: true },
-      { label: 'Privacy policy', href: '/apps/expenzez/privacy' },
-    ],
-  },
   {
     slug: 'itrackhabit',
     name: 'iTrackHabit',

@@ -26,7 +26,7 @@ const InvertalkPrivacy: React.FC = () => {
         <section>
           <h2>1. Introduction</h2>
           <p>
-            BISZAAL TECH LTD ("we," "our," or "us") develops Invertalk, a party game for two people
+            Bishal Aryal, trading as Biszaal Tech ("we," "our," or "us") develops Invertalk, a party game for two people
             sharing one phone, on iOS and Android. This privacy policy explains what the app does
             with your voice and with other information, and what rights you have.
           </p>
@@ -194,9 +194,8 @@ const InvertalkPrivacy: React.FC = () => {
           <h2>10. Contact Us</h2>
           <p>If you have any questions about this privacy policy, please contact us at:</p>
           <div className="contact-info">
-            <p><strong>BISZAAL TECH LTD</strong></p>
+            <p><strong>Bishal Aryal, trading as Biszaal Tech</strong></p>
             <p>Email: {CONTACT_EMAIL}</p>
-            <p>Address: 71-75 Shelton Street, Covent Garden, London, WC2H 9JQ</p>
           </div>
         </section>
       </div>

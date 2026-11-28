@@ -18,8 +18,8 @@ const Footer: React.FC = () => {
           </span>
           <p className="footer-line">
             {games
-              ? 'Original games, made in London.'
-              : 'Websites, apps and custom software, made in London.'}
+              ? 'Original games, made by Bishal Aryal.'
+              : 'Websites, apps and custom software, made by Bishal Aryal.'}
           </p>
         </div>
 
@@ -35,11 +35,10 @@ const Footer: React.FC = () => {
         </nav>
 
         <div className="footer-company mono-meta">
-          <p>BISZAAL TECH LTD · Company № 16693100</p>
-          <p>Registered in England and Wales</p>
-          <p>71–75 Shelton Street, Covent Garden, London, WC2H 9JQ</p>
+          <p>Biszaal Tech · Bishal Aryal</p>
+          <p>Independent studio · available worldwide, remotely</p>
           <p>
-            <a href="mailto:hello@biszaaltech.com" className="footer-email">hello@biszaaltech.com</a>
+            <a href="mailto:biszaaltech@gmail.com" className="footer-email">biszaaltech@gmail.com</a>
           </p>
           <p>
             <a
@@ -55,7 +54,7 @@ const Footer: React.FC = () => {
       </div>
 
       <div className="container footer-bottom">
-        <p className="mono-meta">© 2026 BISZAAL TECH LTD. All rights reserved.</p>
+        <p className="mono-meta">© 2026 Bishal Aryal. All rights reserved.</p>
       </div>
     </footer>
   );

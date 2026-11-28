@@ -23,7 +23,7 @@ const HelicopterDeleteData: React.FC = () => (
         <p>
           This page explains how to delete your data from Cave Helicopter, listed as "Cave
           Helicopter Game" on Google Play and "Helicopter Game: Cave Edition" on the App Store
-          (com.biszaal.helicopter), developed by BISZAAL TECH LTD.
+          (com.biszaal.helicopter), developed by Bishal Aryal, trading as Biszaal Tech.
         </p>
         <p>
           The game keeps your settings, coins, helicopters and personal best on your device. The
@@ -36,7 +36,7 @@ const HelicopterDeleteData: React.FC = () => (
       <section>
         <h2>1. Ask us to delete it</h2>
         <p>
-          Email <a href="mailto:hello@biszaaltech.com">hello@biszaaltech.com</a> with the subject{' '}
+          Email <a href="mailto:biszaaltech@gmail.com">biszaaltech@gmail.com</a> with the subject{' '}
           <strong>Delete my Cave Helicopter data</strong>, and include your username exactly as it
           appears on the leaderboard. There is no sign-in behind a leaderboard name, so if you
           still have the game installed, add the rank shown beside your name — that is how we

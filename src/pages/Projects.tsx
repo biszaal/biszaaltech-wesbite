@@ -18,8 +18,8 @@ const Projects: React.FC = () => {
           <span className="eyebrow">Our work</span>
           <h1>Built and shipped.</h1>
           <p className="projects-hero-sub">
-            Five products we designed, built and put in front of real people — two
-            apps and three games, all made in London.
+            Five products we designed, built and put in front of real people — one
+            app and four games, all made by Bishal Aryal.
           </p>
         </div>
       </section>

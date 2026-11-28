@@ -10,25 +10,12 @@ const renderPage = () =>
     </MemoryRouter>
   );
 
-test('lists all six products', () => {
+test('lists the five products, and not Expenzez', () => {
   renderPage();
-  ['Expenzez', 'iTrackHabit', 'Helicopter', 'Ludo', 'Cascade', 'Invertalk'].forEach((name) => {
+  ['iTrackHabit', 'Helicopter', 'Ludo', 'Cascade', 'Invertalk'].forEach((name) => {
     expect(screen.getByRole('heading', { name })).toBeInTheDocument();
   });
-});
-
-test('Expenzez links to both stores, safely', () => {
-  renderPage();
-  const row = screen.getByRole('heading', { name: 'Expenzez' }).closest('.project-row') as HTMLElement;
-
-  const appStore = within(row).getByRole('link', { name: /App Store/ });
-  expect(appStore).toHaveAttribute('href', 'https://apps.apple.com/us/app/expenzez/id6751338089');
-  expect(appStore).toHaveAttribute('rel', 'noopener noreferrer');
-
-  expect(within(row).getByRole('link', { name: 'Google Play' })).toHaveAttribute(
-    'href',
-    'https://play.google.com/store/apps/details?id=com.biszaaltech.expenzez'
-  );
+  expect(screen.queryByRole('heading', { name: 'Expenzez' })).not.toBeInTheDocument();
 });
 
 test('Helicopter points at the same App Store URL the arcade uses', () => {

@@ -10,7 +10,7 @@ test('renders the local-only policy heading and body for a game with no backend'
   expect(
     screen.getByText(/does not currently collect any personal information/i)
   ).toBeInTheDocument();
-  expect(screen.getByText(/hello@biszaaltech\.com/)).toBeInTheDocument();
+  expect(screen.getByText(/biszaaltech@gmail\.com/)).toBeInTheDocument();
 });
 
 test('renders the online-multiplayer policy content for a game with a backend', () => {
@@ -74,7 +74,7 @@ test('renders the leaderboard policy for a game whose only backend is a public b
   );
   expect(screen.getByText(/no analytics or\s+tracking services, and no in-app purchases/))
     .toBeInTheDocument();
-  expect(screen.getAllByRole('link', { name: 'hello@biszaaltech.com' }).length).toBeGreaterThan(0);
+  expect(screen.getAllByRole('link', { name: 'biszaaltech@gmail.com' }).length).toBeGreaterThan(0);
 
   // None of the multiplayer game's disclosures leak into this variant.
   expect(screen.queryByText(/AdMob/)).not.toBeInTheDocument();
@@ -225,7 +225,7 @@ test('describes Cascade\'s anonymous account, synced results and daily board acc
   // Its own inbox, in the deletion route and the contact block, and not the company one.
   expect(screen.getAllByRole('link', { name: 'biszaalgames@gmail.com' }).length).toBeGreaterThan(0);
   expect(screen.getByText(/Email: biszaalgames@gmail\.com/)).toBeInTheDocument();
-  expect(screen.queryByText(/hello@biszaaltech\.com/)).not.toBeInTheDocument();
+  expect(screen.queryByText(/biszaaltech@gmail\.com/)).not.toBeInTheDocument();
 
   // Stored off-device, so it earns the retention section and numbering stays contiguous.
   expect(screen.getByRole('heading', { name: /How Long We Keep Your Data/ })).toBeInTheDocument();

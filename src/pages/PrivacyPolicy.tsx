@@ -11,7 +11,7 @@ const PrivacyPolicy: React.FC = () => {
         <section>
           <h2>1. Introduction</h2>
           <p>
-            BISZAAL TECH LTD ("we," "our," or "us") respects your privacy and is committed to protecting your personal data. 
+            Bishal Aryal, trading as Biszaal Tech ("we," "our," or "us") respects your privacy and is committed to protecting your personal data. 
             This privacy policy explains how we collect, use, and protect your information when you visit our website.
           </p>
         </section>
@@ -96,9 +96,8 @@ const PrivacyPolicy: React.FC = () => {
             If you have any questions about this privacy policy or our data practices, please contact us at:
           </p>
           <div className="contact-info">
-            <p><strong>BISZAAL TECH LTD</strong></p>
-            <p>Email: hello@biszaaltech.com</p>
-            <p>Address: 71-75 Shelton Street, Covent Garden, London, WC2H 9JQ</p>
+            <p><strong>Bishal Aryal, trading as Biszaal Tech</strong></p>
+            <p>Email: biszaaltech@gmail.com</p>
           </div>
         </section>
       </div>

@@ -5,7 +5,7 @@ import InvertalkPrivacy from './InvertalkPrivacy';
 test('renders the Invertalk policy heading and contact details', () => {
   render(<InvertalkPrivacy />);
   expect(screen.getByRole('heading', { name: 'Invertalk Privacy Policy' })).toBeInTheDocument();
-  expect(screen.getByText('BISZAAL TECH LTD')).toBeInTheDocument();
+  expect(screen.getByText('Bishal Aryal, trading as Biszaal Tech')).toBeInTheDocument();
   expect(screen.getByText(/biszaalgames@gmail\.com/)).toBeInTheDocument();
 });
 

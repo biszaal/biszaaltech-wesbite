@@ -2,13 +2,16 @@ import React from 'react';
 import { render, screen } from '@testing-library/react';
 import ExpenzezPrivacy from './ExpenzezPrivacy';
 
-test('renders the Expenzez policy heading and controller details', () => {
+test('renders the Expenzez policy heading, controller and shutdown notice', () => {
   render(<ExpenzezPrivacy />);
   expect(
     screen.getByRole('heading', { name: 'Expenzez Privacy Policy' })
   ).toBeInTheDocument();
-  expect(screen.getByText(/16693100/)).toBeInTheDocument();
-  expect(screen.getAllByText(/privacy@expenzez\.com/).length).toBeGreaterThan(0);
+  expect(screen.queryByText(/16693100/)).not.toBeInTheDocument();
+  expect(screen.getByText(/Expenzez is shutting down/)).toBeInTheDocument();
+  expect(screen.getByText('31 December 2026')).toBeInTheDocument();
+  expect(screen.getByText('30 January 2027')).toBeInTheDocument();
+  expect(screen.getAllByRole('link', { name: 'biszaaltech@gmail.com' }).length).toBeGreaterThan(0);
 });
 
 test('keeps the disclosures that make it a UK GDPR policy', () => {
